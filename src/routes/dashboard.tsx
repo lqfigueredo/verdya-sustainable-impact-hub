@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+import { useLang } from "@/hooks/use-lang";
 import { Calendar, BookOpen, MessageSquare, Bell, ArrowRight } from "lucide-react";
 import { Layout } from "@/components/Layout";
 import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
@@ -25,9 +26,9 @@ export const Route = createFileRoute("/dashboard")({
 });
 
 function Dashboard() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { user } = useAuth();
-  const lang = i18n.language?.startsWith("pt") ? "pt" : "en";
+  const lang = useLang();
   const userId = user?.id ?? null;
   const name = (user?.user_metadata?.full_name as string | undefined) ?? user?.email ?? "";
 

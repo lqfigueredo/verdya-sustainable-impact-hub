@@ -2,6 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useLang } from "@/hooks/use-lang";
 import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
 import { Calendar, MapPin, Globe2, Users, ArrowLeft, CalendarPlus, Loader2 } from "lucide-react";
@@ -32,8 +33,8 @@ function useCountdown(target: string) {
 
 function EventDetailPage() {
   const { id } = Route.useParams();
-  const { t, i18n } = useTranslation();
-  const lang = i18n.language?.startsWith("pt") ? "pt" : "en";
+  const { t } = useTranslation();
+  const lang = useLang();
   const navigate = useNavigate();
   const qc = useQueryClient();
   const { user, isAuthenticated } = useAuth();

@@ -7,6 +7,7 @@ import { Layout } from "@/components/Layout";
 import { ContentCard } from "@/components/library/ContentCard";
 import { Filters } from "@/components/library/Filters";
 import { categoriesQuery, contentListQuery, type ContentType, type Difficulty } from "@/lib/library";
+import { RouteErrorBoundary } from "@/components/RouteBoundary";
 
 export const Route = createFileRoute("/library/")({
   head: () => ({
@@ -15,6 +16,11 @@ export const Route = createFileRoute("/library/")({
       { name: "description", content: "Browse the Verdya ESG education library: articles, guides, PDFs and curated resources." },
     ],
   }),
+  loader: ({ context: { queryClient } }) => {
+    queryClient.ensureQueryData(categoriesQuery);
+    queryClient.ensureQueryData(contentListQuery({}));
+  },
+  errorComponent: RouteErrorBoundary,
   component: LibraryIndex,
 });
 

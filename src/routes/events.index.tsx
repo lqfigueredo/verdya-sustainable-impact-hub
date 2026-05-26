@@ -1,10 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
+import { useLang } from "@/hooks/use-lang";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Calendar, MapPin, Globe2, Users } from "lucide-react";
 import { Layout } from "@/components/Layout";
 import { eventsListQuery, pickLang, type EventFilters, type LocationType } from "@/lib/events";
+import { RouteErrorBoundary } from "@/components/RouteBoundary";
 
 export const Route = createFileRoute("/events/")({
   head: () => ({
@@ -13,12 +15,16 @@ export const Route = createFileRoute("/events/")({
       { name: "description", content: "Live sessions, workshops and networking on corporate sustainability." },
     ],
   }),
+  loader: ({ context: { queryClient } }) => {
+    queryClient.ensureQueryData(eventsListQuery({ when: "upcoming" }));
+  },
+  errorComponent: RouteErrorBoundary,
   component: EventsPage,
 });
 
 function EventsPage() {
-  const { t, i18n } = useTranslation();
-  const lang = i18n.language?.startsWith("pt") ? "pt" : "en";
+  const { t } = useTranslation();
+  const lang = useLang();
   const [filters, setFilters] = useState<EventFilters>({ when: "upcoming" });
   const { data, isLoading } = useQuery(eventsListQuery(filters));
 

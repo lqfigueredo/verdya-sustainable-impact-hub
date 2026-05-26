@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useLang } from "@/hooks/use-lang";
 import { toast } from "sonner";
 import { Layout } from "@/components/Layout";
 import { subscribe } from "@/lib/newsletter";
@@ -17,7 +18,8 @@ export const Route = createFileRoute("/newsletter")({
 });
 
 function NewsletterPage() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
+  const lang = useLang();
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
@@ -26,7 +28,7 @@ function NewsletterPage() {
     e.preventDefault();
     setLoading(true);
     try {
-      await subscribe(email, (i18n.language?.startsWith("pt") ? "pt" : "en"));
+      await subscribe(email, lang);
       setDone(true);
       toast.success(t("newsletterPage.success"));
     } catch {

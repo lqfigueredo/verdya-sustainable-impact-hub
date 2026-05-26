@@ -221,6 +221,9 @@
       "dashboard": "Painel",
       "content": "Conteúdo",
       "categories": "Categorias",
+      "events": "Eventos",
+      "newsletter": "Newsletter",
+      "forum": "Moderação do fórum",
       "users": "Usuários",
       "settings": "Configurações"
     },
@@ -569,5 +572,22 @@
       "favorites": "Você ainda não salvou nenhum conteúdo.",
       "notifications": "Você está em dia."
     }
+  },
+  "adminForum": {
+    "title": "Moderação do fórum",
+    "subtitle": "Revise tópicos e respostas marcados pelo filtro de linguagem.",
+    "flaggedTopics": "Tópicos sinalizados",
+    "flaggedReplies": "Respostas sinalizadas",
+    "empty": "Nada sinalizado. A comunidade está bem.",
+    "clear": "Remover sinalização",
+    "delete": "Excluir",
+    "cleared": "Sinalização removida.",
+    "deleted": "Removido.",
+    "confirmDelete": "Excluir permanentemente?"
+  },
+  "profileTabs": {
+    "edit": "Editar perfil",
+    "events": "Meus eventos",
+    "favorites": "Favoritos"
   }
 }

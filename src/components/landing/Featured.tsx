@@ -1,13 +1,14 @@
 import { Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+import { useLang } from "@/hooks/use-lang";
 import { ArrowUpRight } from "lucide-react";
 import { featuredContentQuery } from "@/lib/landing-stats";
 import { pickLang } from "@/lib/library";
 
 export function Featured() {
-  const { t, i18n } = useTranslation();
-  const lang = i18n.language?.startsWith("pt") ? "pt" : "en";
+  const { t } = useTranslation();
+  const lang = useLang();
   const { data: items, isLoading } = useQuery(featuredContentQuery);
 
   const gradients = [

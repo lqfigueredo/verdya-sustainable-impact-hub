@@ -1,12 +1,13 @@
 import { Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+import { useLang } from "@/hooks/use-lang";
 import { Calendar, ArrowRight } from "lucide-react";
 import { upcomingEventsQuery, pickLang } from "@/lib/events";
 
 export function UpcomingEvents() {
-  const { t, i18n } = useTranslation();
-  const lang = i18n.language?.startsWith("pt") ? "pt" : "en";
+  const { t } = useTranslation();
+  const lang = useLang();
   const { data } = useQuery(upcomingEventsQuery(3));
 
   if (!data || data.length === 0) return null;

@@ -1,13 +1,14 @@
 import { Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+import { useLang } from "@/hooks/use-lang";
 import { ArrowRight, Sparkles, Calendar } from "lucide-react";
 import { publicStatsQuery } from "@/lib/landing-stats";
 import { upcomingEventsQuery, pickLang } from "@/lib/events";
 
 export function Hero() {
-  const { t, i18n } = useTranslation();
-  const lang = i18n.language?.startsWith("pt") ? "pt" : "en";
+  const { t } = useTranslation();
+  const lang = useLang();
   const { data: stats } = useQuery(publicStatsQuery);
   const { data: events } = useQuery(upcomingEventsQuery(1));
   const nextEvent = events?.[0] ?? null;
