@@ -572,5 +572,22 @@
       "favorites": "You haven't saved any content yet.",
       "notifications": "You're all caught up."
     }
+  },
+  "adminForum": {
+    "title": "Forum moderation",
+    "subtitle": "Review topics and replies flagged by the profanity filter.",
+    "flaggedTopics": "Flagged topics",
+    "flaggedReplies": "Flagged replies",
+    "empty": "Nothing flagged. The community is behaving.",
+    "clear": "Unflag",
+    "delete": "Delete",
+    "cleared": "Flag removed.",
+    "deleted": "Removed.",
+    "confirmDelete": "Delete permanently?"
+  },
+  "profileTabs": {
+    "edit": "Edit profile",
+    "events": "My events",
+    "favorites": "Favorites"
   }
 }
