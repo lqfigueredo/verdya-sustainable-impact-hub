@@ -14,6 +14,161 @@ export type Database = {
   }
   public: {
     Tables: {
+      categories: {
+        Row: {
+          color: string
+          created_at: string
+          description_en: string | null
+          description_pt: string | null
+          icon: string
+          id: string
+          name_en: string
+          name_pt: string
+          order: number
+          slug: string
+          updated_at: string
+        }
+        Insert: {
+          color?: string
+          created_at?: string
+          description_en?: string | null
+          description_pt?: string | null
+          icon?: string
+          id?: string
+          name_en: string
+          name_pt: string
+          order?: number
+          slug: string
+          updated_at?: string
+        }
+        Update: {
+          color?: string
+          created_at?: string
+          description_en?: string | null
+          description_pt?: string | null
+          icon?: string
+          id?: string
+          name_en?: string
+          name_pt?: string
+          order?: number
+          slug?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      content_items: {
+        Row: {
+          author_id: string | null
+          body_en: string | null
+          body_pt: string | null
+          category_id: string
+          cover_image_url: string | null
+          created_at: string
+          difficulty: Database["public"]["Enums"]["content_difficulty"]
+          external_url: string | null
+          featured: boolean
+          file_url: string | null
+          id: string
+          published: boolean
+          reading_time_min: number
+          summary_en: string | null
+          summary_pt: string | null
+          tags: string[]
+          title_en: string
+          title_pt: string
+          type: Database["public"]["Enums"]["content_type"]
+          updated_at: string
+        }
+        Insert: {
+          author_id?: string | null
+          body_en?: string | null
+          body_pt?: string | null
+          category_id: string
+          cover_image_url?: string | null
+          created_at?: string
+          difficulty?: Database["public"]["Enums"]["content_difficulty"]
+          external_url?: string | null
+          featured?: boolean
+          file_url?: string | null
+          id?: string
+          published?: boolean
+          reading_time_min?: number
+          summary_en?: string | null
+          summary_pt?: string | null
+          tags?: string[]
+          title_en: string
+          title_pt: string
+          type?: Database["public"]["Enums"]["content_type"]
+          updated_at?: string
+        }
+        Update: {
+          author_id?: string | null
+          body_en?: string | null
+          body_pt?: string | null
+          category_id?: string
+          cover_image_url?: string | null
+          created_at?: string
+          difficulty?: Database["public"]["Enums"]["content_difficulty"]
+          external_url?: string | null
+          featured?: boolean
+          file_url?: string | null
+          id?: string
+          published?: boolean
+          reading_time_min?: number
+          summary_en?: string | null
+          summary_pt?: string | null
+          tags?: string[]
+          title_en?: string
+          title_pt?: string
+          type?: Database["public"]["Enums"]["content_type"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "content_items_author_id_fkey"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "content_items_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      favorites: {
+        Row: {
+          content_id: string
+          created_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          content_id: string
+          created_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          content_id?: string
+          created_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "favorites_content_id_fkey"
+            columns: ["content_id"]
+            isOneToOne: false
+            referencedRelation: "content_items"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -86,6 +241,8 @@ export type Database = {
     }
     Enums: {
       app_role: "member" | "admin"
+      content_difficulty: "beginner" | "intermediate" | "advanced"
+      content_type: "article" | "pdf" | "link" | "video" | "guide"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -214,6 +371,8 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["member", "admin"],
+      content_difficulty: ["beginner", "intermediate", "advanced"],
+      content_type: ["article", "pdf", "link", "video", "guide"],
     },
   },
 } as const
