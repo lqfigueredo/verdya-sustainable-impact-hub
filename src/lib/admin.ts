@@ -132,9 +132,7 @@ export const adminActivityFeedQuery = queryOptions({
         .limit(5),
       supabase
         .from("event_registrations")
-        .select(
-          "id,registered_at,event:events(id,title_en,title_pt),profile:profiles(full_name,email)",
-        )
+        .select("id,registered_at,user_id,event_id")
         .order("registered_at", { ascending: false })
         .limit(5),
       supabase
@@ -144,6 +142,21 @@ export const adminActivityFeedQuery = queryOptions({
         .order("subscribed_at", { ascending: false })
         .limit(5),
     ]);
+
+    // Resolve event + profile names for the latest registrations (no FK in DB, so join client-side).
+    const regRows = regsRes.data ?? [];
+    const eventIds = Array.from(new Set(regRows.map((r) => r.event_id))).filter(Boolean);
+    const userIds = Array.from(new Set(regRows.map((r) => r.user_id))).filter(Boolean);
+    const [eventsRes, profilesRes] = await Promise.all([
+      eventIds.length
+        ? supabase.from("events").select("id,title_en,title_pt").in("id", eventIds)
+        : Promise.resolve({ data: [] as { id: string; title_en: string; title_pt: string }[] }),
+      userIds.length
+        ? supabase.from("profiles").select("id,full_name,email").in("id", userIds)
+        : Promise.resolve({ data: [] as { id: string; full_name: string | null; email: string | null }[] }),
+    ]);
+    const eventMap = new Map((eventsRes.data ?? []).map((e) => [e.id, e]));
+    const profMap = new Map((profilesRes.data ?? []).map((p) => [p.id, p]));
 
     const items: RecentActivityFeedItem[] = [];
 
