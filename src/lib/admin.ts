@@ -186,20 +186,17 @@ export const adminActivityFeedQuery = queryOptions({
         meta: `${t.category} · ${t.author?.full_name ?? t.author?.email ?? "—"}`,
       });
     }
-    for (const r of (regsRes.data ?? []) as Array<{
-      id: string;
-      registered_at: string;
-      event: { id: string; title_en: string; title_pt: string } | null;
-      profile: { full_name: string | null; email: string | null } | null;
-    }>) {
-      if (!r.event) continue;
+    for (const r of regRows) {
+      const ev = eventMap.get(r.event_id);
+      const prof = profMap.get(r.user_id);
+      if (!ev) continue;
       items.push({
         kind: "registration",
         id: r.id,
         createdAt: r.registered_at,
-        title: r.event.title_en,
-        href: `/events/${r.event.id}`,
-        meta: r.profile?.full_name ?? r.profile?.email ?? "—",
+        title: ev.title_en,
+        href: `/events/${ev.id}`,
+        meta: prof?.full_name ?? prof?.email ?? "—",
       });
     }
     for (const s of subsRes.data ?? []) {
