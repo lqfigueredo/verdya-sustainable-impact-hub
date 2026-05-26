@@ -16,13 +16,13 @@ export function AdminSidebar() {
   const { t } = useTranslation();
   const currentPath = useRouterState({ select: (s) => s.location.pathname });
 
-  const items = [
+  const items: Array<{ key: string; to: string; icon: typeof LayoutDashboard; exact?: boolean }> = [
     { key: "dashboard", to: "/admin", icon: LayoutDashboard, exact: true },
     { key: "content", to: "/admin/content", icon: FileText },
     { key: "categories", to: "/admin/categories", icon: FolderTree },
     { key: "users", to: "/admin/users", icon: Users },
     { key: "settings", to: "/admin/settings", icon: Settings },
-  ] as const;
+  ];
 
   const isActive = (to: string, exact?: boolean) =>
     exact ? currentPath === to : currentPath === to || currentPath.startsWith(to + "/");
