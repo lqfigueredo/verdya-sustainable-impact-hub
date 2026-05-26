@@ -74,7 +74,7 @@ export function Header() {
                 <DropdownMenuItem onClick={() => navigate({ to: "/profile" })}>
                   <UserIcon className="mr-2 h-4 w-4" /> {t("nav.profile")}
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => navigate({ to: "/profile" })}>
+                <DropdownMenuItem onClick={() => navigate({ to: "/dashboard" })}>
                   <LayoutDashboard className="mr-2 h-4 w-4" /> {t("nav.dashboard")}
                 </DropdownMenuItem>
                 {isAdmin && (

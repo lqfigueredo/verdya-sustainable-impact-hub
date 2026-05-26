@@ -75,8 +75,12 @@
     "eyebrow": "Global ESG network",
     "title": "Where ESG leaders learn, connect and shape the next economy.",
     "subtitle": "Verdya is an international hub for corporate sustainability professionals — education, networking and field-tested resources, in one calm, focused place.",
-    "ctaPrimary": "Explore content", "ctaSecondary": "Join the community",
-    "stat1": "+12k members", "stat2": "48 countries", "stat3": "300+ resources"
+    "ctaPrimary": "Explore the library", "ctaSecondary": "Join the community",
+    "stats": { "members": "Members", "content": "Resources", "events": "Upcoming events" },
+    "nextEvent": "Next event",
+    "exploreEvents": "Browse upcoming events",
+    "exploreEventsHint": "Live sessions & workshops",
+    "communityBadge": "Live community · join the discussion"
   },
   "what": {
     "eyebrow": "What is Verdya", "title": "A serious home for sustainability practice.",
@@ -89,11 +93,7 @@
   },
   "featured": {
     "eyebrow": "Featured content", "title": "Recent from the network", "viewAll": "View all content",
-    "cards": [
-      { "tag": "Reporting", "title": "CSRD in practice: lessons from the first wave", "meta": "Guide · 14 min read" },
-      { "tag": "Climate", "title": "Scope 3 without the spreadsheets of doom", "meta": "Playbook · 9 min read" },
-      { "tag": "Governance", "title": "Building an ESG committee that actually decides", "meta": "Case study · 11 min read" }
-    ]
+    "empty": "No content published yet — check back soon."
   },
   "how": {
     "eyebrow": "How it works", "title": "Three steps to plug in.",
@@ -242,5 +242,88 @@
         "reply_to_reply": "Someone replied to your comment"
       }
     }
+  },
+  "events": {
+    "eyebrow": "Events",
+    "upcomingTitle": "Live sessions, workshops & meetups",
+    "title": "Events",
+    "subtitle": "Live sessions, workshops, and meetups with ESG practitioners worldwide.",
+    "viewAll": "View all events",
+    "empty": "No events scheduled — check back soon.",
+    "notFound": "Event not found.",
+    "backToList": "Back to events",
+    "register": "Register",
+    "cancel": "Cancel registration",
+    "registered": "You're registered. Confirmation on its way.",
+    "cancelled": "Registration cancelled.",
+    "registerError": "Could not complete registration.",
+    "join": "Join meeting",
+    "addCalendar": "Add to calendar",
+    "speakers": "Speakers",
+    "location": { "online": "Online", "in_person": "In person", "hybrid": "Hybrid" },
+    "countdown": { "days": "days", "hours": "hours", "minutes": "minutes", "seconds": "seconds" }
+  },
+  "newsletterPage": {
+    "title": "The Verdya Brief",
+    "subtitle": "One short email every other Thursday. The signal worth reading on ESG, climate and corporate sustainability.",
+    "success": "Subscribed. Welcome to the brief.",
+    "error": "Could not subscribe — try again in a moment."
+  },
+  "adminEvents": {
+    "title": "Events", "subtitle": "Create and manage live sessions, workshops and meetups.",
+    "newEvent": "New event", "editEvent": "Edit event",
+    "titleEn": "Title (EN)", "titlePt": "Title (PT)",
+    "descEn": "Description (EN)", "descPt": "Description (PT)",
+    "startsAt": "Starts at", "endsAt": "Ends at", "timezone": "Timezone",
+    "locationType": "Location type", "locationDetail": "Location detail",
+    "meetingUrl": "Meeting URL", "coverImageUrl": "Cover image URL",
+    "category": "Category", "maxAttendees": "Max attendees",
+    "speakersJson": "Speakers (JSON array)",
+    "invalidSpeakers": "Speakers must be valid JSON.",
+    "published": "Published", "draft": "Draft",
+    "save": "Save event", "saved": "Event saved.", "deleted": "Event deleted.",
+    "delete": "Delete event",
+    "confirmDelete": "Delete this event?",
+    "confirmDeleteDesc": "All registrations will also be lost. This cannot be undone.",
+    "col": { "title": "Title", "when": "When", "location": "Location", "status": "Status" }
+  },
+  "adminNewsletter": {
+    "title": "Newsletter", "subtitle": "Manage subscribers and send campaigns.",
+    "total": "Total subscribers", "active": "Active", "unsub": "Unsubscribed",
+    "status": "Status", "subscribedAt": "Subscribed",
+    "exportCsv": "Export CSV",
+    "resendTitle": "Compose campaign",
+    "resendNote": "Send a test to your own email first, then dispatch to all active subscribers.",
+    "subjectEn": "Subject (EN)", "subjectPt": "Subject (PT)",
+    "bodyEn": "Body (EN, markdown)", "bodyPt": "Body (PT, markdown)",
+    "sendTest": "Send test to me", "sendAll": "Send to all",
+    "confirmAll": "Send this campaign to every active subscriber?",
+    "testSent": "Test message sent.",
+    "sentAll": "Campaign dispatched to {{count}} subscribers.",
+    "errorSave": "Could not send the campaign.",
+    "noHistory": "No campaigns sent yet.",
+    "draft": "Draft", "recipients": "Recipients", "opens": "Opens"
+  },
+  "dashboard": {
+    "eyebrow": "Your dashboard",
+    "greeting": "Hello, {{name}}",
+    "subtitle": "Everything you're following on Verdya in one place.",
+    "editProfile": "Edit profile",
+    "myEvents": "My upcoming events",
+    "browseEvents": "Browse events",
+    "favorites": "Saved content",
+    "browseLibrary": "Browse library",
+    "notifications": "Notifications",
+    "openCommunity": "Open community",
+    "community": "Community",
+    "communityDesc": "Share field notes, ask questions, and learn from other ESG practitioners.",
+    "startDiscussion": "Start discussion",
+    "exploreDiscussions": "Explore discussions",
+    "empty": {
+      "events": "You have no upcoming registrations yet.",
+      "favorites": "You haven't saved any content yet.",
+      "notifications": "You're all caught up."
+    }
   }
 }
+
