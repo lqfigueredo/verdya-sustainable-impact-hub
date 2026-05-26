@@ -170,5 +170,77 @@
       "featured": "Featured content IDs", "featuredHint": "Comma-separated content UUIDs"
     },
     "toast": { "saved": "Saved.", "save": "Save", "created": "Created.", "updated": "Updated.", "deleted": "Deleted.", "uploaded": "Uploaded." }
+  },
+  "forum": {
+    "eyebrow": "Community",
+    "title": "Where ESG practitioners think out loud.",
+    "subtitle": "Discuss frameworks, share field notes, and learn from peers around the world.",
+    "startDiscussion": "Start a discussion",
+    "searchPlaceholder": "Search discussions…",
+    "backToCommunity": "Back to community",
+    "pinned": "Pinned", "locked": "Locked",
+    "lockedNotice": "This discussion is locked. No new replies can be posted.",
+    "anonymous": "Anonymous",
+    "notFound": "Discussion not found.",
+    "loginRequired": "Login required",
+    "loginToParticipate": "Sign in to join the discussion.",
+    "aboutAuthor": "About the author",
+    "replies_one": "{{count}} reply",
+    "replies_other": "{{count}} replies",
+    "replies": "{{count}} replies",
+    "noReplies": "No replies yet — be the first to weigh in.",
+    "reply": "Reply", "replyingTo": "Replying to this comment",
+    "yourReply": "Your reply", "replyPlaceholder": "Share your perspective…",
+    "postReply": "Post reply", "posting": "Posting…",
+    "markdownSupported": "Markdown supported.",
+    "delete": "Delete", "cancel": "Cancel",
+    "filters": { "all": "All topics" },
+    "sort": { "latest": "Latest", "replies": "Most replies", "trending": "Trending" },
+    "categories": {
+      "general": "General", "carbon": "Carbon", "csrd": "CSRD",
+      "circular": "Circular economy", "biodiversity": "Biodiversity",
+      "social": "Social impact", "governance": "Governance"
+    },
+    "reactions": { "like": "Like", "insightful": "Insightful", "agree": "Agree" },
+    "empty": {
+      "title": "No discussions yet",
+      "subtitle": "Start the first conversation and set the tone for this space.",
+      "cta": "Be the first to post"
+    },
+    "new": {
+      "title": "Start a new discussion",
+      "subtitle": "Ask a question, share a case study, or invite debate.",
+      "titleLabel": "Title", "titlePlaceholder": "What's on your mind?",
+      "category": "Category", "body": "Body", "write": "Write", "preview": "Preview",
+      "previewEmpty": "Nothing to preview yet.",
+      "bodyPlaceholder": "Markdown supported. Add context, links, and what you're hoping to learn.",
+      "tags": "Tags", "tagsPlaceholder": "comma, separated, tags",
+      "cancel": "Cancel", "post": "Publish discussion", "posting": "Publishing…"
+    },
+    "admin": { "pin": "Pin", "unpin": "Unpin", "lock": "Lock", "unlock": "Unlock" },
+    "confirmDelete": {
+      "title": "Are you sure?",
+      "topic": "This discussion and all its replies will be permanently removed.",
+      "reply": "This reply will be permanently removed."
+    },
+    "toasts": {
+      "topicCreated": "Discussion published.", "replyPosted": "Reply posted.",
+      "updated": "Updated.", "deleted": "Deleted."
+    },
+    "errors": {
+      "required": "Title and body are required.",
+      "create": "Could not publish the discussion.",
+      "reply": "Could not post your reply.",
+      "reaction": "Could not save your reaction."
+    },
+    "notifications": {
+      "title": "Notifications",
+      "empty": "You're all caught up.",
+      "viewAll": "View community",
+      "types": {
+        "reply_to_topic": "Someone replied to your discussion",
+        "reply_to_reply": "Someone replied to your comment"
+      }
+    }
   }
 }
