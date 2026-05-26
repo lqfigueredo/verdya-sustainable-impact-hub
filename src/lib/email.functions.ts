@@ -35,21 +35,53 @@ async function sendViaResend(payload: { to: string | string[]; subject: string; 
 }
 
 function mdToHtml(md: string): string {
-  // very small, intentionally conservative markdown → html
-  const escaped = md
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
-  return escaped
-    .replace(/^### (.*$)/gim, "<h3>$1</h3>")
-    .replace(/^## (.*$)/gim, "<h2>$1</h2>")
-    .replace(/^# (.*$)/gim, "<h1>$1</h1>")
-    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-    .replace(/\*(.*?)\*/g, "<em>$1</em>")
-    .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" style="color:#1F4D3A">$1</a>')
-    .replace(/\n\n/g, "</p><p>")
-    .replace(/^/, "<p>")
-    .concat("</p>");
+  // small, conservative markdown → html for email bodies
+  const escape = (s: string) =>
+    s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+  // Extract fenced code blocks first so their contents aren't transformed.
+  const codeBlocks: string[] = [];
+  let src = md.replace(/```([\s\S]*?)```/g, (_, code) => {
+    codeBlocks.push(
+      `<pre style="background:#f5f3ee;padding:12px;border-radius:8px;overflow:auto;font-family:ui-monospace,monospace;font-size:13px"><code>${escape(code)}</code></pre>`,
+    );
+    return `\u0000CODE${codeBlocks.length - 1}\u0000`;
+  });
+
+  src = escape(src);
+
+  // Block-level: lists
+  src = src.replace(/(^|\n)((?:- .+\n?)+)/g, (_, lead, block: string) => {
+    const items = block
+      .trim()
+      .split(/\n/)
+      .map((l) => `<li>${l.replace(/^- /, "")}</li>`)
+      .join("");
+    return `${lead}<ul style="padding-left:20px;margin:8px 0">${items}</ul>`;
+  });
+
+  // Inline + headings
+  src = src
+    .replace(/^### (.*)$/gim, "<h3>$1</h3>")
+    .replace(/^## (.*)$/gim, "<h2>$1</h2>")
+    .replace(/^# (.*)$/gim, "<h1>$1</h1>")
+    .replace(/`([^`]+)`/g, '<code style="background:#f5f3ee;padding:2px 6px;border-radius:4px">$1</code>')
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*(.+?)\*/g, "<em>$1</em>")
+    .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" style="color:#1F4D3A">$1</a>');
+
+  // Paragraphs: split on blank lines, leave already-blocky chunks alone
+  const html = src
+    .split(/\n\n+/)
+    .map((chunk) => {
+      const t = chunk.trim();
+      if (!t) return "";
+      if (/^<(h1|h2|h3|ul|pre|p|blockquote)/i.test(t)) return t;
+      return `<p>${t.replace(/\n/g, "<br/>")}</p>`;
+    })
+    .join("\n");
+
+  return html.replace(/\u0000CODE(\d+)\u0000/g, (_, i) => codeBlocks[Number(i)]);
 }
 
 function wrapHtml(title: string, bodyHtml: string) {
