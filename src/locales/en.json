@@ -1,104 +1,98 @@
 {
   "nav": {
-    "home": "Home",
-    "about": "About",
-    "content": "Content",
-    "community": "Community",
-    "resources": "Resources",
-    "login": "Login",
-    "signup": "Sign up"
+    "home": "Home", "about": "About", "content": "Content", "community": "Community",
+    "resources": "Resources", "login": "Login", "signup": "Sign up",
+    "profile": "Profile", "dashboard": "Dashboard", "admin": "Admin panel", "logout": "Logout"
   },
-  "language": {
-    "label": "Language",
-    "en": "English",
-    "pt": "Português"
+  "language": { "label": "Language", "en": "English", "pt": "Português" },
+  "auth": {
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Sign in to your Verdya account.",
+      "email": "Email", "password": "Password",
+      "submit": "Sign in", "submitting": "Signing in...",
+      "forgot": "Forgot password?",
+      "noAccount": "Don't have an account?", "signupLink": "Sign up",
+      "or": "or continue with"
+    },
+    "signup": {
+      "title": "Join Verdya",
+      "subtitle": "Create your account to access education, networking and resources.",
+      "fullName": "Full name", "email": "Email",
+      "password": "Password", "confirmPassword": "Confirm password",
+      "submit": "Create account", "submitting": "Creating account...",
+      "haveAccount": "Already have an account?", "loginLink": "Sign in",
+      "mismatch": "Passwords do not match",
+      "tooShort": "Password must be at least 8 characters",
+      "checkEmail": "Check your email to confirm your account."
+    },
+    "forgot": {
+      "title": "Reset your password",
+      "subtitle": "Enter your email and we'll send you a reset link.",
+      "email": "Email", "submit": "Send reset link", "submitting": "Sending...",
+      "back": "Back to sign in",
+      "sent": "If that email exists, a reset link is on its way."
+    },
+    "google": "Continue with Google",
+    "github": "Continue with GitHub",
+    "githubSoon": "GitHub coming soon",
+    "errors": {
+      "generic": "Something went wrong. Please try again.",
+      "invalid": "Invalid email or password.",
+      "exists": "An account with this email already exists."
+    },
+    "success": { "signedIn": "Welcome back!", "signedOut": "Signed out." }
+  },
+  "profile": {
+    "title": "Your profile",
+    "subtitle": "How the Verdya network sees you.",
+    "fullName": "Full name", "bio": "Bio", "company": "Company",
+    "country": "Country", "avatarUrl": "Avatar URL",
+    "save": "Save changes", "saving": "Saving...",
+    "saved": "Profile updated.", "error": "Could not save profile."
   },
   "hero": {
     "eyebrow": "Global ESG network",
     "title": "Where ESG leaders learn, connect and shape the next economy.",
     "subtitle": "Verdya is an international hub for corporate sustainability professionals — education, networking and field-tested resources, in one calm, focused place.",
-    "ctaPrimary": "Explore content",
-    "ctaSecondary": "Join the community",
-    "stat1": "+12k members",
-    "stat2": "48 countries",
-    "stat3": "300+ resources"
+    "ctaPrimary": "Explore content", "ctaSecondary": "Join the community",
+    "stat1": "+12k members", "stat2": "48 countries", "stat3": "300+ resources"
   },
   "what": {
-    "eyebrow": "What is Verdya",
-    "title": "A serious home for sustainability practice.",
+    "eyebrow": "What is Verdya", "title": "A serious home for sustainability practice.",
     "subtitle": "Three pillars built for the people doing the actual work of ESG transformation.",
     "items": {
-      "education": {
-        "title": "Education",
-        "desc": "Cohort programs, masterclasses and short courses with practitioners — not consultants reading slides."
-      },
-      "networking": {
-        "title": "Networking",
-        "desc": "Curated peer circles, regional chapters and private events to compare notes with people who get it."
-      },
-      "resources": {
-        "title": "Resources",
-        "desc": "Frameworks, reporting templates and case studies you can actually open on Monday morning."
-      }
+      "education": { "title": "Education", "desc": "Cohort programs, masterclasses and short courses with practitioners — not consultants reading slides." },
+      "networking": { "title": "Networking", "desc": "Curated peer circles, regional chapters and private events to compare notes with people who get it." },
+      "resources": { "title": "Resources", "desc": "Frameworks, reporting templates and case studies you can actually open on Monday morning." }
     }
   },
   "featured": {
-    "eyebrow": "Featured content",
-    "title": "Recent from the network",
-    "viewAll": "View all content",
+    "eyebrow": "Featured content", "title": "Recent from the network", "viewAll": "View all content",
     "cards": [
-      {
-        "tag": "Reporting",
-        "title": "CSRD in practice: lessons from the first wave",
-        "meta": "Guide · 14 min read"
-      },
-      {
-        "tag": "Climate",
-        "title": "Scope 3 without the spreadsheets of doom",
-        "meta": "Playbook · 9 min read"
-      },
-      {
-        "tag": "Governance",
-        "title": "Building an ESG committee that actually decides",
-        "meta": "Case study · 11 min read"
-      }
+      { "tag": "Reporting", "title": "CSRD in practice: lessons from the first wave", "meta": "Guide · 14 min read" },
+      { "tag": "Climate", "title": "Scope 3 without the spreadsheets of doom", "meta": "Playbook · 9 min read" },
+      { "tag": "Governance", "title": "Building an ESG committee that actually decides", "meta": "Case study · 11 min read" }
     ]
   },
   "how": {
-    "eyebrow": "How it works",
-    "title": "Three steps to plug in.",
+    "eyebrow": "How it works", "title": "Three steps to plug in.",
     "steps": [
-      {
-        "title": "Create your profile",
-        "desc": "Tell us your role, sector and the ESG topics you're working on right now."
-      },
-      {
-        "title": "Find your circle",
-        "desc": "Get matched with peers, programs and content tuned to your maturity and region."
-      },
-      {
-        "title": "Learn in the open",
-        "desc": "Join sessions, share what worked, and build the practice with the rest of the network."
-      }
+      { "title": "Create your profile", "desc": "Tell us your role, sector and the ESG topics you're working on right now." },
+      { "title": "Find your circle", "desc": "Get matched with peers, programs and content tuned to your maturity and region." },
+      { "title": "Learn in the open", "desc": "Join sessions, share what worked, and build the practice with the rest of the network." }
     ]
   },
   "newsletter": {
-    "eyebrow": "Stay in the loop",
-    "title": "The Verdya brief, every other Thursday.",
+    "eyebrow": "Stay in the loop", "title": "The Verdya brief, every other Thursday.",
     "subtitle": "One short email. The signal worth reading on ESG, climate and corporate sustainability.",
-    "placeholder": "you@company.com",
-    "button": "Subscribe",
-    "disclaimer": "No spam. Unsubscribe anytime."
+    "placeholder": "you@company.com", "button": "Subscribe", "disclaimer": "No spam. Unsubscribe anytime."
   },
   "footer": {
     "tagline": "An international hub for corporate ESG professionals.",
-    "about": "About",
-    "aboutLinks": ["Our story", "Team", "Careers", "Press"],
-    "explore": "Explore",
-    "exploreLinks": ["Content", "Programs", "Community", "Events"],
-    "legal": "Legal",
-    "legalLinks": ["Privacy", "Terms", "Cookies"],
-    "social": "Follow",
-    "rights": "© 2026 Verdya. All rights reserved."
+    "about": "About", "aboutLinks": ["Our story", "Team", "Careers", "Press"],
+    "explore": "Explore", "exploreLinks": ["Content", "Programs", "Community", "Events"],
+    "legal": "Legal", "legalLinks": ["Privacy", "Terms", "Cookies"],
+    "social": "Follow", "rights": "© 2026 Verdya. All rights reserved."
   }
 }
