@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { LayoutDashboard, FileText, FolderTree, Users, Settings, Leaf } from "lucide-react";
+import { LayoutDashboard, FileText, FolderTree, Users, Settings, Leaf, Mail, Calendar } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import {
   Sidebar,
@@ -20,6 +20,8 @@ export function AdminSidebar() {
     { key: "dashboard", to: "/admin", icon: LayoutDashboard, exact: true },
     { key: "content", to: "/admin/content", icon: FileText },
     { key: "categories", to: "/admin/categories", icon: FolderTree },
+    { key: "events", to: "/admin/events", icon: Calendar },
+    { key: "newsletter", to: "/admin/newsletter", icon: Mail },
     { key: "users", to: "/admin/users", icon: Users },
     { key: "settings", to: "/admin/settings", icon: Settings },
   ];
