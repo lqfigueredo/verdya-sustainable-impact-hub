@@ -14,6 +14,7 @@ import {
   type ForumSort,
 } from "@/lib/forum";
 import { cn } from "@/lib/utils";
+import { RouteErrorBoundary } from "@/components/RouteBoundary";
 
 export const Route = createFileRoute("/community/")({
   head: () => ({
@@ -26,6 +27,10 @@ export const Route = createFileRoute("/community/")({
       },
     ],
   }),
+  loader: ({ context: { queryClient } }) => {
+    queryClient.ensureQueryData(forumTopicsQuery({ category: null, sort: "latest", search: "" }));
+  },
+  errorComponent: RouteErrorBoundary,
   component: CommunityIndex,
 });
 

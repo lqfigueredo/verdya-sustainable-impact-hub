@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Calendar, MapPin, Globe2, Users } from "lucide-react";
 import { Layout } from "@/components/Layout";
 import { eventsListQuery, pickLang, type EventFilters, type LocationType } from "@/lib/events";
+import { RouteErrorBoundary } from "@/components/RouteBoundary";
 
 export const Route = createFileRoute("/events/")({
   head: () => ({
@@ -13,6 +14,10 @@ export const Route = createFileRoute("/events/")({
       { name: "description", content: "Live sessions, workshops and networking on corporate sustainability." },
     ],
   }),
+  loader: ({ context: { queryClient } }) => {
+    queryClient.ensureQueryData(eventsListQuery({ when: "upcoming" }));
+  },
+  errorComponent: RouteErrorBoundary,
   component: EventsPage,
 });
 
