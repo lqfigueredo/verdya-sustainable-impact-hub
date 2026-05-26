@@ -1,8 +1,28 @@
 {
   "nav": {
-    "home": "Início", "about": "Sobre", "content": "Conteúdo", "community": "Comunidade",
+    "home": "Início", "about": "Sobre", "library": "Biblioteca", "content": "Conteúdo", "community": "Comunidade",
     "resources": "Recursos", "login": "Entrar", "signup": "Criar conta",
     "profile": "Perfil", "dashboard": "Painel", "admin": "Painel admin", "logout": "Sair"
+  },
+  "library": {
+    "eyebrow": "Hub de educação",
+    "title": "Conhecimento testado em campo para profissionais de ESG.",
+    "subtitle": "Artigos, guias, frameworks e leituras selecionadas — organizados por tema, formato e profundidade.",
+    "searchPlaceholder": "Busque temas, frameworks, autores…",
+    "searchButton": "Buscar",
+    "empty": "Nenhum conteúdo corresponde a esses filtros ainda.",
+    "results": "resultados",
+    "minRead": "min de leitura",
+    "backToLibrary": "Voltar para a biblioteca",
+    "openExternal": "Abrir externo",
+    "download": "Baixar PDF",
+    "author": "Autor",
+    "tags": "Tags",
+    "related": "Relacionados",
+    "filters": { "category": "Categoria", "type": "Formato", "difficulty": "Nível", "tag": "Tag", "all": "Todos" },
+    "types": { "article": "Artigo", "guide": "Guia", "pdf": "PDF", "link": "Link", "video": "Vídeo" },
+    "difficulty": { "beginner": "Iniciante", "intermediate": "Intermediário", "advanced": "Avançado" },
+    "favorites": { "save": "Salvar", "saved": "Salvo", "added": "Adicionado aos favoritos", "removed": "Removido dos favoritos" }
   },
   "language": { "label": "Idioma", "en": "English", "pt": "Português" },
   "auth": {
