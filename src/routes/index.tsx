@@ -1,26 +1,38 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Layout } from "@/components/Layout";
+import { Hero } from "@/components/landing/Hero";
+import { WhatIs } from "@/components/landing/WhatIs";
+import { Featured } from "@/components/landing/Featured";
+import { HowItWorks } from "@/components/landing/HowItWorks";
+import { Newsletter } from "@/components/landing/Newsletter";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Verdya — The global hub for corporate ESG" },
+      {
+        name: "description",
+        content:
+          "Verdya is an international networking and education hub for corporate sustainability and ESG professionals.",
+      },
+      { property: "og:title", content: "Verdya — The global hub for corporate ESG" },
+      {
+        property: "og:description",
+        content: "Education, networking and resources for ESG practitioners worldwide.",
+      },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
-
 function Index() {
-  return <PlaceholderIndex />;
+  return (
+    <Layout>
+      <Hero />
+      <WhatIs />
+      <Featured />
+      <HowItWorks />
+      <Newsletter />
+    </Layout>
+  );
 }
