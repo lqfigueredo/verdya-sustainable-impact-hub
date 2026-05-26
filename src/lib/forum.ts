@@ -9,7 +9,7 @@ export type ReactionType = Database["public"]["Enums"]["reaction_type"];
 export type ReactionTarget = Database["public"]["Enums"]["reaction_target"];
 export type Notification = Database["public"]["Tables"]["notifications"]["Row"];
 
-type AuthorMini = {
+export type AuthorMini = {
   id: string;
   full_name: string | null;
   avatar_url: string | null;
@@ -38,9 +38,8 @@ export const FORUM_CATEGORIES = [
 
 export type ForumSort = "latest" | "replies" | "trending";
 
-const AUTHOR_FIELDS = "id, full_name, avatar_url, company, country, bio";
+const AUTHOR_SELECT = "id, full_name, avatar_url, company, country, bio";
 
-// --- Topics list ---
 export const forumTopicsQuery = (params: {
   category?: string | null;
   sort?: ForumSort;
@@ -51,39 +50,21 @@ export const forumTopicsQuery = (params: {
     queryFn: async (): Promise<TopicWithMeta[]> => {
       let q = supabase
         .from("forum_topics")
-        .select(
-          `*, author:profiles!forum_topics_author_id_fkey(${AUTHOR_FIELDS}),
-           replies:forum_replies(count),
-           reactions:forum_reactions!inner(count)`,
-          { count: "exact" },
-        )
-        .order("pinned", { ascending: false });
+        .select(`*, author:profiles(${AUTHOR_SELECT})`)
+        .order("pinned", { ascending: false })
+        .order("last_reply_at", { ascending: false })
+        .limit(100);
 
-      // We can't easily inner-join reactions count without filter; use a simpler approach: separate counts.
-      // Re-issue with simple select.
-      let base = supabase
-        .from("forum_topics")
-        .select(`*, author:profiles!forum_topics_author_id_fkey(${AUTHOR_FIELDS})`)
-        .order("pinned", { ascending: false });
-
-      if (params.category) base = base.eq("category", params.category);
+      if (params.category) q = q.eq("category", params.category);
       if (params.search) {
         const s = params.search.replace(/[%,]/g, " ").trim();
-        if (s) base = base.or(`title.ilike.%${s}%,body.ilike.%${s}%`);
+        if (s) q = q.or(`title.ilike.%${s}%,body.ilike.%${s}%`);
       }
 
-      if (params.sort === "replies" || params.sort === "trending") {
-        base = base.order("last_reply_at", { ascending: false });
-      } else {
-        base = base.order("last_reply_at", { ascending: false });
-      }
-      base = base.limit(100);
-
-      const { data, error } = await base;
+      const { data, error } = await q;
       if (error) throw error;
-      const topics = (data ?? []) as (ForumTopic & { author: AuthorMini | null })[];
+      const topics = (data ?? []) as unknown as (ForumTopic & { author: AuthorMini | null })[];
 
-      // Fetch counts in batch
       const ids = topics.map((t) => t.id);
       if (ids.length === 0) return [];
 
@@ -111,62 +92,57 @@ export const forumTopicsQuery = (params: {
         reaction_count: reactionCounts.get(t.id) ?? 0,
       }));
 
-      if (params.sort === "replies") {
-        result = [...result].sort((a, b) => {
+      const sort = params.sort ?? "latest";
+      if (sort === "replies") {
+        result.sort((a, b) => {
           if (a.pinned !== b.pinned) return a.pinned ? -1 : 1;
           return b.reply_count - a.reply_count;
         });
-      } else if (params.sort === "trending") {
-        result = [...result].sort((a, b) => {
+      } else if (sort === "trending") {
+        result.sort((a, b) => {
           if (a.pinned !== b.pinned) return a.pinned ? -1 : 1;
           return b.reaction_count + b.reply_count - (a.reaction_count + a.reply_count);
         });
       }
 
-      // suppress unused
-      void q;
-
       return result;
     },
   });
 
-// --- Single topic ---
 export const forumTopicQuery = (id: string) =>
   queryOptions({
     queryKey: ["forum-topic", id],
     queryFn: async (): Promise<(ForumTopic & { author: AuthorMini | null }) | null> => {
       const { data, error } = await supabase
         .from("forum_topics")
-        .select(`*, author:profiles!forum_topics_author_id_fkey(${AUTHOR_FIELDS})`)
+        .select(`*, author:profiles(${AUTHOR_SELECT})`)
         .eq("id", id)
         .maybeSingle();
       if (error) throw error;
-      return data as (ForumTopic & { author: AuthorMini | null }) | null;
+      return data as unknown as (ForumTopic & { author: AuthorMini | null }) | null;
     },
   });
 
-// --- Replies for topic ---
 export const forumRepliesQuery = (topicId: string) =>
   queryOptions({
     queryKey: ["forum-replies", topicId],
     queryFn: async (): Promise<ReplyWithAuthor[]> => {
       const { data, error } = await supabase
         .from("forum_replies")
-        .select(`*, author:profiles!forum_replies_author_id_fkey(${AUTHOR_FIELDS})`)
+        .select(`*, author:profiles(${AUTHOR_SELECT})`)
         .eq("topic_id", topicId)
         .order("created_at", { ascending: true });
       if (error) throw error;
-      return (data ?? []) as ReplyWithAuthor[];
+      return (data ?? []) as unknown as ReplyWithAuthor[];
     },
   });
 
-// --- Reactions for a target ---
 export const forumReactionsQuery = (
   targetType: ReactionTarget,
   targetIds: string[],
 ) =>
   queryOptions({
-    queryKey: ["forum-reactions", targetType, targetIds.sort().join(",")],
+    queryKey: ["forum-reactions", targetType, [...targetIds].sort().join(",")],
     queryFn: async (): Promise<ForumReaction[]> => {
       if (targetIds.length === 0) return [];
       const { data, error } = await supabase
@@ -179,7 +155,6 @@ export const forumReactionsQuery = (
     },
   });
 
-// --- Notifications ---
 export const notificationsQuery = (userId: string | null) =>
   queryOptions({
     queryKey: ["notifications", userId],
@@ -196,22 +171,10 @@ export const notificationsQuery = (userId: string | null) =>
     },
   });
 
-// --- Simple profanity / spam filter ---
 const BLOCKLIST = [
-  "viagra",
-  "casino",
-  "porn",
-  "fuck",
-  "shit",
-  "bitch",
-  "asshole",
-  "cunt",
-  "nigger",
-  "faggot",
-  "merda",
-  "porra",
-  "caralho",
-  "puta",
+  "viagra", "casino", "porn", "fuck", "shit", "bitch", "asshole",
+  "cunt", "nigger", "faggot",
+  "merda", "porra", "caralho", "puta",
 ];
 
 export function detectFlag(text: string): boolean {
