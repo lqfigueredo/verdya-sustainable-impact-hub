@@ -170,5 +170,77 @@
       "featured": "IDs de conteúdo em destaque", "featuredHint": "UUIDs separados por vírgula"
     },
     "toast": { "saved": "Salvo.", "save": "Salvar", "created": "Criado.", "updated": "Atualizado.", "deleted": "Excluído.", "uploaded": "Enviado." }
+  },
+  "forum": {
+    "eyebrow": "Comunidade",
+    "title": "Onde profissionais de ESG pensam em voz alta.",
+    "subtitle": "Discuta frameworks, compartilhe notas de campo e aprenda com pares do mundo todo.",
+    "startDiscussion": "Iniciar discussão",
+    "searchPlaceholder": "Buscar discussões…",
+    "backToCommunity": "Voltar à comunidade",
+    "pinned": "Fixado", "locked": "Bloqueado",
+    "lockedNotice": "Esta discussão está bloqueada. Novas respostas não são permitidas.",
+    "anonymous": "Anônimo",
+    "notFound": "Discussão não encontrada.",
+    "loginRequired": "Login necessário",
+    "loginToParticipate": "Entre para participar da discussão.",
+    "aboutAuthor": "Sobre o autor",
+    "replies_one": "{{count}} resposta",
+    "replies_other": "{{count}} respostas",
+    "replies": "{{count}} respostas",
+    "noReplies": "Sem respostas ainda — seja o primeiro a comentar.",
+    "reply": "Responder", "replyingTo": "Respondendo a este comentário",
+    "yourReply": "Sua resposta", "replyPlaceholder": "Compartilhe sua perspectiva…",
+    "postReply": "Publicar resposta", "posting": "Publicando…",
+    "markdownSupported": "Suporte a Markdown.",
+    "delete": "Excluir", "cancel": "Cancelar",
+    "filters": { "all": "Todos os tópicos" },
+    "sort": { "latest": "Recentes", "replies": "Mais respostas", "trending": "Em alta" },
+    "categories": {
+      "general": "Geral", "carbon": "Carbono", "csrd": "CSRD",
+      "circular": "Economia circular", "biodiversity": "Biodiversidade",
+      "social": "Impacto social", "governance": "Governança"
+    },
+    "reactions": { "like": "Curtir", "insightful": "Esclarecedor", "agree": "Concordo" },
+    "empty": {
+      "title": "Nenhuma discussão ainda",
+      "subtitle": "Inicie a primeira conversa e dê o tom deste espaço.",
+      "cta": "Seja o primeiro a postar"
+    },
+    "new": {
+      "title": "Iniciar nova discussão",
+      "subtitle": "Faça uma pergunta, compartilhe um estudo de caso ou convide ao debate.",
+      "titleLabel": "Título", "titlePlaceholder": "O que está na sua mente?",
+      "category": "Categoria", "body": "Conteúdo", "write": "Escrever", "preview": "Pré-visualizar",
+      "previewEmpty": "Nada para pré-visualizar ainda.",
+      "bodyPlaceholder": "Suporte a Markdown. Adicione contexto, links e o que você espera aprender.",
+      "tags": "Tags", "tagsPlaceholder": "tags, separadas, por vírgula",
+      "cancel": "Cancelar", "post": "Publicar discussão", "posting": "Publicando…"
+    },
+    "admin": { "pin": "Fixar", "unpin": "Desafixar", "lock": "Bloquear", "unlock": "Desbloquear" },
+    "confirmDelete": {
+      "title": "Tem certeza?",
+      "topic": "Esta discussão e todas as respostas serão removidas permanentemente.",
+      "reply": "Esta resposta será removida permanentemente."
+    },
+    "toasts": {
+      "topicCreated": "Discussão publicada.", "replyPosted": "Resposta publicada.",
+      "updated": "Atualizado.", "deleted": "Excluído."
+    },
+    "errors": {
+      "required": "Título e conteúdo são obrigatórios.",
+      "create": "Não foi possível publicar a discussão.",
+      "reply": "Não foi possível publicar sua resposta.",
+      "reaction": "Não foi possível salvar sua reação."
+    },
+    "notifications": {
+      "title": "Notificações",
+      "empty": "Você está em dia.",
+      "viewAll": "Ver comunidade",
+      "types": {
+        "reply_to_topic": "Alguém respondeu à sua discussão",
+        "reply_to_reply": "Alguém respondeu ao seu comentário"
+      }
+    }
   }
 }
