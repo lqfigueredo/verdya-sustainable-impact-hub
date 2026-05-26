@@ -1,8 +1,18 @@
 {
   "nav": {
-    "home": "Início", "about": "Sobre", "library": "Biblioteca", "content": "Conteúdo", "community": "Comunidade",
-    "resources": "Recursos", "login": "Entrar", "signup": "Criar conta",
-    "profile": "Perfil", "dashboard": "Painel", "admin": "Painel admin", "logout": "Sair"
+    "home": "Início",
+    "about": "Sobre",
+    "library": "Biblioteca",
+    "content": "Conteúdo",
+    "community": "Comunidade",
+    "resources": "Recursos",
+    "login": "Entrar",
+    "signup": "Criar conta",
+    "profile": "Perfil",
+    "dashboard": "Painel",
+    "admin": "Painel admin",
+    "logout": "Sair",
+    "newsletter": "Newsletter"
   },
   "library": {
     "eyebrow": "Hub de educação",
@@ -19,29 +29,61 @@
     "author": "Autor",
     "tags": "Tags",
     "related": "Relacionados",
-    "filters": { "category": "Categoria", "type": "Formato", "difficulty": "Nível", "tag": "Tag", "all": "Todos" },
-    "types": { "article": "Artigo", "guide": "Guia", "pdf": "PDF", "link": "Link", "video": "Vídeo" },
-    "difficulty": { "beginner": "Iniciante", "intermediate": "Intermediário", "advanced": "Avançado" },
-    "favorites": { "save": "Salvar", "saved": "Salvo", "added": "Adicionado aos favoritos", "removed": "Removido dos favoritos" }
+    "filters": {
+      "category": "Categoria",
+      "type": "Formato",
+      "difficulty": "Nível",
+      "tag": "Tag",
+      "all": "Todos"
+    },
+    "types": {
+      "article": "Artigo",
+      "guide": "Guia",
+      "pdf": "PDF",
+      "link": "Link",
+      "video": "Vídeo"
+    },
+    "difficulty": {
+      "beginner": "Iniciante",
+      "intermediate": "Intermediário",
+      "advanced": "Avançado"
+    },
+    "favorites": {
+      "save": "Salvar",
+      "saved": "Salvo",
+      "added": "Adicionado aos favoritos",
+      "removed": "Removido dos favoritos"
+    }
   },
-  "language": { "label": "Idioma", "en": "English", "pt": "Português" },
+  "language": {
+    "label": "Idioma",
+    "en": "English",
+    "pt": "Português"
+  },
   "auth": {
     "login": {
       "title": "Bem-vindo de volta",
       "subtitle": "Entre na sua conta Verdya.",
-      "email": "E-mail", "password": "Senha",
-      "submit": "Entrar", "submitting": "Entrando...",
+      "email": "E-mail",
+      "password": "Senha",
+      "submit": "Entrar",
+      "submitting": "Entrando...",
       "forgot": "Esqueceu a senha?",
-      "noAccount": "Não tem conta?", "signupLink": "Criar conta",
+      "noAccount": "Não tem conta?",
+      "signupLink": "Criar conta",
       "or": "ou continue com"
     },
     "signup": {
       "title": "Junte-se à Verdya",
       "subtitle": "Crie sua conta para acessar educação, networking e recursos.",
-      "fullName": "Nome completo", "email": "E-mail",
-      "password": "Senha", "confirmPassword": "Confirmar senha",
-      "submit": "Criar conta", "submitting": "Criando conta...",
-      "haveAccount": "Já tem conta?", "loginLink": "Entrar",
+      "fullName": "Nome completo",
+      "email": "E-mail",
+      "password": "Senha",
+      "confirmPassword": "Confirmar senha",
+      "submit": "Criar conta",
+      "submitting": "Criando conta...",
+      "haveAccount": "Já tem conta?",
+      "loginLink": "Entrar",
       "mismatch": "As senhas não coincidem",
       "tooShort": "A senha precisa ter pelo menos 8 caracteres",
       "checkEmail": "Verifique seu e-mail para confirmar sua conta."
@@ -49,7 +91,9 @@
     "forgot": {
       "title": "Recupere sua senha",
       "subtitle": "Informe seu e-mail e enviaremos um link para redefinir.",
-      "email": "E-mail", "submit": "Enviar link", "submitting": "Enviando...",
+      "email": "E-mail",
+      "submit": "Enviar link",
+      "submitting": "Enviando...",
       "back": "Voltar ao login",
       "sent": "Se este e-mail existir, um link foi enviado."
     },
@@ -61,115 +105,248 @@
       "invalid": "E-mail ou senha inválidos.",
       "exists": "Já existe uma conta com este e-mail."
     },
-    "success": { "signedIn": "Bem-vindo de volta!", "signedOut": "Você saiu." }
+    "success": {
+      "signedIn": "Bem-vindo de volta!",
+      "signedOut": "Você saiu."
+    }
   },
   "profile": {
     "title": "Seu perfil",
     "subtitle": "Como a rede Verdya te enxerga.",
-    "fullName": "Nome completo", "bio": "Bio", "company": "Empresa",
-    "country": "País", "avatarUrl": "URL do avatar",
-    "save": "Salvar alterações", "saving": "Salvando...",
-    "saved": "Perfil atualizado.", "error": "Não foi possível salvar o perfil."
+    "fullName": "Nome completo",
+    "bio": "Bio",
+    "company": "Empresa",
+    "country": "País",
+    "avatarUrl": "URL do avatar",
+    "save": "Salvar alterações",
+    "saving": "Salvando...",
+    "saved": "Perfil atualizado.",
+    "error": "Não foi possível salvar o perfil."
   },
   "hero": {
     "eyebrow": "Rede ESG global",
     "title": "Onde líderes de ESG aprendem, se conectam e moldam a próxima economia.",
     "subtitle": "A Verdya é um hub internacional para profissionais de sustentabilidade corporativa — educação, networking e recursos testados na prática, em um só lugar.",
-    "ctaPrimary": "Explorar a biblioteca", "ctaSecondary": "Entrar na comunidade",
-    "stats": { "members": "Membros", "content": "Recursos", "events": "Próximos eventos" },
+    "ctaPrimary": "Explorar a biblioteca",
+    "ctaSecondary": "Entrar na comunidade",
+    "stats": {
+      "members": "Membros",
+      "content": "Recursos",
+      "events": "Próximos eventos"
+    },
     "nextEvent": "Próximo evento",
     "exploreEvents": "Ver próximos eventos",
     "exploreEventsHint": "Sessões ao vivo e workshops",
     "communityBadge": "Comunidade ativa · participe da discussão"
   },
   "what": {
-    "eyebrow": "O que é a Verdya", "title": "Um lar sério para a prática de sustentabilidade.",
+    "eyebrow": "O que é a Verdya",
+    "title": "Um lar sério para a prática de sustentabilidade.",
     "subtitle": "Três pilares pensados para quem realmente executa a transformação ESG.",
     "items": {
-      "education": { "title": "Educação", "desc": "Programas em cohort, masterclasses e cursos curtos com praticantes — não consultores lendo slides." },
-      "networking": { "title": "Networking", "desc": "Círculos de pares curados, capítulos regionais e eventos privados para trocar com quem entende." },
-      "resources": { "title": "Recursos", "desc": "Frameworks, modelos de reporte e estudos de caso que você abre na segunda de manhã." }
+      "education": {
+        "title": "Educação",
+        "desc": "Programas em cohort, masterclasses e cursos curtos com praticantes — não consultores lendo slides."
+      },
+      "networking": {
+        "title": "Networking",
+        "desc": "Círculos de pares curados, capítulos regionais e eventos privados para trocar com quem entende."
+      },
+      "resources": {
+        "title": "Recursos",
+        "desc": "Frameworks, modelos de reporte e estudos de caso que você abre na segunda de manhã."
+      }
     }
   },
   "featured": {
-    "eyebrow": "Conteúdo em destaque", "title": "Recentes da rede", "viewAll": "Ver todo conteúdo",
+    "eyebrow": "Conteúdo em destaque",
+    "title": "Recentes da rede",
+    "viewAll": "Ver todo conteúdo",
     "empty": "Nenhum conteúdo publicado ainda — volte em breve."
   },
   "how": {
-    "eyebrow": "Como funciona", "title": "Três passos para se conectar.",
+    "eyebrow": "Como funciona",
+    "title": "Três passos para se conectar.",
     "steps": [
-      { "title": "Crie seu perfil", "desc": "Conte sua função, setor e os temas de ESG em que está trabalhando agora." },
-      { "title": "Encontre seu círculo", "desc": "Receba indicações de pares, programas e conteúdos no seu nível e região." },
-      { "title": "Aprenda em aberto", "desc": "Participe de sessões, compartilhe o que funcionou e construa a prática com a rede." }
+      {
+        "title": "Crie seu perfil",
+        "desc": "Conte sua função, setor e os temas de ESG em que está trabalhando agora."
+      },
+      {
+        "title": "Encontre seu círculo",
+        "desc": "Receba indicações de pares, programas e conteúdos no seu nível e região."
+      },
+      {
+        "title": "Aprenda em aberto",
+        "desc": "Participe de sessões, compartilhe o que funcionou e construa a prática com a rede."
+      }
     ]
   },
   "newsletter": {
-    "eyebrow": "Fique por dentro", "title": "O brief da Verdya, a cada duas quintas.",
+    "eyebrow": "Fique por dentro",
+    "title": "O brief da Verdya, a cada duas quintas.",
     "subtitle": "Um e-mail curto. O sinal que vale a pena sobre ESG, clima e sustentabilidade corporativa.",
-    "placeholder": "voce@empresa.com", "button": "Assinar", "disclaimer": "Sem spam. Cancele quando quiser."
+    "placeholder": "voce@empresa.com",
+    "button": "Assinar",
+    "disclaimer": "Sem spam. Cancele quando quiser."
   },
   "footer": {
     "tagline": "Um hub internacional para profissionais de ESG corporativo.",
-    "about": "Sobre", "aboutLinks": ["Nossa história", "Time", "Carreiras", "Imprensa"],
-    "explore": "Explorar", "exploreLinks": ["Conteúdo", "Programas", "Comunidade", "Eventos"],
-    "legal": "Legal", "legalLinks": ["Privacidade", "Termos", "Cookies"],
-    "social": "Siga", "rights": "© 2026 Verdya. Todos os direitos reservados."
+    "about": "Sobre",
+    "aboutLinks": [
+      "Nossa história",
+      "Time",
+      "Carreiras",
+      "Imprensa"
+    ],
+    "explore": "Explorar",
+    "exploreLinks": [
+      "Conteúdo",
+      "Programas",
+      "Comunidade",
+      "Eventos"
+    ],
+    "legal": "Legal",
+    "legalLinks": [
+      "Privacidade",
+      "Termos",
+      "Cookies"
+    ],
+    "social": "Siga",
+    "rights": "© 2026 Verdya. Todos os direitos reservados."
   },
   "admin": {
     "backToSite": "Voltar ao site",
-    "nav": { "dashboard": "Painel", "content": "Conteúdo", "categories": "Categorias", "users": "Usuários", "settings": "Configurações" },
+    "nav": {
+      "dashboard": "Painel",
+      "content": "Conteúdo",
+      "categories": "Categorias",
+      "users": "Usuários",
+      "settings": "Configurações"
+    },
     "dashboard": {
-      "title": "Painel", "subtitle": "Visão geral da plataforma Verdya.",
-      "newContent": "Novo conteúdo", "newCategory": "Nova categoria",
-      "totalContent": "Total de conteúdos", "totalUsers": "Total de usuários",
-      "publishedMonth": "Publicados este mês", "drafts": "Rascunhos pendentes",
-      "recent": "Atividade recente", "noActivity": "Nada por aqui ainda."
+      "title": "Painel",
+      "subtitle": "Visão geral da plataforma Verdya.",
+      "newContent": "Novo conteúdo",
+      "newCategory": "Nova categoria",
+      "totalContent": "Total de conteúdos",
+      "totalUsers": "Total de usuários",
+      "publishedMonth": "Publicados este mês",
+      "drafts": "Rascunhos pendentes",
+      "recent": "Atividade recente",
+      "noActivity": "Nada por aqui ainda.",
+      "activity": {
+        "content": "Conteúdo",
+        "topic": "Tópico do fórum",
+        "registration": "Inscrição em evento",
+        "subscriber": "Assinante da newsletter"
+      }
     },
-    "status": { "published": "Publicado", "draft": "Rascunho" },
+    "status": {
+      "published": "Publicado",
+      "draft": "Rascunho"
+    },
     "content": {
-      "title": "Gerenciador de conteúdo", "subtitle": "Gerencie artigos, guias e recursos.",
-      "new": "Novo conteúdo", "searchPlaceholder": "Buscar por título…",
-      "cover": "Capa", "titleCol": "Título", "type": "Tipo", "category": "Categoria",
-      "status": "Status", "author": "Autor", "created": "Criado em", "empty": "Sem conteúdo ainda."
+      "title": "Gerenciador de conteúdo",
+      "subtitle": "Gerencie artigos, guias e recursos.",
+      "new": "Novo conteúdo",
+      "searchPlaceholder": "Buscar por título…",
+      "cover": "Capa",
+      "titleCol": "Título",
+      "type": "Tipo",
+      "category": "Categoria",
+      "status": "Status",
+      "author": "Autor",
+      "created": "Criado em",
+      "empty": "Sem conteúdo ainda."
     },
-    "filters": { "allTypes": "Todos os tipos", "allCategories": "Todas as categorias", "allStatus": "Todos os status", "allRoles": "Todos os papéis" },
+    "filters": {
+      "allTypes": "Todos os tipos",
+      "allCategories": "Todas as categorias",
+      "allStatus": "Todos os status",
+      "allRoles": "Todos os papéis"
+    },
     "bulk": {
-      "selected": "{{count}} selecionado(s)", "publish": "Publicar", "unpublish": "Despublicar", "delete": "Excluir",
+      "selected": "{{count}} selecionado(s)",
+      "publish": "Publicar",
+      "unpublish": "Despublicar",
+      "delete": "Excluir",
       "confirmDelete": "Excluir {{count}} item(ns)? Esta ação é irreversível."
     },
     "confirm": {
-      "deleteTitle": "Tem certeza?", "deleteDesc": "Esta ação não pode ser desfeita.",
-      "cancel": "Cancelar", "delete": "Excluir", "confirm": "Confirmar"
+      "deleteTitle": "Tem certeza?",
+      "deleteDesc": "Esta ação não pode ser desfeita.",
+      "cancel": "Cancelar",
+      "delete": "Excluir",
+      "confirm": "Confirmar"
     },
     "form": {
-      "newTitle": "Novo conteúdo", "editTitle": "Editar conteúdo",
-      "titleField": "Título", "summary": "Resumo", "body": "Corpo",
-      "category": "Categoria", "selectCategory": "Selecione uma categoria",
-      "type": "Tipo", "difficulty": "Nível", "readingTime": "Tempo de leitura (min)",
-      "externalUrl": "URL externa", "tags": "Tags", "addTag": "Adicionar tag…",
-      "cover": "Imagem de capa", "file": "Arquivo anexo (PDF/Doc)",
-      "uploadCover": "Enviar capa", "uploadFile": "Enviar arquivo", "uploading": "Enviando…",
-      "published": "Publicado", "featured": "Destaque",
-      "saveDraft": "Salvar rascunho", "publish": "Publicar", "required": "Obrigatório"
+      "newTitle": "Novo conteúdo",
+      "editTitle": "Editar conteúdo",
+      "titleField": "Título",
+      "summary": "Resumo",
+      "body": "Corpo",
+      "category": "Categoria",
+      "selectCategory": "Selecione uma categoria",
+      "type": "Tipo",
+      "difficulty": "Nível",
+      "readingTime": "Tempo de leitura (min)",
+      "externalUrl": "URL externa",
+      "tags": "Tags",
+      "addTag": "Adicionar tag…",
+      "cover": "Imagem de capa",
+      "file": "Arquivo anexo (PDF/Doc)",
+      "uploadCover": "Enviar capa",
+      "uploadFile": "Enviar arquivo",
+      "uploading": "Enviando…",
+      "published": "Publicado",
+      "featured": "Destaque",
+      "saveDraft": "Salvar rascunho",
+      "publish": "Publicar",
+      "required": "Obrigatório"
     },
     "categories": {
-      "title": "Categorias", "subtitle": "Organize o conteúdo por tema. Arraste para reordenar.",
-      "new": "Nova categoria", "edit": "Editar categoria", "formDesc": "O slug deve ser único. Ícones usam nomes do Lucide.",
-      "icon": "Ícone (nome Lucide)", "iconHint": "Exemplo: Leaf, Globe, Recycle",
+      "title": "Categorias",
+      "subtitle": "Organize o conteúdo por tema. Arraste para reordenar.",
+      "new": "Nova categoria",
+      "edit": "Editar categoria",
+      "formDesc": "O slug deve ser único. Ícones usam nomes do Lucide.",
+      "icon": "Ícone (nome Lucide)",
+      "iconHint": "Exemplo: Leaf, Globe, Recycle",
       "color": "Cor"
     },
     "users": {
-      "title": "Usuários", "subtitle": "Gerencie membros e administradores.",
-      "user": "Usuário", "email": "E-mail", "role": "Papel", "country": "País", "joined": "Cadastro",
-      "admin": "Admin", "member": "Membro", "promote": "Promover a admin", "demote": "Rebaixar a membro",
-      "confirmRole": "Definir o papel de {{name}} como {{role}}?", "empty": "Nenhum usuário ainda."
+      "title": "Usuários",
+      "subtitle": "Gerencie membros e administradores.",
+      "user": "Usuário",
+      "email": "E-mail",
+      "role": "Papel",
+      "country": "País",
+      "joined": "Cadastro",
+      "admin": "Admin",
+      "member": "Membro",
+      "promote": "Promover a admin",
+      "demote": "Rebaixar a membro",
+      "confirmRole": "Definir o papel de {{name}} como {{role}}?",
+      "empty": "Nenhum usuário ainda."
     },
     "settings": {
-      "title": "Configurações do site", "subtitle": "Configuração global da plataforma Verdya.",
-      "siteTitle": "Título do site", "heroEn": "Texto hero (EN)", "heroPt": "Texto hero (PT)",
-      "featured": "IDs de conteúdo em destaque", "featuredHint": "UUIDs separados por vírgula"
+      "title": "Configurações do site",
+      "subtitle": "Configuração global da plataforma Verdya.",
+      "siteTitle": "Título do site",
+      "heroEn": "Texto hero (EN)",
+      "heroPt": "Texto hero (PT)",
+      "featured": "IDs de conteúdo em destaque",
+      "featuredHint": "UUIDs separados por vírgula"
     },
-    "toast": { "saved": "Salvo.", "save": "Salvar", "created": "Criado.", "updated": "Atualizado.", "deleted": "Excluído.", "uploaded": "Enviado." }
+    "toast": {
+      "saved": "Salvo.",
+      "save": "Salvar",
+      "created": "Criado.",
+      "updated": "Atualizado.",
+      "deleted": "Excluído.",
+      "uploaded": "Enviado."
+    }
   },
   "forum": {
     "eyebrow": "Comunidade",
@@ -178,7 +355,8 @@
     "startDiscussion": "Iniciar discussão",
     "searchPlaceholder": "Buscar discussões…",
     "backToCommunity": "Voltar à comunidade",
-    "pinned": "Fixado", "locked": "Bloqueado",
+    "pinned": "Fixado",
+    "locked": "Bloqueado",
     "lockedNotice": "Esta discussão está bloqueada. Novas respostas não são permitidas.",
     "anonymous": "Anônimo",
     "notFound": "Discussão não encontrada.",
@@ -189,19 +367,37 @@
     "replies_other": "{{count}} respostas",
     "replies": "{{count}} respostas",
     "noReplies": "Sem respostas ainda — seja o primeiro a comentar.",
-    "reply": "Responder", "replyingTo": "Respondendo a este comentário",
-    "yourReply": "Sua resposta", "replyPlaceholder": "Compartilhe sua perspectiva…",
-    "postReply": "Publicar resposta", "posting": "Publicando…",
+    "reply": "Responder",
+    "replyingTo": "Respondendo a este comentário",
+    "yourReply": "Sua resposta",
+    "replyPlaceholder": "Compartilhe sua perspectiva…",
+    "postReply": "Publicar resposta",
+    "posting": "Publicando…",
     "markdownSupported": "Suporte a Markdown.",
-    "delete": "Excluir", "cancel": "Cancelar",
-    "filters": { "all": "Todos os tópicos" },
-    "sort": { "latest": "Recentes", "replies": "Mais respostas", "trending": "Em alta" },
-    "categories": {
-      "general": "Geral", "carbon": "Carbono", "csrd": "CSRD",
-      "circular": "Economia circular", "biodiversity": "Biodiversidade",
-      "social": "Impacto social", "governance": "Governança"
+    "delete": "Excluir",
+    "cancel": "Cancelar",
+    "filters": {
+      "all": "Todos os tópicos"
     },
-    "reactions": { "like": "Curtir", "insightful": "Esclarecedor", "agree": "Concordo" },
+    "sort": {
+      "latest": "Recentes",
+      "replies": "Mais respostas",
+      "trending": "Em alta"
+    },
+    "categories": {
+      "general": "Geral",
+      "carbon": "Carbono",
+      "csrd": "CSRD",
+      "circular": "Economia circular",
+      "biodiversity": "Biodiversidade",
+      "social": "Impacto social",
+      "governance": "Governança"
+    },
+    "reactions": {
+      "like": "Curtir",
+      "insightful": "Esclarecedor",
+      "agree": "Concordo"
+    },
     "empty": {
       "title": "Nenhuma discussão ainda",
       "subtitle": "Inicie a primeira conversa e dê o tom deste espaço.",
@@ -210,22 +406,36 @@
     "new": {
       "title": "Iniciar nova discussão",
       "subtitle": "Faça uma pergunta, compartilhe um estudo de caso ou convide ao debate.",
-      "titleLabel": "Título", "titlePlaceholder": "O que está na sua mente?",
-      "category": "Categoria", "body": "Conteúdo", "write": "Escrever", "preview": "Pré-visualizar",
+      "titleLabel": "Título",
+      "titlePlaceholder": "O que está na sua mente?",
+      "category": "Categoria",
+      "body": "Conteúdo",
+      "write": "Escrever",
+      "preview": "Pré-visualizar",
       "previewEmpty": "Nada para pré-visualizar ainda.",
       "bodyPlaceholder": "Suporte a Markdown. Adicione contexto, links e o que você espera aprender.",
-      "tags": "Tags", "tagsPlaceholder": "tags, separadas, por vírgula",
-      "cancel": "Cancelar", "post": "Publicar discussão", "posting": "Publicando…"
+      "tags": "Tags",
+      "tagsPlaceholder": "tags, separadas, por vírgula",
+      "cancel": "Cancelar",
+      "post": "Publicar discussão",
+      "posting": "Publicando…"
     },
-    "admin": { "pin": "Fixar", "unpin": "Desafixar", "lock": "Bloquear", "unlock": "Desbloquear" },
+    "admin": {
+      "pin": "Fixar",
+      "unpin": "Desafixar",
+      "lock": "Bloquear",
+      "unlock": "Desbloquear"
+    },
     "confirmDelete": {
       "title": "Tem certeza?",
       "topic": "Esta discussão e todas as respostas serão removidas permanentemente.",
       "reply": "Esta resposta será removida permanentemente."
     },
     "toasts": {
-      "topicCreated": "Discussão publicada.", "replyPosted": "Resposta publicada.",
-      "updated": "Atualizado.", "deleted": "Excluído."
+      "topicCreated": "Discussão publicada.",
+      "replyPosted": "Resposta publicada.",
+      "updated": "Atualizado.",
+      "deleted": "Excluído."
     },
     "errors": {
       "required": "Título e conteúdo são obrigatórios.",
@@ -260,8 +470,17 @@
     "join": "Entrar na reunião",
     "addCalendar": "Adicionar ao calendário",
     "speakers": "Palestrantes",
-    "location": { "online": "Online", "in_person": "Presencial", "hybrid": "Híbrido" },
-    "countdown": { "days": "dias", "hours": "horas", "minutes": "minutos", "seconds": "segundos" }
+    "location": {
+      "online": "Online",
+      "in_person": "Presencial",
+      "hybrid": "Híbrido"
+    },
+    "countdown": {
+      "days": "dias",
+      "hours": "horas",
+      "minutes": "minutos",
+      "seconds": "segundos"
+    }
   },
   "newsletterPage": {
     "title": "O Brief da Verdya",
@@ -270,39 +489,65 @@
     "error": "Não foi possível inscrever — tente novamente em instantes."
   },
   "adminEvents": {
-    "title": "Eventos", "subtitle": "Crie e gerencie sessões ao vivo, workshops e encontros.",
-    "newEvent": "Novo evento", "editEvent": "Editar evento",
-    "titleEn": "Título (EN)", "titlePt": "Título (PT)",
-    "descEn": "Descrição (EN)", "descPt": "Descrição (PT)",
-    "startsAt": "Início", "endsAt": "Término", "timezone": "Fuso horário",
-    "locationType": "Tipo de local", "locationDetail": "Detalhes do local",
-    "meetingUrl": "URL da reunião", "coverImageUrl": "URL da imagem de capa",
-    "category": "Categoria", "maxAttendees": "Máx. participantes",
+    "title": "Eventos",
+    "subtitle": "Crie e gerencie sessões ao vivo, workshops e encontros.",
+    "newEvent": "Novo evento",
+    "editEvent": "Editar evento",
+    "titleEn": "Título (EN)",
+    "titlePt": "Título (PT)",
+    "descEn": "Descrição (EN)",
+    "descPt": "Descrição (PT)",
+    "startsAt": "Início",
+    "endsAt": "Término",
+    "timezone": "Fuso horário",
+    "locationType": "Tipo de local",
+    "locationDetail": "Detalhes do local",
+    "meetingUrl": "URL da reunião",
+    "coverImageUrl": "URL da imagem de capa",
+    "category": "Categoria",
+    "maxAttendees": "Máx. participantes",
     "speakersJson": "Palestrantes (array JSON)",
     "invalidSpeakers": "Palestrantes precisam ser um JSON válido.",
-    "published": "Publicado", "draft": "Rascunho",
-    "save": "Salvar evento", "saved": "Evento salvo.", "deleted": "Evento excluído.",
+    "published": "Publicado",
+    "draft": "Rascunho",
+    "save": "Salvar evento",
+    "saved": "Evento salvo.",
+    "deleted": "Evento excluído.",
     "delete": "Excluir evento",
     "confirmDelete": "Excluir este evento?",
     "confirmDeleteDesc": "Todas as inscrições também serão perdidas. Esta ação é irreversível.",
-    "col": { "title": "Título", "when": "Quando", "location": "Local", "status": "Status" }
+    "col": {
+      "title": "Título",
+      "when": "Quando",
+      "location": "Local",
+      "status": "Status"
+    }
   },
   "adminNewsletter": {
-    "title": "Newsletter", "subtitle": "Gerencie inscritos e envie campanhas.",
-    "total": "Total de inscritos", "active": "Ativos", "unsub": "Cancelados",
-    "status": "Status", "subscribedAt": "Inscrição",
+    "title": "Newsletter",
+    "subtitle": "Gerencie inscritos e envie campanhas.",
+    "total": "Total de inscritos",
+    "active": "Ativos",
+    "unsub": "Cancelados",
+    "status": "Status",
+    "subscribedAt": "Inscrição",
     "exportCsv": "Exportar CSV",
     "resendTitle": "Compor campanha",
     "resendNote": "Envie primeiro um teste para o seu e-mail e depois dispare para todos os inscritos ativos.",
-    "subjectEn": "Assunto (EN)", "subjectPt": "Assunto (PT)",
-    "bodyEn": "Corpo (EN, markdown)", "bodyPt": "Corpo (PT, markdown)",
-    "sendTest": "Enviar teste para mim", "sendAll": "Enviar para todos",
+    "subjectEn": "Assunto (EN)",
+    "subjectPt": "Assunto (PT)",
+    "bodyEn": "Corpo (EN, markdown)",
+    "bodyPt": "Corpo (PT, markdown)",
+    "sendTest": "Enviar teste para mim",
+    "sendAll": "Enviar para todos",
     "confirmAll": "Enviar esta campanha para todos os inscritos ativos?",
     "testSent": "Mensagem de teste enviada.",
     "sentAll": "Campanha enviada para {{count}} inscritos.",
     "errorSave": "Não foi possível enviar a campanha.",
     "noHistory": "Nenhuma campanha enviada ainda.",
-    "draft": "Rascunho", "recipients": "Destinatários", "opens": "Aberturas"
+    "draft": "Rascunho",
+    "recipients": "Destinatários",
+    "opens": "Aberturas"
   },
   "dashboard": {
     "eyebrow": "Seu painel",
@@ -326,4 +571,3 @@
     }
   }
 }
-

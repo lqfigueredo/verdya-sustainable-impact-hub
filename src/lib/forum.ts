@@ -38,7 +38,11 @@ export const FORUM_CATEGORIES = [
 
 export type ForumSort = "latest" | "replies" | "trending";
 
-const AUTHOR_SELECT = "id, full_name, avatar_url, company, country, bio";
+// Lean projection for lists (no bio/country to avoid leaking personal data in large queries).
+const AUTHOR_SELECT_LIST = "id, full_name, avatar_url, company";
+// Full projection for single-topic / single-reply views.
+const AUTHOR_SELECT_FULL = "id, full_name, avatar_url, company, country, bio";
+const AUTHOR_SELECT = AUTHOR_SELECT_LIST;
 
 export const forumTopicsQuery = (params: {
   category?: string | null;
@@ -115,7 +119,7 @@ export const forumTopicQuery = (id: string) =>
     queryFn: async (): Promise<(ForumTopic & { author: AuthorMini | null }) | null> => {
       const { data, error } = await supabase
         .from("forum_topics")
-        .select(`*, author:profiles(${AUTHOR_SELECT})`)
+        .select(`*, author:profiles(${AUTHOR_SELECT_FULL})`)
         .eq("id", id)
         .maybeSingle();
       if (error) throw error;
@@ -129,7 +133,7 @@ export const forumRepliesQuery = (topicId: string) =>
     queryFn: async (): Promise<ReplyWithAuthor[]> => {
       const { data, error } = await supabase
         .from("forum_replies")
-        .select(`*, author:profiles(${AUTHOR_SELECT})`)
+        .select(`*, author:profiles(${AUTHOR_SELECT_FULL})`)
         .eq("topic_id", topicId)
         .order("created_at", { ascending: true });
       if (error) throw error;

@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import * as Lucide from "lucide-react";
 import { GripVertical, Pencil, Plus, Trash2 } from "lucide-react";
@@ -30,6 +30,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 import i18n from "@/lib/i18n";
 
 export const Route = createFileRoute("/admin/categories")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    new: search.new ? 1 : undefined,
+  }),
   component: CategoriesPage,
 });
 
@@ -44,9 +47,15 @@ function CategoriesPage() {
   const { t } = useTranslation();
   const qc = useQueryClient();
   const lang = i18n.language;
+  const { new: openNew } = Route.useSearch();
   const { data, isLoading } = useQuery(adminCategoriesQuery);
   const [editing, setEditing] = useState<FormState | null>(null);
   const [pendingDelete, setPendingDelete] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (openNew) setEditing({ isNew: true, icon: "Leaf", color: "#1F4D3A" });
+  }, [openNew]);
+
 
   const sensors = useSensors(useSensor(PointerSensor), useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }));
 

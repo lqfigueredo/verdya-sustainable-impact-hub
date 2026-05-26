@@ -110,6 +110,112 @@ export const adminRecentActivityQuery = queryOptions({
   },
 });
 
+export type RecentActivityFeedItem =
+  | { kind: "content"; id: string; createdAt: string; title: string; href: string; meta: string }
+  | { kind: "topic"; id: string; createdAt: string; title: string; href: string; meta: string }
+  | { kind: "registration"; id: string; createdAt: string; title: string; href: string; meta: string }
+  | { kind: "subscriber"; id: string; createdAt: string; title: string; href: string; meta: string };
+
+export const adminActivityFeedQuery = queryOptions({
+  queryKey: ["admin", "activity-feed"],
+  queryFn: async (): Promise<RecentActivityFeedItem[]> => {
+    const [contentRes, topicsRes, regsRes, subsRes] = await Promise.all([
+      supabase
+        .from("content_items")
+        .select("id,title_en,title_pt,type,created_at,published")
+        .order("created_at", { ascending: false })
+        .limit(5),
+      supabase
+        .from("forum_topics")
+        .select("id,title,category,created_at,author:profiles(full_name,email)")
+        .order("created_at", { ascending: false })
+        .limit(5),
+      supabase
+        .from("event_registrations")
+        .select("id,registered_at,user_id,event_id")
+        .order("registered_at", { ascending: false })
+        .limit(5),
+      supabase
+        .from("newsletter_subscribers")
+        .select("id,email,language_pref,subscribed_at")
+        .is("unsubscribed_at", null)
+        .order("subscribed_at", { ascending: false })
+        .limit(5),
+    ]);
+
+    // Resolve event + profile names for the latest registrations (no FK in DB, so join client-side).
+    const regRows = regsRes.data ?? [];
+    const eventIds = Array.from(new Set(regRows.map((r) => r.event_id))).filter(Boolean);
+    const userIds = Array.from(new Set(regRows.map((r) => r.user_id))).filter(Boolean);
+    const [eventsRes, profilesRes] = await Promise.all([
+      eventIds.length
+        ? supabase.from("events").select("id,title_en,title_pt").in("id", eventIds)
+        : Promise.resolve({ data: [] as { id: string; title_en: string; title_pt: string }[] }),
+      userIds.length
+        ? supabase.from("profiles").select("id,full_name,email").in("id", userIds)
+        : Promise.resolve({ data: [] as { id: string; full_name: string | null; email: string | null }[] }),
+    ]);
+    const eventMap = new Map((eventsRes.data ?? []).map((e) => [e.id, e]));
+    const profMap = new Map((profilesRes.data ?? []).map((p) => [p.id, p]));
+
+    const items: RecentActivityFeedItem[] = [];
+
+    for (const c of contentRes.data ?? []) {
+      items.push({
+        kind: "content",
+        id: c.id,
+        createdAt: c.created_at,
+        title: c.title_en,
+        href: `/admin/content/${c.id}/edit`,
+        meta: `${c.type} · ${c.published ? "published" : "draft"}`,
+      });
+    }
+    for (const t of (topicsRes.data ?? []) as Array<{
+      id: string;
+      title: string;
+      category: string;
+      created_at: string;
+      author: { full_name: string | null; email: string | null } | null;
+    }>) {
+      items.push({
+        kind: "topic",
+        id: t.id,
+        createdAt: t.created_at,
+        title: t.title,
+        href: `/community/topic/${t.id}`,
+        meta: `${t.category} · ${t.author?.full_name ?? t.author?.email ?? "—"}`,
+      });
+    }
+    for (const r of regRows) {
+      const ev = eventMap.get(r.event_id);
+      const prof = profMap.get(r.user_id);
+      if (!ev) continue;
+      items.push({
+        kind: "registration",
+        id: r.id,
+        createdAt: r.registered_at,
+        title: ev.title_en,
+        href: `/events/${ev.id}`,
+        meta: prof?.full_name ?? prof?.email ?? "—",
+      });
+    }
+    for (const s of subsRes.data ?? []) {
+      items.push({
+        kind: "subscriber",
+        id: s.id,
+        createdAt: s.subscribed_at,
+        title: s.email,
+        href: "/admin/newsletter",
+        meta: `lang: ${s.language_pref}`,
+      });
+    }
+
+    return items
+      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+      .slice(0, 12);
+  },
+});
+
 export const siteSettingsQuery = queryOptions({
   queryKey: ["admin", "settings"],
   queryFn: async (): Promise<Record<string, unknown>> => {
