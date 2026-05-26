@@ -38,7 +38,11 @@ export const FORUM_CATEGORIES = [
 
 export type ForumSort = "latest" | "replies" | "trending";
 
-const AUTHOR_SELECT = "id, full_name, avatar_url, company, country, bio";
+// Lean projection for lists (no bio/country to avoid leaking personal data in large queries).
+const AUTHOR_SELECT_LIST = "id, full_name, avatar_url, company";
+// Full projection for single-topic / single-reply views.
+const AUTHOR_SELECT_FULL = "id, full_name, avatar_url, company, country, bio";
+const AUTHOR_SELECT = AUTHOR_SELECT_LIST;
 
 export const forumTopicsQuery = (params: {
   category?: string | null;

@@ -23,8 +23,7 @@ export function Header() {
     { key: "library", href: "/library" },
     { key: "events", href: "/events" },
     { key: "community", href: "/community" },
-    { key: "resources", href: "/#resources" },
-    { key: "about", href: "/#about" },
+    { key: "newsletter", href: "/newsletter" },
   ] as const;
 
   const handleSignOut = async () => {
@@ -61,8 +60,16 @@ export function Header() {
           {isAuthenticated ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button className="grid h-9 w-9 place-items-center rounded-full bg-primary text-xs font-semibold text-primary-foreground transition hover:opacity-90">
-                  {initials}
+                <button className="grid h-9 w-9 place-items-center overflow-hidden rounded-full bg-primary text-xs font-semibold text-primary-foreground transition hover:opacity-90">
+                  {user?.user_metadata?.avatar_url ? (
+                    <img
+                      src={user.user_metadata.avatar_url as string}
+                      alt=""
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    initials
+                  )}
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56">
