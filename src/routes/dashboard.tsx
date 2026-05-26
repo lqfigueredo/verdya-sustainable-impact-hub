@@ -26,9 +26,9 @@ export const Route = createFileRoute("/dashboard")({
 });
 
 function Dashboard() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { user } = useAuth();
-  const lang = i18n.language?.startsWith("pt") ? "pt" : "en";
+  const lang = useLang();
   const userId = user?.id ?? null;
   const name = (user?.user_metadata?.full_name as string | undefined) ?? user?.email ?? "";
 
