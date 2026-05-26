@@ -169,6 +169,187 @@ export type Database = {
           },
         ]
       }
+      forum_reactions: {
+        Row: {
+          created_at: string
+          id: string
+          reaction_type: Database["public"]["Enums"]["reaction_type"]
+          target_id: string
+          target_type: Database["public"]["Enums"]["reaction_target"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          reaction_type: Database["public"]["Enums"]["reaction_type"]
+          target_id: string
+          target_type: Database["public"]["Enums"]["reaction_target"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          reaction_type?: Database["public"]["Enums"]["reaction_type"]
+          target_id?: string
+          target_type?: Database["public"]["Enums"]["reaction_target"]
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "forum_reactions_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      forum_replies: {
+        Row: {
+          author_id: string
+          body: string
+          created_at: string
+          edited_at: string | null
+          flagged: boolean
+          id: string
+          parent_reply_id: string | null
+          topic_id: string
+        }
+        Insert: {
+          author_id: string
+          body: string
+          created_at?: string
+          edited_at?: string | null
+          flagged?: boolean
+          id?: string
+          parent_reply_id?: string | null
+          topic_id: string
+        }
+        Update: {
+          author_id?: string
+          body?: string
+          created_at?: string
+          edited_at?: string | null
+          flagged?: boolean
+          id?: string
+          parent_reply_id?: string | null
+          topic_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "forum_replies_author_id_fkey"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "forum_replies_parent_reply_id_fkey"
+            columns: ["parent_reply_id"]
+            isOneToOne: false
+            referencedRelation: "forum_replies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "forum_replies_topic_id_fkey"
+            columns: ["topic_id"]
+            isOneToOne: false
+            referencedRelation: "forum_topics"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      forum_topics: {
+        Row: {
+          author_id: string
+          body: string
+          category: string
+          created_at: string
+          flagged: boolean
+          id: string
+          last_reply_at: string
+          locked: boolean
+          pinned: boolean
+          tags: string[]
+          title: string
+          updated_at: string
+          views: number
+        }
+        Insert: {
+          author_id: string
+          body: string
+          category?: string
+          created_at?: string
+          flagged?: boolean
+          id?: string
+          last_reply_at?: string
+          locked?: boolean
+          pinned?: boolean
+          tags?: string[]
+          title: string
+          updated_at?: string
+          views?: number
+        }
+        Update: {
+          author_id?: string
+          body?: string
+          category?: string
+          created_at?: string
+          flagged?: boolean
+          id?: string
+          last_reply_at?: string
+          locked?: boolean
+          pinned?: boolean
+          tags?: string[]
+          title?: string
+          updated_at?: string
+          views?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "forum_topics_author_id_fkey"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      notifications: {
+        Row: {
+          created_at: string
+          id: string
+          payload: Json
+          read: boolean
+          type: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          payload?: Json
+          read?: boolean
+          type: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          payload?: Json
+          read?: boolean
+          type?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notifications_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -261,6 +442,8 @@ export type Database = {
       app_role: "member" | "admin"
       content_difficulty: "beginner" | "intermediate" | "advanced"
       content_type: "article" | "pdf" | "link" | "video" | "guide"
+      reaction_target: "topic" | "reply"
+      reaction_type: "like" | "insightful" | "agree"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -391,6 +574,8 @@ export const Constants = {
       app_role: ["member", "admin"],
       content_difficulty: ["beginner", "intermediate", "advanced"],
       content_type: ["article", "pdf", "link", "video", "guide"],
+      reaction_target: ["topic", "reply"],
+      reaction_type: ["like", "insightful", "agree"],
     },
   },
 } as const

@@ -16,14 +16,17 @@ import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LibraryIndexRouteImport } from './routes/library.index'
+import { Route as CommunityIndexRouteImport } from './routes/community.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as LibraryContentIdRouteImport } from './routes/library.$contentId'
+import { Route as CommunityNewRouteImport } from './routes/community.new'
 import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
 import { Route as AdminCategoriesRouteImport } from './routes/admin.categories'
 import { Route as AdminContentIndexRouteImport } from './routes/admin.content.index'
 import { Route as LibraryCategorySlugRouteImport } from './routes/library.category.$slug'
+import { Route as CommunityTopicIdRouteImport } from './routes/community.topic.$id'
 import { Route as AdminContentNewRouteImport } from './routes/admin.content.new'
 import { Route as AdminContentIdEditRouteImport } from './routes/admin.content.$id.edit'
 
@@ -62,6 +65,11 @@ const LibraryIndexRoute = LibraryIndexRouteImport.update({
   path: '/library/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CommunityIndexRoute = CommunityIndexRouteImport.update({
+  id: '/community/',
+  path: '/community/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -70,6 +78,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
 const LibraryContentIdRoute = LibraryContentIdRouteImport.update({
   id: '/library/$contentId',
   path: '/library/$contentId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunityNewRoute = CommunityNewRouteImport.update({
+  id: '/community/new',
+  path: '/community/new',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthCallbackRoute = AuthCallbackRouteImport.update({
@@ -102,6 +115,11 @@ const LibraryCategorySlugRoute = LibraryCategorySlugRouteImport.update({
   path: '/library/category/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CommunityTopicIdRoute = CommunityTopicIdRouteImport.update({
+  id: '/community/topic/$id',
+  path: '/community/topic/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminContentNewRoute = AdminContentNewRouteImport.update({
   id: '/content/new',
   path: '/content/new',
@@ -124,10 +142,13 @@ export interface FileRoutesByFullPath {
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
   '/auth/callback': typeof AuthCallbackRoute
+  '/community/new': typeof CommunityNewRoute
   '/library/$contentId': typeof LibraryContentIdRoute
   '/admin/': typeof AdminIndexRoute
+  '/community/': typeof CommunityIndexRoute
   '/library/': typeof LibraryIndexRoute
   '/admin/content/new': typeof AdminContentNewRoute
+  '/community/topic/$id': typeof CommunityTopicIdRoute
   '/library/category/$slug': typeof LibraryCategorySlugRoute
   '/admin/content/': typeof AdminContentIndexRoute
   '/admin/content/$id/edit': typeof AdminContentIdEditRoute
@@ -142,10 +163,13 @@ export interface FileRoutesByTo {
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
   '/auth/callback': typeof AuthCallbackRoute
+  '/community/new': typeof CommunityNewRoute
   '/library/$contentId': typeof LibraryContentIdRoute
   '/admin': typeof AdminIndexRoute
+  '/community': typeof CommunityIndexRoute
   '/library': typeof LibraryIndexRoute
   '/admin/content/new': typeof AdminContentNewRoute
+  '/community/topic/$id': typeof CommunityTopicIdRoute
   '/library/category/$slug': typeof LibraryCategorySlugRoute
   '/admin/content': typeof AdminContentIndexRoute
   '/admin/content/$id/edit': typeof AdminContentIdEditRoute
@@ -162,10 +186,13 @@ export interface FileRoutesById {
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
   '/auth/callback': typeof AuthCallbackRoute
+  '/community/new': typeof CommunityNewRoute
   '/library/$contentId': typeof LibraryContentIdRoute
   '/admin/': typeof AdminIndexRoute
+  '/community/': typeof CommunityIndexRoute
   '/library/': typeof LibraryIndexRoute
   '/admin/content/new': typeof AdminContentNewRoute
+  '/community/topic/$id': typeof CommunityTopicIdRoute
   '/library/category/$slug': typeof LibraryCategorySlugRoute
   '/admin/content/': typeof AdminContentIndexRoute
   '/admin/content/$id/edit': typeof AdminContentIdEditRoute
@@ -183,10 +210,13 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/admin/users'
     | '/auth/callback'
+    | '/community/new'
     | '/library/$contentId'
     | '/admin/'
+    | '/community/'
     | '/library/'
     | '/admin/content/new'
+    | '/community/topic/$id'
     | '/library/category/$slug'
     | '/admin/content/'
     | '/admin/content/$id/edit'
@@ -201,10 +231,13 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/admin/users'
     | '/auth/callback'
+    | '/community/new'
     | '/library/$contentId'
     | '/admin'
+    | '/community'
     | '/library'
     | '/admin/content/new'
+    | '/community/topic/$id'
     | '/library/category/$slug'
     | '/admin/content'
     | '/admin/content/$id/edit'
@@ -220,10 +253,13 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/admin/users'
     | '/auth/callback'
+    | '/community/new'
     | '/library/$contentId'
     | '/admin/'
+    | '/community/'
     | '/library/'
     | '/admin/content/new'
+    | '/community/topic/$id'
     | '/library/category/$slug'
     | '/admin/content/'
     | '/admin/content/$id/edit'
@@ -237,8 +273,11 @@ export interface RootRouteChildren {
   ProfileRoute: typeof ProfileRoute
   SignupRoute: typeof SignupRoute
   AuthCallbackRoute: typeof AuthCallbackRoute
+  CommunityNewRoute: typeof CommunityNewRoute
   LibraryContentIdRoute: typeof LibraryContentIdRoute
+  CommunityIndexRoute: typeof CommunityIndexRoute
   LibraryIndexRoute: typeof LibraryIndexRoute
+  CommunityTopicIdRoute: typeof CommunityTopicIdRoute
   LibraryCategorySlugRoute: typeof LibraryCategorySlugRoute
 }
 
@@ -293,6 +332,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LibraryIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/community/': {
+      id: '/community/'
+      path: '/community'
+      fullPath: '/community/'
+      preLoaderRoute: typeof CommunityIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/': {
       id: '/admin/'
       path: '/'
@@ -305,6 +351,13 @@ declare module '@tanstack/react-router' {
       path: '/library/$contentId'
       fullPath: '/library/$contentId'
       preLoaderRoute: typeof LibraryContentIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/community/new': {
+      id: '/community/new'
+      path: '/community/new'
+      fullPath: '/community/new'
+      preLoaderRoute: typeof CommunityNewRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth/callback': {
@@ -347,6 +400,13 @@ declare module '@tanstack/react-router' {
       path: '/library/category/$slug'
       fullPath: '/library/category/$slug'
       preLoaderRoute: typeof LibraryCategorySlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/community/topic/$id': {
+      id: '/community/topic/$id'
+      path: '/community/topic/$id'
+      fullPath: '/community/topic/$id'
+      preLoaderRoute: typeof CommunityTopicIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/content/new': {
@@ -396,8 +456,11 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileRoute: ProfileRoute,
   SignupRoute: SignupRoute,
   AuthCallbackRoute: AuthCallbackRoute,
+  CommunityNewRoute: CommunityNewRoute,
   LibraryContentIdRoute: LibraryContentIdRoute,
+  CommunityIndexRoute: CommunityIndexRoute,
   LibraryIndexRoute: LibraryIndexRoute,
+  CommunityTopicIdRoute: CommunityTopicIdRoute,
   LibraryCategorySlugRoute: LibraryCategorySlugRoute,
 }
 export const routeTree = rootRouteImport
