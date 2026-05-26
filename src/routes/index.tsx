@@ -3,6 +3,7 @@ import { Layout } from "@/components/Layout";
 import { Hero } from "@/components/landing/Hero";
 import { WhatIs } from "@/components/landing/WhatIs";
 import { Featured } from "@/components/landing/Featured";
+import { UpcomingEvents } from "@/components/landing/UpcomingEvents";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import { Newsletter } from "@/components/landing/Newsletter";
 
@@ -31,6 +32,7 @@ function Index() {
       <Hero />
       <WhatIs />
       <Featured />
+      <UpcomingEvents />
       <HowItWorks />
       <Newsletter />
     </Layout>
