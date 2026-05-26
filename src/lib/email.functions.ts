@@ -163,7 +163,12 @@ export const sendNewsletterCampaign = createServerFn({ method: "POST" })
 export const sendEventConfirmation = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((input) =>
-    z.object({ eventId: z.string().uuid() }).parse(input),
+    z
+      .object({
+        eventId: z.string().uuid(),
+        lang: z.enum(["en", "pt"]).optional(),
+      })
+      .parse(input),
   )
   .handler(async ({ data, context }) => {
     const { supabase, userId } = context;
@@ -173,21 +178,34 @@ export const sendEventConfirmation = createServerFn({ method: "POST" })
     ]);
     if (!ev || !profile?.email) return { ok: false, skipped: true };
 
-    const date = new Date(ev.starts_at).toLocaleString("en-US", {
+    const lang = data.lang ?? "en";
+    const isPt = lang === "pt";
+    const title = isPt ? ev.title_pt : ev.title_en;
+    const date = new Date(ev.starts_at).toLocaleString(isPt ? "pt-BR" : "en-US", {
       dateStyle: "full",
       timeStyle: "short",
       timeZone: ev.timezone || "UTC",
     });
+
+    const subject = isPt ? `Inscrição confirmada: ${title}` : `Registered: ${title}`;
+    const greeting = isPt ? "Olá" : "Hi";
+    const confirmed = isPt
+      ? `Sua inscrição em <strong>${title}</strong> está confirmada para <strong>${date}</strong> (${ev.timezone}).`
+      : `You're confirmed for <strong>${title}</strong> on <strong>${date}</strong> (${ev.timezone}).`;
+    const joinLabel = isPt ? "Link de acesso" : "Join link";
+    const locationLabel = isPt ? "Local" : "Location";
+    const seeYou = isPt ? "Até lá." : "See you there.";
+
     const html = wrapHtml(
-      `You're registered: ${ev.title_en}`,
-      `<p>Hi ${profile.full_name ?? "there"},</p>
-       <p>You're confirmed for <strong>${ev.title_en}</strong> on <strong>${date}</strong> (${ev.timezone}).</p>
-       ${ev.meeting_url ? `<p>Join link: <a href="${ev.meeting_url}">${ev.meeting_url}</a></p>` : ""}
-       ${ev.location_detail ? `<p>Location: ${ev.location_detail}</p>` : ""}
-       <p>See you there.</p>`,
+      subject,
+      `<p>${greeting} ${profile.full_name ?? ""},</p>
+       <p>${confirmed}</p>
+       ${ev.meeting_url ? `<p>${joinLabel}: <a href="${ev.meeting_url}" style="color:#1F4D3A">${ev.meeting_url}</a></p>` : ""}
+       ${ev.location_detail ? `<p>${locationLabel}: ${ev.location_detail}</p>` : ""}
+       <p>${seeYou}</p>`,
     );
     try {
-      await sendViaResend({ to: profile.email, subject: `Registered: ${ev.title_en}`, html });
+      await sendViaResend({ to: profile.email, subject, html });
       return { ok: true };
     } catch (err) {
       return { ok: false, error: (err as Error).message };
