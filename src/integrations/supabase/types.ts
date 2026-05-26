@@ -140,6 +140,96 @@ export type Database = {
           },
         ]
       }
+      event_registrations: {
+        Row: {
+          attended: boolean
+          event_id: string
+          id: string
+          registered_at: string
+          user_id: string
+        }
+        Insert: {
+          attended?: boolean
+          event_id: string
+          id?: string
+          registered_at?: string
+          user_id: string
+        }
+        Update: {
+          attended?: boolean
+          event_id?: string
+          id?: string
+          registered_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      events: {
+        Row: {
+          category: string
+          cover_image_url: string | null
+          created_at: string
+          created_by: string | null
+          description_en: string | null
+          description_pt: string | null
+          ends_at: string
+          id: string
+          location_detail: string | null
+          location_type: Database["public"]["Enums"]["event_location_type"]
+          max_attendees: number | null
+          meeting_url: string | null
+          published: boolean
+          speakers: Json
+          starts_at: string
+          timezone: string
+          title_en: string
+          title_pt: string
+          updated_at: string
+        }
+        Insert: {
+          category?: string
+          cover_image_url?: string | null
+          created_at?: string
+          created_by?: string | null
+          description_en?: string | null
+          description_pt?: string | null
+          ends_at: string
+          id?: string
+          location_detail?: string | null
+          location_type?: Database["public"]["Enums"]["event_location_type"]
+          max_attendees?: number | null
+          meeting_url?: string | null
+          published?: boolean
+          speakers?: Json
+          starts_at: string
+          timezone?: string
+          title_en: string
+          title_pt: string
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          cover_image_url?: string | null
+          created_at?: string
+          created_by?: string | null
+          description_en?: string | null
+          description_pt?: string | null
+          ends_at?: string
+          id?: string
+          location_detail?: string | null
+          location_type?: Database["public"]["Enums"]["event_location_type"]
+          max_attendees?: number | null
+          meeting_url?: string | null
+          published?: boolean
+          speakers?: Json
+          starts_at?: string
+          timezone?: string
+          title_en?: string
+          title_pt?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       favorites: {
         Row: {
           content_id: string
@@ -315,6 +405,69 @@ export type Database = {
           },
         ]
       }
+      newsletter_campaigns: {
+        Row: {
+          body_en: string
+          body_pt: string
+          created_at: string
+          created_by: string | null
+          id: string
+          open_count: number
+          recipients_count: number
+          sent_at: string | null
+          subject_en: string
+          subject_pt: string
+        }
+        Insert: {
+          body_en: string
+          body_pt: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          open_count?: number
+          recipients_count?: number
+          sent_at?: string | null
+          subject_en: string
+          subject_pt: string
+        }
+        Update: {
+          body_en?: string
+          body_pt?: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          open_count?: number
+          recipients_count?: number
+          sent_at?: string | null
+          subject_en?: string
+          subject_pt?: string
+        }
+        Relationships: []
+      }
+      newsletter_subscribers: {
+        Row: {
+          email: string
+          id: string
+          language_pref: string
+          subscribed_at: string
+          unsubscribed_at: string | null
+        }
+        Insert: {
+          email: string
+          id?: string
+          language_pref?: string
+          subscribed_at?: string
+          unsubscribed_at?: string | null
+        }
+        Update: {
+          email?: string
+          id?: string
+          language_pref?: string
+          subscribed_at?: string
+          unsubscribed_at?: string | null
+        }
+        Relationships: []
+      }
       notifications: {
         Row: {
           created_at: string
@@ -442,6 +595,7 @@ export type Database = {
       app_role: "member" | "admin"
       content_difficulty: "beginner" | "intermediate" | "advanced"
       content_type: "article" | "pdf" | "link" | "video" | "guide"
+      event_location_type: "online" | "in_person" | "hybrid"
       reaction_target: "topic" | "reply"
       reaction_type: "like" | "insightful" | "agree"
     }
@@ -574,6 +728,7 @@ export const Constants = {
       app_role: ["member", "admin"],
       content_difficulty: ["beginner", "intermediate", "advanced"],
       content_type: ["article", "pdf", "link", "video", "guide"],
+      event_location_type: ["online", "in_person", "hybrid"],
       reaction_target: ["topic", "reply"],
       reaction_type: ["like", "insightful", "agree"],
     },

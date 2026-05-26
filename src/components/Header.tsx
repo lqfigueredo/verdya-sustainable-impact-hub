@@ -21,6 +21,7 @@ export function Header() {
 
   const navItems = [
     { key: "library", href: "/library" },
+    { key: "events", href: "/events" },
     { key: "community", href: "/community" },
     { key: "resources", href: "/#resources" },
     { key: "about", href: "/#about" },

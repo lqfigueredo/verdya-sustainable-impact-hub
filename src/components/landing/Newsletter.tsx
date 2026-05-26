@@ -1,10 +1,27 @@
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
+import { toast } from "sonner";
+import { subscribe } from "@/lib/newsletter";
 
 export function Newsletter() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [email, setEmail] = useState("");
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await subscribe(email, i18n.language?.startsWith("pt") ? "pt" : "en");
+      setSent(true);
+      toast.success(t("newsletterPage.success"));
+    } catch {
+      toast.error(t("newsletterPage.error"));
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section id="resources" className="mx-auto max-w-7xl px-6 py-24">
@@ -13,23 +30,13 @@ export function Newsletter() {
         <div className="pointer-events-none absolute -bottom-32 -left-16 h-96 w-96 rounded-full bg-secondary/30 blur-3xl" />
 
         <div className="relative max-w-2xl">
-          <p className="text-xs font-medium uppercase tracking-wider text-secondary">
-            {t("newsletter.eyebrow")}
-          </p>
+          <p className="text-xs font-medium uppercase tracking-wider text-secondary">{t("newsletter.eyebrow")}</p>
           <h2 className="mt-3 font-serif text-4xl font-medium leading-tight tracking-tight md:text-5xl">
             {t("newsletter.title")}
           </h2>
-          <p className="mt-4 max-w-lg text-base text-primary-foreground/80">
-            {t("newsletter.subtitle")}
-          </p>
+          <p className="mt-4 max-w-lg text-base text-primary-foreground/80">{t("newsletter.subtitle")}</p>
 
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              setSent(true);
-            }}
-            className="mt-8 flex flex-col gap-3 sm:flex-row"
-          >
+          <form onSubmit={onSubmit} className="mt-8 flex flex-col gap-3 sm:flex-row">
             <input
               type="email"
               required
@@ -40,9 +47,10 @@ export function Newsletter() {
             />
             <button
               type="submit"
-              className="rounded-full bg-accent px-6 py-3 text-sm font-medium text-accent-foreground transition hover:bg-accent/90"
+              disabled={loading || sent}
+              className="rounded-full bg-accent px-6 py-3 text-sm font-medium text-accent-foreground transition hover:bg-accent/90 disabled:opacity-60"
             >
-              {sent ? "✓" : t("newsletter.button")}
+              {sent ? "✓" : loading ? "…" : t("newsletter.button")}
             </button>
           </form>
           <p className="mt-4 text-xs text-primary-foreground/60">{t("newsletter.disclaimer")}</p>
