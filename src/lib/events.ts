@@ -109,7 +109,7 @@ export const eventRegistrantsQuery = (eventId: string) =>
     queryFn: async () => {
       const { data, error } = await supabase
         .from("event_registrations")
-        .select("*, user:profiles(id, full_name, email)")
+        .select("*")
         .eq("event_id", eventId);
       if (error) throw error;
       return data ?? [];
