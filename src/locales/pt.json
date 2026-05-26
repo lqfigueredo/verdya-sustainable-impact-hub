@@ -242,5 +242,88 @@
         "reply_to_reply": "Alguém respondeu ao seu comentário"
       }
     }
+  },
+  "events": {
+    "eyebrow": "Eventos",
+    "upcomingTitle": "Sessões ao vivo, workshops e encontros",
+    "title": "Eventos",
+    "subtitle": "Sessões ao vivo, workshops e encontros com profissionais de ESG do mundo todo.",
+    "viewAll": "Ver todos os eventos",
+    "empty": "Nenhum evento agendado — volte em breve.",
+    "notFound": "Evento não encontrado.",
+    "backToList": "Voltar aos eventos",
+    "register": "Inscrever-se",
+    "cancel": "Cancelar inscrição",
+    "registered": "Inscrição confirmada. Confirmação a caminho.",
+    "cancelled": "Inscrição cancelada.",
+    "registerError": "Não foi possível concluir a inscrição.",
+    "join": "Entrar na reunião",
+    "addCalendar": "Adicionar ao calendário",
+    "speakers": "Palestrantes",
+    "location": { "online": "Online", "in_person": "Presencial", "hybrid": "Híbrido" },
+    "countdown": { "days": "dias", "hours": "horas", "minutes": "minutos", "seconds": "segundos" }
+  },
+  "newsletterPage": {
+    "title": "O Brief da Verdya",
+    "subtitle": "Um e-mail curto a cada duas quintas. O sinal que vale a pena sobre ESG, clima e sustentabilidade corporativa.",
+    "success": "Inscrição confirmada. Bem-vindo ao brief.",
+    "error": "Não foi possível inscrever — tente novamente em instantes."
+  },
+  "adminEvents": {
+    "title": "Eventos", "subtitle": "Crie e gerencie sessões ao vivo, workshops e encontros.",
+    "newEvent": "Novo evento", "editEvent": "Editar evento",
+    "titleEn": "Título (EN)", "titlePt": "Título (PT)",
+    "descEn": "Descrição (EN)", "descPt": "Descrição (PT)",
+    "startsAt": "Início", "endsAt": "Término", "timezone": "Fuso horário",
+    "locationType": "Tipo de local", "locationDetail": "Detalhes do local",
+    "meetingUrl": "URL da reunião", "coverImageUrl": "URL da imagem de capa",
+    "category": "Categoria", "maxAttendees": "Máx. participantes",
+    "speakersJson": "Palestrantes (array JSON)",
+    "invalidSpeakers": "Palestrantes precisam ser um JSON válido.",
+    "published": "Publicado", "draft": "Rascunho",
+    "save": "Salvar evento", "saved": "Evento salvo.", "deleted": "Evento excluído.",
+    "delete": "Excluir evento",
+    "confirmDelete": "Excluir este evento?",
+    "confirmDeleteDesc": "Todas as inscrições também serão perdidas. Esta ação é irreversível.",
+    "col": { "title": "Título", "when": "Quando", "location": "Local", "status": "Status" }
+  },
+  "adminNewsletter": {
+    "title": "Newsletter", "subtitle": "Gerencie inscritos e envie campanhas.",
+    "total": "Total de inscritos", "active": "Ativos", "unsub": "Cancelados",
+    "status": "Status", "subscribedAt": "Inscrição",
+    "exportCsv": "Exportar CSV",
+    "resendTitle": "Compor campanha",
+    "resendNote": "Envie primeiro um teste para o seu e-mail e depois dispare para todos os inscritos ativos.",
+    "subjectEn": "Assunto (EN)", "subjectPt": "Assunto (PT)",
+    "bodyEn": "Corpo (EN, markdown)", "bodyPt": "Corpo (PT, markdown)",
+    "sendTest": "Enviar teste para mim", "sendAll": "Enviar para todos",
+    "confirmAll": "Enviar esta campanha para todos os inscritos ativos?",
+    "testSent": "Mensagem de teste enviada.",
+    "sentAll": "Campanha enviada para {{count}} inscritos.",
+    "errorSave": "Não foi possível enviar a campanha.",
+    "noHistory": "Nenhuma campanha enviada ainda.",
+    "draft": "Rascunho", "recipients": "Destinatários", "opens": "Aberturas"
+  },
+  "dashboard": {
+    "eyebrow": "Seu painel",
+    "greeting": "Olá, {{name}}",
+    "subtitle": "Tudo o que você acompanha na Verdya em um só lugar.",
+    "editProfile": "Editar perfil",
+    "myEvents": "Meus próximos eventos",
+    "browseEvents": "Ver eventos",
+    "favorites": "Conteúdo salvo",
+    "browseLibrary": "Ver biblioteca",
+    "notifications": "Notificações",
+    "openCommunity": "Abrir comunidade",
+    "community": "Comunidade",
+    "communityDesc": "Compartilhe notas de campo, faça perguntas e aprenda com outros profissionais de ESG.",
+    "startDiscussion": "Iniciar discussão",
+    "exploreDiscussions": "Explorar discussões",
+    "empty": {
+      "events": "Você ainda não tem inscrições futuras.",
+      "favorites": "Você ainda não salvou nenhum conteúdo.",
+      "notifications": "Você está em dia."
+    }
   }
 }
+
