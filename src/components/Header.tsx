@@ -56,6 +56,7 @@ export function Header() {
 
         <div className="flex items-center gap-2 md:gap-3">
           <LanguageToggle />
+          {isAuthenticated && <NotificationsBell />}
           {isAuthenticated ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
