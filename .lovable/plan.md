@@ -1,68 +1,69 @@
-# Revisão do fluxo Verdya — deixar pronto para uso
+# Revisão de Código — Verdya
 
-Após varrer landing, header, perfil, admin, eventos e newsletter, identifiquei conteúdo "decorativo" que precisa virar dado real, telas faltando e traduções incompletas. Abaixo o plano objetivo.
+Fiz uma varredura do projeto (rotas, libs, componentes, banco e linter). Abaixo está o que encontrei, agrupado por prioridade. Cada item indica o arquivo e o que ajustar. Posso executar todos ou apenas um subconjunto — me diga o que prefere.
 
-## 1. Provisionar usuário administrador
+## 🔴 Alta prioridade (correção/segurança)
 
-- Criar conta em `auth.users` com e-mail **lqfigueredo@gmail.com** (via migration usando `supabase_admin`/`auth.admin` API) com senha inicial temporária (a definir com você — sugiro gerar uma e te entregar para troca no primeiro login).
-- O trigger `handle_new_user` já cria automaticamente `profiles` + role `member`.
-- Promover esse usuário a `admin` inserindo linha em `public.user_roles (user_id, role='admin')`.
+1. **Links mortos no Footer** (`src/components/Footer.tsx`)
+   - Todas as colunas (`aboutLinks`, `exploreLinks`, `legalLinks`) e ícones sociais usam `href="#"`. Mapear cada link de tradução para rota real (`/library`, `/events`, `/community`, `/newsletter`, `/about`, `/privacy`, `/terms`) e remover ícones sociais ou apontar para URLs reais.
 
-> Preciso confirmar com você: definir senha inicial agora ou enviar e-mail de "definir senha"? (ver perguntas abaixo)
+2. **Links âncora quebrados no Header** (`src/components/Header.tsx`)
+   - `/#resources` e `/#about` não existem como seções com ID na home. Criar rotas reais `/about` e `/resources` (com `head()` próprio) **ou** remover do menu até existirem páginas.
 
-## 2. Landing page — trocar mocks por dados reais
+3. **Avisos do Supabase Linter** (4 WARN)
+   - Bucket público `content-files` permite listagem — adicionar policy restritiva em `storage.objects` ou tornar privado com URLs assinadas.
+   - 3 funções `SECURITY DEFINER` expostas ao Data API: `touch_updated_at`, `handle_new_user`, `handle_new_forum_reply` — revogar `EXECUTE` de `anon`/`authenticated` (elas só rodam via trigger). `has_role` precisa permanecer executável.
 
-**Hero (`src/components/landing/Hero.tsx`)**
-- Remover o card fixo "Marina S. — Head of ESG · São Paulo" e o badge "Live circle · 12 peers" (são fictícios).
-- Substituir por mini stats reais: nº de conteúdos publicados, nº de membros, próximo evento — buscados do Supabase via server fn pública.
-- Ligar os CTAs: "Começar" → `/signup`, "Explorar biblioteca" → `/library`.
+4. **Profile usa `useEffect` + fetch direto** (`src/routes/profile.tsx`)
+   - Substituir por `useQuery` para cache e estado de erro consistentes; remover variável `loading` morta (nunca é usada no JSX).
 
-**Featured (`src/components/landing/Featured.tsx`)**
-- Hoje lê 3 cards do arquivo de tradução (estáticos). Trocar para query real em `content_items` onde `featured=true AND published=true` (limite 3), exibindo título por idioma, categoria, tempo de leitura e link para `/library/$contentId`. "Ver todos" → `/library`.
+5. **`AUTHOR_SELECT` expõe `bio` em listas públicas do fórum** (`src/lib/forum.ts:41`)
+   - Listas só precisam de `id, full_name, avatar_url, company`. Manter `bio/country` só na query do tópico individual.
 
-**Próximos eventos**
-- Montar o componente `<UpcomingEvents />` na landing (entre Featured e HowItWorks) e também numa nova seção do dashboard.
+## 🟡 Média prioridade (UX/consistência)
 
-**Newsletter footer**
-- Já funcional, mas faltam chaves `newsletter.eyebrow/title/subtitle/placeholder/button/disclaimer` — completar tradução PT/EN.
+6. **Send confirmation de evento é só em inglês** (`src/lib/email.functions.ts`)
+   - `sendEventConfirmation` envia `title_en` fixo. Aceitar `lang` ou ler `language_pref` do subscriber/perfil e usar `title_pt/description_pt` quando aplicável.
 
-## 3. Dashboard do usuário logado
+7. **Markdown→HTML do email é frágil** (`src/lib/email.functions.ts:mdToHtml`)
+   - Não trata listas, quebras simples nem code blocks; `\n\n` antes do escape pode quebrar. Trocar por `marked` (já compatível com Worker) ou expandir regex (listas, `\n` simples, blocos `\`\`\``).
 
-Hoje o item de menu "Dashboard" no header aponta para `/profile`. Criar rota real **`/dashboard`** (protegida) com:
-- Saudação + avatar.
-- Cards: itens favoritos recentes, próximas inscrições em eventos, últimos tópicos do fórum que o usuário criou/respondeu, notificações não lidas.
-- Atalho "Minhas inscrições" (eventos passados + futuros) — também adicionar bloco "Meus eventos" dentro de `/profile`.
-- Header passa a apontar "Dashboard" para `/dashboard`.
+8. **Admin dashboard "atividade recente" só mostra conteúdo** (`src/routes/admin.index.tsx`)
+   - Adicionar tópicos do fórum, novas inscrições em eventos e novos assinantes da newsletter para dar visão real.
 
-## 4. Admin Dashboard (`/admin`)
+9. **Botão "Nova categoria" leva para listagem** (`src/routes/admin.index.tsx`)
+   - Apontar para `/admin/categories` com `?new=1` e abrir o modal de criação automaticamente.
 
-Atualmente os stats já vêm do banco (total conteúdo/usuários/publicados/drafts) — está OK. Ajustes:
-- Trocar "Recent activity" para incluir também novos usuários, novos tópicos do fórum e novas inscrições em eventos (não só conteúdo).
-- Botão "+ Nova categoria" hoje só navega para a lista; abrir o modal de criação diretamente.
+10. **Filtro de profanidade simples** (`src/lib/forum.ts:detectFlag`)
+    - Hoje só marca `flagged=true` mas a UI não usa essa flag. Adicionar coluna no admin de fórum (criar `/admin/forum`) listando itens flagged para revisão; senão o filtro é inútil.
 
-## 5. Traduções faltantes (PT + EN)
+11. **Loaders sem `ensureQueryData`**
+    - Várias rotas usam `useQuery` em cliente sem prefetch no loader → flash de loading no SSR. Aplicar padrão `ensureQueryData` em `community.index`, `events.index`, `library.index`, `dashboard`.
 
-Adicionar seções completas em `src/locales/en.json` e `pt.json`:
-- `events.*` (lista, detalhe, registrar, cancelar, online/presencial, contagem regressiva, add to calendar)
-- `newsletterPage.*` (página dedicada + sucesso/erro)
-- `adminEvents.*` e `adminNewsletter.*` (formulários, "enviar teste", "enviar a todos", export CSV)
-- `dashboard.*` (saudação, blocos)
-- `newsletter.*` (chaves usadas na seção do footer)
+12. **`errorComponent`/`notFoundComponent` faltando**
+    - Só 2 de 27 rotas definem. Adicionar pelo menos `errorComponent` global nas rotas com loaders (community, events, library, admin).
 
-## 6. Limpeza / polish
+## 🟢 Baixa prioridade (polish)
 
-- Header: links `/#resources` e `/#about` só funcionam na home — usar `<Link to="/" hash="resources">` para funcionarem de qualquer página.
-- Footer: garantir que links sociais/legais não apontem para `#`.
-- Página `/newsletter` dedicada: hoje tem texto, validar que não está duplicando o que já existe na landing.
+13. **Centralizar detecção de idioma** — repetido em ~10 arquivos:
+    `const lang = i18n.language?.startsWith("pt") ? "pt" : "en";`
+    Criar `useLang()` em `src/hooks/use-lang.ts`.
 
-## Detalhes técnicos
+14. **Avatar do usuário no Header** — só mostra iniciais, ignora `user_metadata.avatar_url`. Usar componente `<Avatar>` do shadcn.
 
-- Para a query pública de stats e featured na landing, usar `createServerFn` GET com `supabaseAdmin` (sem auth) filtrando por `published=true` (sem expor PII).
-- Para o admin user: migration com bloco `DO $$ ... auth.users insert ... $$` usando `crypt()` do `pgcrypto`; em seguida `INSERT INTO public.user_roles ... ON CONFLICT DO NOTHING`. O `profile` é criado pelo trigger.
-- Nenhuma mudança de schema é necessária além do seed do admin.
+15. **Page `/profile` não tem aba "Meus eventos"** — embora o dashboard mostre, faz sentido espelhar no profile com tabs (Editar / Meus eventos / Favoritos).
 
-## Perguntas antes de implementar
+16. **`FROM_DEFAULT = onboarding@resend.dev`** — domínio sandbox, só envia para o próprio dono da conta Resend. Documentar/avisar admin que precisa configurar domínio verificado antes de "Enviar a todos".
 
-1. **Senha do admin** `lqfigueredo@gmail.com`: gero uma temporária (te entrego no chat) ou prefere que eu deixe sem senha e você usa "Esqueci minha senha" no primeiro acesso?
-2. Confirma que quer rota nova `/dashboard` (separada de `/profile`) ou prefere transformar `/profile` em hub único com abas (Visão geral / Editar perfil / Meus eventos / Favoritos)?
-3. Posso remover o badge "Live circle · 12 peers" e o card "Marina S." do Hero (são placeholders), substituindo por números reais do banco? Ou prefere manter o mock visual até ter mais dados?
+17. **`src/routeTree.gen.ts` editado manualmente?** — confirmar que está em sync (regenera automaticamente, mas vale rodar build para garantir).
+
+18. **SEO**: rodar `seo_chat--trigger_scan` depois das correções de rotas para validar metadata novo.
+
+## Como prefere prosseguir?
+
+Sugiro executar em 3 ondas:
+- **Onda 1 (segurança + links):** itens 1, 2, 3, 4, 5
+- **Onda 2 (admin + email):** itens 6, 7, 8, 9, 10
+- **Onda 3 (polish):** itens 11–18
+
+Me diga "vai com tudo", "só onda 1", ou liste os números que quer.
