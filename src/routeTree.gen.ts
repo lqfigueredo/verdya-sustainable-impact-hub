@@ -15,6 +15,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LibraryIndexRouteImport } from './routes/library.index'
+import { Route as LibraryContentIdRouteImport } from './routes/library.$contentId'
 import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
 import { Route as LibraryCategorySlugRouteImport } from './routes/library.category.$slug'
 
@@ -48,6 +49,11 @@ const LibraryIndexRoute = LibraryIndexRouteImport.update({
   path: '/library/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LibraryContentIdRoute = LibraryContentIdRouteImport.update({
+  id: '/library/$contentId',
+  path: '/library/$contentId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthCallbackRoute = AuthCallbackRouteImport.update({
   id: '/auth/callback',
   path: '/auth/callback',
@@ -66,6 +72,7 @@ export interface FileRoutesByFullPath {
   '/profile': typeof ProfileRoute
   '/signup': typeof SignupRoute
   '/auth/callback': typeof AuthCallbackRoute
+  '/library/$contentId': typeof LibraryContentIdRoute
   '/library/': typeof LibraryIndexRoute
   '/library/category/$slug': typeof LibraryCategorySlugRoute
 }
@@ -76,6 +83,7 @@ export interface FileRoutesByTo {
   '/profile': typeof ProfileRoute
   '/signup': typeof SignupRoute
   '/auth/callback': typeof AuthCallbackRoute
+  '/library/$contentId': typeof LibraryContentIdRoute
   '/library': typeof LibraryIndexRoute
   '/library/category/$slug': typeof LibraryCategorySlugRoute
 }
@@ -87,6 +95,7 @@ export interface FileRoutesById {
   '/profile': typeof ProfileRoute
   '/signup': typeof SignupRoute
   '/auth/callback': typeof AuthCallbackRoute
+  '/library/$contentId': typeof LibraryContentIdRoute
   '/library/': typeof LibraryIndexRoute
   '/library/category/$slug': typeof LibraryCategorySlugRoute
 }
@@ -99,6 +108,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/signup'
     | '/auth/callback'
+    | '/library/$contentId'
     | '/library/'
     | '/library/category/$slug'
   fileRoutesByTo: FileRoutesByTo
@@ -109,6 +119,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/signup'
     | '/auth/callback'
+    | '/library/$contentId'
     | '/library'
     | '/library/category/$slug'
   id:
@@ -119,6 +130,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/signup'
     | '/auth/callback'
+    | '/library/$contentId'
     | '/library/'
     | '/library/category/$slug'
   fileRoutesById: FileRoutesById
@@ -130,6 +142,7 @@ export interface RootRouteChildren {
   ProfileRoute: typeof ProfileRoute
   SignupRoute: typeof SignupRoute
   AuthCallbackRoute: typeof AuthCallbackRoute
+  LibraryContentIdRoute: typeof LibraryContentIdRoute
   LibraryIndexRoute: typeof LibraryIndexRoute
   LibraryCategorySlugRoute: typeof LibraryCategorySlugRoute
 }
@@ -178,6 +191,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LibraryIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/library/$contentId': {
+      id: '/library/$contentId'
+      path: '/library/$contentId'
+      fullPath: '/library/$contentId'
+      preLoaderRoute: typeof LibraryContentIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/auth/callback': {
       id: '/auth/callback'
       path: '/auth/callback'
@@ -202,6 +222,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileRoute: ProfileRoute,
   SignupRoute: SignupRoute,
   AuthCallbackRoute: AuthCallbackRoute,
+  LibraryContentIdRoute: LibraryContentIdRoute,
   LibraryIndexRoute: LibraryIndexRoute,
   LibraryCategorySlugRoute: LibraryCategorySlugRoute,
 }
