@@ -1,10 +1,12 @@
 import { useTranslation } from "react-i18next";
+import { useLang } from "@/hooks/use-lang";
 import { useState } from "react";
 import { toast } from "sonner";
 import { subscribe } from "@/lib/newsletter";
 
 export function Newsletter() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
+  const lang = useLang();
   const [email, setEmail] = useState("");
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -13,7 +15,7 @@ export function Newsletter() {
     e.preventDefault();
     setLoading(true);
     try {
-      await subscribe(email, i18n.language?.startsWith("pt") ? "pt" : "en");
+      await subscribe(email, lang);
       setSent(true);
       toast.success(t("newsletterPage.success"));
     } catch {

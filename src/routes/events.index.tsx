@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
+import { useLang } from "@/hooks/use-lang";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Calendar, MapPin, Globe2, Users } from "lucide-react";
@@ -22,8 +23,8 @@ export const Route = createFileRoute("/events/")({
 });
 
 function EventsPage() {
-  const { t, i18n } = useTranslation();
-  const lang = i18n.language?.startsWith("pt") ? "pt" : "en";
+  const { t } = useTranslation();
+  const lang = useLang();
   const [filters, setFilters] = useState<EventFilters>({ when: "upcoming" });
   const { data, isLoading } = useQuery(eventsListQuery(filters));
 
