@@ -75,7 +75,7 @@ export function Header() {
                   <LayoutDashboard className="mr-2 h-4 w-4" /> {t("nav.dashboard")}
                 </DropdownMenuItem>
                 {isAdmin && (
-                  <DropdownMenuItem onClick={() => navigate({ to: "/profile" })}>
+                  <DropdownMenuItem onClick={() => navigate({ to: "/admin" })}>
                     <Shield className="mr-2 h-4 w-4" /> {t("nav.admin")}
                   </DropdownMenuItem>
                 )}

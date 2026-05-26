@@ -114,5 +114,61 @@
     "explore": "Explorar", "exploreLinks": ["Conteúdo", "Programas", "Comunidade", "Eventos"],
     "legal": "Legal", "legalLinks": ["Privacidade", "Termos", "Cookies"],
     "social": "Siga", "rights": "© 2026 Verdya. Todos os direitos reservados."
+  },
+  "admin": {
+    "backToSite": "Voltar ao site",
+    "nav": { "dashboard": "Painel", "content": "Conteúdo", "categories": "Categorias", "users": "Usuários", "settings": "Configurações" },
+    "dashboard": {
+      "title": "Painel", "subtitle": "Visão geral da plataforma Verdya.",
+      "newContent": "Novo conteúdo", "newCategory": "Nova categoria",
+      "totalContent": "Total de conteúdos", "totalUsers": "Total de usuários",
+      "publishedMonth": "Publicados este mês", "drafts": "Rascunhos pendentes",
+      "recent": "Atividade recente", "noActivity": "Nada por aqui ainda."
+    },
+    "status": { "published": "Publicado", "draft": "Rascunho" },
+    "content": {
+      "title": "Gerenciador de conteúdo", "subtitle": "Gerencie artigos, guias e recursos.",
+      "new": "Novo conteúdo", "searchPlaceholder": "Buscar por título…",
+      "cover": "Capa", "titleCol": "Título", "type": "Tipo", "category": "Categoria",
+      "status": "Status", "author": "Autor", "created": "Criado em", "empty": "Sem conteúdo ainda."
+    },
+    "filters": { "allTypes": "Todos os tipos", "allCategories": "Todas as categorias", "allStatus": "Todos os status", "allRoles": "Todos os papéis" },
+    "bulk": {
+      "selected": "{{count}} selecionado(s)", "publish": "Publicar", "unpublish": "Despublicar", "delete": "Excluir",
+      "confirmDelete": "Excluir {{count}} item(ns)? Esta ação é irreversível."
+    },
+    "confirm": {
+      "deleteTitle": "Tem certeza?", "deleteDesc": "Esta ação não pode ser desfeita.",
+      "cancel": "Cancelar", "delete": "Excluir", "confirm": "Confirmar"
+    },
+    "form": {
+      "newTitle": "Novo conteúdo", "editTitle": "Editar conteúdo",
+      "titleField": "Título", "summary": "Resumo", "body": "Corpo",
+      "category": "Categoria", "selectCategory": "Selecione uma categoria",
+      "type": "Tipo", "difficulty": "Nível", "readingTime": "Tempo de leitura (min)",
+      "externalUrl": "URL externa", "tags": "Tags", "addTag": "Adicionar tag…",
+      "cover": "Imagem de capa", "file": "Arquivo anexo (PDF/Doc)",
+      "uploadCover": "Enviar capa", "uploadFile": "Enviar arquivo", "uploading": "Enviando…",
+      "published": "Publicado", "featured": "Destaque",
+      "saveDraft": "Salvar rascunho", "publish": "Publicar", "required": "Obrigatório"
+    },
+    "categories": {
+      "title": "Categorias", "subtitle": "Organize o conteúdo por tema. Arraste para reordenar.",
+      "new": "Nova categoria", "edit": "Editar categoria", "formDesc": "O slug deve ser único. Ícones usam nomes do Lucide.",
+      "icon": "Ícone (nome Lucide)", "iconHint": "Exemplo: Leaf, Globe, Recycle",
+      "color": "Cor"
+    },
+    "users": {
+      "title": "Usuários", "subtitle": "Gerencie membros e administradores.",
+      "user": "Usuário", "email": "E-mail", "role": "Papel", "country": "País", "joined": "Cadastro",
+      "admin": "Admin", "member": "Membro", "promote": "Promover a admin", "demote": "Rebaixar a membro",
+      "confirmRole": "Definir o papel de {{name}} como {{role}}?", "empty": "Nenhum usuário ainda."
+    },
+    "settings": {
+      "title": "Configurações do site", "subtitle": "Configuração global da plataforma Verdya.",
+      "siteTitle": "Título do site", "heroEn": "Texto hero (EN)", "heroPt": "Texto hero (PT)",
+      "featured": "IDs de conteúdo em destaque", "featuredHint": "UUIDs separados por vírgula"
+    },
+    "toast": { "saved": "Salvo.", "save": "Salvar", "created": "Criado.", "updated": "Atualizado.", "deleted": "Excluído.", "uploaded": "Enviado." }
   }
 }

@@ -13,11 +13,19 @@ import { Route as SignupRouteImport } from './routes/signup'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LibraryIndexRouteImport } from './routes/library.index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as LibraryContentIdRouteImport } from './routes/library.$contentId'
 import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
+import { Route as AdminUsersRouteImport } from './routes/admin.users'
+import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
+import { Route as AdminCategoriesRouteImport } from './routes/admin.categories'
+import { Route as AdminContentIndexRouteImport } from './routes/admin.content.index'
 import { Route as LibraryCategorySlugRouteImport } from './routes/library.category.$slug'
+import { Route as AdminContentNewRouteImport } from './routes/admin.content.new'
+import { Route as AdminContentIdEditRouteImport } from './routes/admin.content.$id.edit'
 
 const SignupRoute = SignupRouteImport.update({
   id: '/signup',
@@ -39,6 +47,11 @@ const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
   path: '/forgot-password',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -48,6 +61,11 @@ const LibraryIndexRoute = LibraryIndexRouteImport.update({
   id: '/library/',
   path: '/library/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
 } as any)
 const LibraryContentIdRoute = LibraryContentIdRouteImport.update({
   id: '/library/$contentId',
@@ -59,22 +77,60 @@ const AuthCallbackRoute = AuthCallbackRouteImport.update({
   path: '/auth/callback',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminUsersRoute = AdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCategoriesRoute = AdminCategoriesRouteImport.update({
+  id: '/categories',
+  path: '/categories',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminContentIndexRoute = AdminContentIndexRouteImport.update({
+  id: '/content/',
+  path: '/content/',
+  getParentRoute: () => AdminRoute,
+} as any)
 const LibraryCategorySlugRoute = LibraryCategorySlugRouteImport.update({
   id: '/library/category/$slug',
   path: '/library/category/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminContentNewRoute = AdminContentNewRouteImport.update({
+  id: '/content/new',
+  path: '/content/new',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminContentIdEditRoute = AdminContentIdEditRouteImport.update({
+  id: '/content/$id/edit',
+  path: '/content/$id/edit',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
   '/signup': typeof SignupRoute
+  '/admin/categories': typeof AdminCategoriesRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/users': typeof AdminUsersRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/library/$contentId': typeof LibraryContentIdRoute
+  '/admin/': typeof AdminIndexRoute
   '/library/': typeof LibraryIndexRoute
+  '/admin/content/new': typeof AdminContentNewRoute
   '/library/category/$slug': typeof LibraryCategorySlugRoute
+  '/admin/content/': typeof AdminContentIndexRoute
+  '/admin/content/$id/edit': typeof AdminContentIdEditRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -82,35 +138,58 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
   '/signup': typeof SignupRoute
+  '/admin/categories': typeof AdminCategoriesRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/users': typeof AdminUsersRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/library/$contentId': typeof LibraryContentIdRoute
+  '/admin': typeof AdminIndexRoute
   '/library': typeof LibraryIndexRoute
+  '/admin/content/new': typeof AdminContentNewRoute
   '/library/category/$slug': typeof LibraryCategorySlugRoute
+  '/admin/content': typeof AdminContentIndexRoute
+  '/admin/content/$id/edit': typeof AdminContentIdEditRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
   '/signup': typeof SignupRoute
+  '/admin/categories': typeof AdminCategoriesRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/users': typeof AdminUsersRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/library/$contentId': typeof LibraryContentIdRoute
+  '/admin/': typeof AdminIndexRoute
   '/library/': typeof LibraryIndexRoute
+  '/admin/content/new': typeof AdminContentNewRoute
   '/library/category/$slug': typeof LibraryCategorySlugRoute
+  '/admin/content/': typeof AdminContentIndexRoute
+  '/admin/content/$id/edit': typeof AdminContentIdEditRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
     | '/forgot-password'
     | '/login'
     | '/profile'
     | '/signup'
+    | '/admin/categories'
+    | '/admin/settings'
+    | '/admin/users'
     | '/auth/callback'
     | '/library/$contentId'
+    | '/admin/'
     | '/library/'
+    | '/admin/content/new'
     | '/library/category/$slug'
+    | '/admin/content/'
+    | '/admin/content/$id/edit'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -118,25 +197,41 @@ export interface FileRouteTypes {
     | '/login'
     | '/profile'
     | '/signup'
+    | '/admin/categories'
+    | '/admin/settings'
+    | '/admin/users'
     | '/auth/callback'
     | '/library/$contentId'
+    | '/admin'
     | '/library'
+    | '/admin/content/new'
     | '/library/category/$slug'
+    | '/admin/content'
+    | '/admin/content/$id/edit'
   id:
     | '__root__'
     | '/'
+    | '/admin'
     | '/forgot-password'
     | '/login'
     | '/profile'
     | '/signup'
+    | '/admin/categories'
+    | '/admin/settings'
+    | '/admin/users'
     | '/auth/callback'
     | '/library/$contentId'
+    | '/admin/'
     | '/library/'
+    | '/admin/content/new'
     | '/library/category/$slug'
+    | '/admin/content/'
+    | '/admin/content/$id/edit'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
   ForgotPasswordRoute: typeof ForgotPasswordRoute
   LoginRoute: typeof LoginRoute
   ProfileRoute: typeof ProfileRoute
@@ -177,6 +272,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ForgotPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -190,6 +292,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/library/'
       preLoaderRoute: typeof LibraryIndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
     }
     '/library/$contentId': {
       id: '/library/$contentId'
@@ -205,6 +314,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthCallbackRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/users': {
+      id: '/admin/users'
+      path: '/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AdminUsersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/categories': {
+      id: '/admin/categories'
+      path: '/categories'
+      fullPath: '/admin/categories'
+      preLoaderRoute: typeof AdminCategoriesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/content/': {
+      id: '/admin/content/'
+      path: '/content'
+      fullPath: '/admin/content/'
+      preLoaderRoute: typeof AdminContentIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/library/category/$slug': {
       id: '/library/category/$slug'
       path: '/library/category/$slug'
@@ -212,11 +349,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LibraryCategorySlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/content/new': {
+      id: '/admin/content/new'
+      path: '/content/new'
+      fullPath: '/admin/content/new'
+      preLoaderRoute: typeof AdminContentNewRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/content/$id/edit': {
+      id: '/admin/content/$id/edit'
+      path: '/content/$id/edit'
+      fullPath: '/admin/content/$id/edit'
+      preLoaderRoute: typeof AdminContentIdEditRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminCategoriesRoute: typeof AdminCategoriesRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
+  AdminUsersRoute: typeof AdminUsersRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+  AdminContentNewRoute: typeof AdminContentNewRoute
+  AdminContentIndexRoute: typeof AdminContentIndexRoute
+  AdminContentIdEditRoute: typeof AdminContentIdEditRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminCategoriesRoute: AdminCategoriesRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
+  AdminUsersRoute: AdminUsersRoute,
+  AdminIndexRoute: AdminIndexRoute,
+  AdminContentNewRoute: AdminContentNewRoute,
+  AdminContentIndexRoute: AdminContentIndexRoute,
+  AdminContentIdEditRoute: AdminContentIdEditRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
   ForgotPasswordRoute: ForgotPasswordRoute,
   LoginRoute: LoginRoute,
   ProfileRoute: ProfileRoute,

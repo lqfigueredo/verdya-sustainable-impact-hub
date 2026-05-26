@@ -114,5 +114,61 @@
     "explore": "Explore", "exploreLinks": ["Content", "Programs", "Community", "Events"],
     "legal": "Legal", "legalLinks": ["Privacy", "Terms", "Cookies"],
     "social": "Follow", "rights": "© 2026 Verdya. All rights reserved."
+  },
+  "admin": {
+    "backToSite": "Back to site",
+    "nav": { "dashboard": "Dashboard", "content": "Content", "categories": "Categories", "users": "Users", "settings": "Settings" },
+    "dashboard": {
+      "title": "Dashboard", "subtitle": "Overview of the Verdya platform.",
+      "newContent": "New content", "newCategory": "New category",
+      "totalContent": "Total content", "totalUsers": "Total users",
+      "publishedMonth": "Published this month", "drafts": "Pending drafts",
+      "recent": "Recent activity", "noActivity": "Nothing yet."
+    },
+    "status": { "published": "Published", "draft": "Draft" },
+    "content": {
+      "title": "Content manager", "subtitle": "Manage all articles, guides and resources.",
+      "new": "New content", "searchPlaceholder": "Search by title…",
+      "cover": "Cover", "titleCol": "Title", "type": "Type", "category": "Category",
+      "status": "Status", "author": "Author", "created": "Created", "empty": "No content yet."
+    },
+    "filters": { "allTypes": "All types", "allCategories": "All categories", "allStatus": "All status", "allRoles": "All roles" },
+    "bulk": {
+      "selected": "{{count}} selected", "publish": "Publish", "unpublish": "Unpublish", "delete": "Delete",
+      "confirmDelete": "Delete {{count}} item(s)? This cannot be undone."
+    },
+    "confirm": {
+      "deleteTitle": "Are you sure?", "deleteDesc": "This action cannot be undone.",
+      "cancel": "Cancel", "delete": "Delete", "confirm": "Confirm"
+    },
+    "form": {
+      "newTitle": "New content", "editTitle": "Edit content",
+      "titleField": "Title", "summary": "Summary", "body": "Body",
+      "category": "Category", "selectCategory": "Select a category",
+      "type": "Type", "difficulty": "Difficulty", "readingTime": "Reading time (min)",
+      "externalUrl": "External URL", "tags": "Tags", "addTag": "Add a tag…",
+      "cover": "Cover image", "file": "Attached file (PDF/Doc)",
+      "uploadCover": "Upload cover", "uploadFile": "Upload file", "uploading": "Uploading…",
+      "published": "Published", "featured": "Featured",
+      "saveDraft": "Save draft", "publish": "Publish", "required": "Required"
+    },
+    "categories": {
+      "title": "Categories", "subtitle": "Organize content into topics. Drag to reorder.",
+      "new": "New category", "edit": "Edit category", "formDesc": "Slug must be unique. Icons use Lucide names.",
+      "icon": "Icon (Lucide name)", "iconHint": "Example: Leaf, Globe, Recycle",
+      "color": "Color"
+    },
+    "users": {
+      "title": "Users", "subtitle": "Manage members and administrators.",
+      "user": "User", "email": "Email", "role": "Role", "country": "Country", "joined": "Joined",
+      "admin": "Admin", "member": "Member", "promote": "Promote to admin", "demote": "Demote to member",
+      "confirmRole": "Set {{name}}'s role to {{role}}?", "empty": "No users yet."
+    },
+    "settings": {
+      "title": "Site settings", "subtitle": "Global configuration for the Verdya platform.",
+      "siteTitle": "Site title", "heroEn": "Hero text (EN)", "heroPt": "Hero text (PT)",
+      "featured": "Featured content IDs", "featuredHint": "Comma-separated content UUIDs"
+    },
+    "toast": { "saved": "Saved.", "save": "Save", "created": "Created.", "updated": "Updated.", "deleted": "Deleted.", "uploaded": "Uploaded." }
   }
 }
