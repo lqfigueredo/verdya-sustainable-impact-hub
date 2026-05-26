@@ -1,8 +1,18 @@
 {
   "nav": {
-    "home": "Home", "about": "About", "library": "Library", "content": "Content", "community": "Community",
-    "resources": "Resources", "login": "Login", "signup": "Sign up",
-    "profile": "Profile", "dashboard": "Dashboard", "admin": "Admin panel", "logout": "Logout"
+    "home": "Home",
+    "about": "About",
+    "library": "Library",
+    "content": "Content",
+    "community": "Community",
+    "resources": "Resources",
+    "login": "Login",
+    "signup": "Sign up",
+    "profile": "Profile",
+    "dashboard": "Dashboard",
+    "admin": "Admin panel",
+    "logout": "Logout",
+    "newsletter": "Newsletter"
   },
   "library": {
     "eyebrow": "Education hub",
@@ -19,29 +29,61 @@
     "author": "Author",
     "tags": "Tags",
     "related": "Related",
-    "filters": { "category": "Category", "type": "Format", "difficulty": "Difficulty", "tag": "Tag", "all": "All" },
-    "types": { "article": "Article", "guide": "Guide", "pdf": "PDF", "link": "Link", "video": "Video" },
-    "difficulty": { "beginner": "Beginner", "intermediate": "Intermediate", "advanced": "Advanced" },
-    "favorites": { "save": "Save", "saved": "Saved", "added": "Added to favorites", "removed": "Removed from favorites" }
+    "filters": {
+      "category": "Category",
+      "type": "Format",
+      "difficulty": "Difficulty",
+      "tag": "Tag",
+      "all": "All"
+    },
+    "types": {
+      "article": "Article",
+      "guide": "Guide",
+      "pdf": "PDF",
+      "link": "Link",
+      "video": "Video"
+    },
+    "difficulty": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced"
+    },
+    "favorites": {
+      "save": "Save",
+      "saved": "Saved",
+      "added": "Added to favorites",
+      "removed": "Removed from favorites"
+    }
   },
-  "language": { "label": "Language", "en": "English", "pt": "Português" },
+  "language": {
+    "label": "Language",
+    "en": "English",
+    "pt": "Português"
+  },
   "auth": {
     "login": {
       "title": "Welcome back",
       "subtitle": "Sign in to your Verdya account.",
-      "email": "Email", "password": "Password",
-      "submit": "Sign in", "submitting": "Signing in...",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign in",
+      "submitting": "Signing in...",
       "forgot": "Forgot password?",
-      "noAccount": "Don't have an account?", "signupLink": "Sign up",
+      "noAccount": "Don't have an account?",
+      "signupLink": "Sign up",
       "or": "or continue with"
     },
     "signup": {
       "title": "Join Verdya",
       "subtitle": "Create your account to access education, networking and resources.",
-      "fullName": "Full name", "email": "Email",
-      "password": "Password", "confirmPassword": "Confirm password",
-      "submit": "Create account", "submitting": "Creating account...",
-      "haveAccount": "Already have an account?", "loginLink": "Sign in",
+      "fullName": "Full name",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "submit": "Create account",
+      "submitting": "Creating account...",
+      "haveAccount": "Already have an account?",
+      "loginLink": "Sign in",
       "mismatch": "Passwords do not match",
       "tooShort": "Password must be at least 8 characters",
       "checkEmail": "Check your email to confirm your account."
@@ -49,7 +91,9 @@
     "forgot": {
       "title": "Reset your password",
       "subtitle": "Enter your email and we'll send you a reset link.",
-      "email": "Email", "submit": "Send reset link", "submitting": "Sending...",
+      "email": "Email",
+      "submit": "Send reset link",
+      "submitting": "Sending...",
       "back": "Back to sign in",
       "sent": "If that email exists, a reset link is on its way."
     },
@@ -61,115 +105,248 @@
       "invalid": "Invalid email or password.",
       "exists": "An account with this email already exists."
     },
-    "success": { "signedIn": "Welcome back!", "signedOut": "Signed out." }
+    "success": {
+      "signedIn": "Welcome back!",
+      "signedOut": "Signed out."
+    }
   },
   "profile": {
     "title": "Your profile",
     "subtitle": "How the Verdya network sees you.",
-    "fullName": "Full name", "bio": "Bio", "company": "Company",
-    "country": "Country", "avatarUrl": "Avatar URL",
-    "save": "Save changes", "saving": "Saving...",
-    "saved": "Profile updated.", "error": "Could not save profile."
+    "fullName": "Full name",
+    "bio": "Bio",
+    "company": "Company",
+    "country": "Country",
+    "avatarUrl": "Avatar URL",
+    "save": "Save changes",
+    "saving": "Saving...",
+    "saved": "Profile updated.",
+    "error": "Could not save profile."
   },
   "hero": {
     "eyebrow": "Global ESG network",
     "title": "Where ESG leaders learn, connect and shape the next economy.",
     "subtitle": "Verdya is an international hub for corporate sustainability professionals — education, networking and field-tested resources, in one calm, focused place.",
-    "ctaPrimary": "Explore the library", "ctaSecondary": "Join the community",
-    "stats": { "members": "Members", "content": "Resources", "events": "Upcoming events" },
+    "ctaPrimary": "Explore the library",
+    "ctaSecondary": "Join the community",
+    "stats": {
+      "members": "Members",
+      "content": "Resources",
+      "events": "Upcoming events"
+    },
     "nextEvent": "Next event",
     "exploreEvents": "Browse upcoming events",
     "exploreEventsHint": "Live sessions & workshops",
     "communityBadge": "Live community · join the discussion"
   },
   "what": {
-    "eyebrow": "What is Verdya", "title": "A serious home for sustainability practice.",
+    "eyebrow": "What is Verdya",
+    "title": "A serious home for sustainability practice.",
     "subtitle": "Three pillars built for the people doing the actual work of ESG transformation.",
     "items": {
-      "education": { "title": "Education", "desc": "Cohort programs, masterclasses and short courses with practitioners — not consultants reading slides." },
-      "networking": { "title": "Networking", "desc": "Curated peer circles, regional chapters and private events to compare notes with people who get it." },
-      "resources": { "title": "Resources", "desc": "Frameworks, reporting templates and case studies you can actually open on Monday morning." }
+      "education": {
+        "title": "Education",
+        "desc": "Cohort programs, masterclasses and short courses with practitioners — not consultants reading slides."
+      },
+      "networking": {
+        "title": "Networking",
+        "desc": "Curated peer circles, regional chapters and private events to compare notes with people who get it."
+      },
+      "resources": {
+        "title": "Resources",
+        "desc": "Frameworks, reporting templates and case studies you can actually open on Monday morning."
+      }
     }
   },
   "featured": {
-    "eyebrow": "Featured content", "title": "Recent from the network", "viewAll": "View all content",
+    "eyebrow": "Featured content",
+    "title": "Recent from the network",
+    "viewAll": "View all content",
     "empty": "No content published yet — check back soon."
   },
   "how": {
-    "eyebrow": "How it works", "title": "Three steps to plug in.",
+    "eyebrow": "How it works",
+    "title": "Three steps to plug in.",
     "steps": [
-      { "title": "Create your profile", "desc": "Tell us your role, sector and the ESG topics you're working on right now." },
-      { "title": "Find your circle", "desc": "Get matched with peers, programs and content tuned to your maturity and region." },
-      { "title": "Learn in the open", "desc": "Join sessions, share what worked, and build the practice with the rest of the network." }
+      {
+        "title": "Create your profile",
+        "desc": "Tell us your role, sector and the ESG topics you're working on right now."
+      },
+      {
+        "title": "Find your circle",
+        "desc": "Get matched with peers, programs and content tuned to your maturity and region."
+      },
+      {
+        "title": "Learn in the open",
+        "desc": "Join sessions, share what worked, and build the practice with the rest of the network."
+      }
     ]
   },
   "newsletter": {
-    "eyebrow": "Stay in the loop", "title": "The Verdya brief, every other Thursday.",
+    "eyebrow": "Stay in the loop",
+    "title": "The Verdya brief, every other Thursday.",
     "subtitle": "One short email. The signal worth reading on ESG, climate and corporate sustainability.",
-    "placeholder": "you@company.com", "button": "Subscribe", "disclaimer": "No spam. Unsubscribe anytime."
+    "placeholder": "you@company.com",
+    "button": "Subscribe",
+    "disclaimer": "No spam. Unsubscribe anytime."
   },
   "footer": {
     "tagline": "An international hub for corporate ESG professionals.",
-    "about": "About", "aboutLinks": ["Our story", "Team", "Careers", "Press"],
-    "explore": "Explore", "exploreLinks": ["Content", "Programs", "Community", "Events"],
-    "legal": "Legal", "legalLinks": ["Privacy", "Terms", "Cookies"],
-    "social": "Follow", "rights": "© 2026 Verdya. All rights reserved."
+    "about": "About",
+    "aboutLinks": [
+      "Our story",
+      "Team",
+      "Careers",
+      "Press"
+    ],
+    "explore": "Explore",
+    "exploreLinks": [
+      "Content",
+      "Programs",
+      "Community",
+      "Events"
+    ],
+    "legal": "Legal",
+    "legalLinks": [
+      "Privacy",
+      "Terms",
+      "Cookies"
+    ],
+    "social": "Follow",
+    "rights": "© 2026 Verdya. All rights reserved."
   },
   "admin": {
     "backToSite": "Back to site",
-    "nav": { "dashboard": "Dashboard", "content": "Content", "categories": "Categories", "users": "Users", "settings": "Settings" },
+    "nav": {
+      "dashboard": "Dashboard",
+      "content": "Content",
+      "categories": "Categories",
+      "users": "Users",
+      "settings": "Settings"
+    },
     "dashboard": {
-      "title": "Dashboard", "subtitle": "Overview of the Verdya platform.",
-      "newContent": "New content", "newCategory": "New category",
-      "totalContent": "Total content", "totalUsers": "Total users",
-      "publishedMonth": "Published this month", "drafts": "Pending drafts",
-      "recent": "Recent activity", "noActivity": "Nothing yet."
+      "title": "Dashboard",
+      "subtitle": "Overview of the Verdya platform.",
+      "newContent": "New content",
+      "newCategory": "New category",
+      "totalContent": "Total content",
+      "totalUsers": "Total users",
+      "publishedMonth": "Published this month",
+      "drafts": "Pending drafts",
+      "recent": "Recent activity",
+      "noActivity": "Nothing yet.",
+      "activity": {
+        "content": "Content",
+        "topic": "Forum topic",
+        "registration": "Event registration",
+        "subscriber": "Newsletter subscriber"
+      }
     },
-    "status": { "published": "Published", "draft": "Draft" },
+    "status": {
+      "published": "Published",
+      "draft": "Draft"
+    },
     "content": {
-      "title": "Content manager", "subtitle": "Manage all articles, guides and resources.",
-      "new": "New content", "searchPlaceholder": "Search by title…",
-      "cover": "Cover", "titleCol": "Title", "type": "Type", "category": "Category",
-      "status": "Status", "author": "Author", "created": "Created", "empty": "No content yet."
+      "title": "Content manager",
+      "subtitle": "Manage all articles, guides and resources.",
+      "new": "New content",
+      "searchPlaceholder": "Search by title…",
+      "cover": "Cover",
+      "titleCol": "Title",
+      "type": "Type",
+      "category": "Category",
+      "status": "Status",
+      "author": "Author",
+      "created": "Created",
+      "empty": "No content yet."
     },
-    "filters": { "allTypes": "All types", "allCategories": "All categories", "allStatus": "All status", "allRoles": "All roles" },
+    "filters": {
+      "allTypes": "All types",
+      "allCategories": "All categories",
+      "allStatus": "All status",
+      "allRoles": "All roles"
+    },
     "bulk": {
-      "selected": "{{count}} selected", "publish": "Publish", "unpublish": "Unpublish", "delete": "Delete",
+      "selected": "{{count}} selected",
+      "publish": "Publish",
+      "unpublish": "Unpublish",
+      "delete": "Delete",
       "confirmDelete": "Delete {{count}} item(s)? This cannot be undone."
     },
     "confirm": {
-      "deleteTitle": "Are you sure?", "deleteDesc": "This action cannot be undone.",
-      "cancel": "Cancel", "delete": "Delete", "confirm": "Confirm"
+      "deleteTitle": "Are you sure?",
+      "deleteDesc": "This action cannot be undone.",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "confirm": "Confirm"
     },
     "form": {
-      "newTitle": "New content", "editTitle": "Edit content",
-      "titleField": "Title", "summary": "Summary", "body": "Body",
-      "category": "Category", "selectCategory": "Select a category",
-      "type": "Type", "difficulty": "Difficulty", "readingTime": "Reading time (min)",
-      "externalUrl": "External URL", "tags": "Tags", "addTag": "Add a tag…",
-      "cover": "Cover image", "file": "Attached file (PDF/Doc)",
-      "uploadCover": "Upload cover", "uploadFile": "Upload file", "uploading": "Uploading…",
-      "published": "Published", "featured": "Featured",
-      "saveDraft": "Save draft", "publish": "Publish", "required": "Required"
+      "newTitle": "New content",
+      "editTitle": "Edit content",
+      "titleField": "Title",
+      "summary": "Summary",
+      "body": "Body",
+      "category": "Category",
+      "selectCategory": "Select a category",
+      "type": "Type",
+      "difficulty": "Difficulty",
+      "readingTime": "Reading time (min)",
+      "externalUrl": "External URL",
+      "tags": "Tags",
+      "addTag": "Add a tag…",
+      "cover": "Cover image",
+      "file": "Attached file (PDF/Doc)",
+      "uploadCover": "Upload cover",
+      "uploadFile": "Upload file",
+      "uploading": "Uploading…",
+      "published": "Published",
+      "featured": "Featured",
+      "saveDraft": "Save draft",
+      "publish": "Publish",
+      "required": "Required"
     },
     "categories": {
-      "title": "Categories", "subtitle": "Organize content into topics. Drag to reorder.",
-      "new": "New category", "edit": "Edit category", "formDesc": "Slug must be unique. Icons use Lucide names.",
-      "icon": "Icon (Lucide name)", "iconHint": "Example: Leaf, Globe, Recycle",
+      "title": "Categories",
+      "subtitle": "Organize content into topics. Drag to reorder.",
+      "new": "New category",
+      "edit": "Edit category",
+      "formDesc": "Slug must be unique. Icons use Lucide names.",
+      "icon": "Icon (Lucide name)",
+      "iconHint": "Example: Leaf, Globe, Recycle",
       "color": "Color"
     },
     "users": {
-      "title": "Users", "subtitle": "Manage members and administrators.",
-      "user": "User", "email": "Email", "role": "Role", "country": "Country", "joined": "Joined",
-      "admin": "Admin", "member": "Member", "promote": "Promote to admin", "demote": "Demote to member",
-      "confirmRole": "Set {{name}}'s role to {{role}}?", "empty": "No users yet."
+      "title": "Users",
+      "subtitle": "Manage members and administrators.",
+      "user": "User",
+      "email": "Email",
+      "role": "Role",
+      "country": "Country",
+      "joined": "Joined",
+      "admin": "Admin",
+      "member": "Member",
+      "promote": "Promote to admin",
+      "demote": "Demote to member",
+      "confirmRole": "Set {{name}}'s role to {{role}}?",
+      "empty": "No users yet."
     },
     "settings": {
-      "title": "Site settings", "subtitle": "Global configuration for the Verdya platform.",
-      "siteTitle": "Site title", "heroEn": "Hero text (EN)", "heroPt": "Hero text (PT)",
-      "featured": "Featured content IDs", "featuredHint": "Comma-separated content UUIDs"
+      "title": "Site settings",
+      "subtitle": "Global configuration for the Verdya platform.",
+      "siteTitle": "Site title",
+      "heroEn": "Hero text (EN)",
+      "heroPt": "Hero text (PT)",
+      "featured": "Featured content IDs",
+      "featuredHint": "Comma-separated content UUIDs"
     },
-    "toast": { "saved": "Saved.", "save": "Save", "created": "Created.", "updated": "Updated.", "deleted": "Deleted.", "uploaded": "Uploaded." }
+    "toast": {
+      "saved": "Saved.",
+      "save": "Save",
+      "created": "Created.",
+      "updated": "Updated.",
+      "deleted": "Deleted.",
+      "uploaded": "Uploaded."
+    }
   },
   "forum": {
     "eyebrow": "Community",
@@ -178,7 +355,8 @@
     "startDiscussion": "Start a discussion",
     "searchPlaceholder": "Search discussions…",
     "backToCommunity": "Back to community",
-    "pinned": "Pinned", "locked": "Locked",
+    "pinned": "Pinned",
+    "locked": "Locked",
     "lockedNotice": "This discussion is locked. No new replies can be posted.",
     "anonymous": "Anonymous",
     "notFound": "Discussion not found.",
@@ -189,19 +367,37 @@
     "replies_other": "{{count}} replies",
     "replies": "{{count}} replies",
     "noReplies": "No replies yet — be the first to weigh in.",
-    "reply": "Reply", "replyingTo": "Replying to this comment",
-    "yourReply": "Your reply", "replyPlaceholder": "Share your perspective…",
-    "postReply": "Post reply", "posting": "Posting…",
+    "reply": "Reply",
+    "replyingTo": "Replying to this comment",
+    "yourReply": "Your reply",
+    "replyPlaceholder": "Share your perspective…",
+    "postReply": "Post reply",
+    "posting": "Posting…",
     "markdownSupported": "Markdown supported.",
-    "delete": "Delete", "cancel": "Cancel",
-    "filters": { "all": "All topics" },
-    "sort": { "latest": "Latest", "replies": "Most replies", "trending": "Trending" },
-    "categories": {
-      "general": "General", "carbon": "Carbon", "csrd": "CSRD",
-      "circular": "Circular economy", "biodiversity": "Biodiversity",
-      "social": "Social impact", "governance": "Governance"
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "filters": {
+      "all": "All topics"
     },
-    "reactions": { "like": "Like", "insightful": "Insightful", "agree": "Agree" },
+    "sort": {
+      "latest": "Latest",
+      "replies": "Most replies",
+      "trending": "Trending"
+    },
+    "categories": {
+      "general": "General",
+      "carbon": "Carbon",
+      "csrd": "CSRD",
+      "circular": "Circular economy",
+      "biodiversity": "Biodiversity",
+      "social": "Social impact",
+      "governance": "Governance"
+    },
+    "reactions": {
+      "like": "Like",
+      "insightful": "Insightful",
+      "agree": "Agree"
+    },
     "empty": {
       "title": "No discussions yet",
       "subtitle": "Start the first conversation and set the tone for this space.",
@@ -210,22 +406,36 @@
     "new": {
       "title": "Start a new discussion",
       "subtitle": "Ask a question, share a case study, or invite debate.",
-      "titleLabel": "Title", "titlePlaceholder": "What's on your mind?",
-      "category": "Category", "body": "Body", "write": "Write", "preview": "Preview",
+      "titleLabel": "Title",
+      "titlePlaceholder": "What's on your mind?",
+      "category": "Category",
+      "body": "Body",
+      "write": "Write",
+      "preview": "Preview",
       "previewEmpty": "Nothing to preview yet.",
       "bodyPlaceholder": "Markdown supported. Add context, links, and what you're hoping to learn.",
-      "tags": "Tags", "tagsPlaceholder": "comma, separated, tags",
-      "cancel": "Cancel", "post": "Publish discussion", "posting": "Publishing…"
+      "tags": "Tags",
+      "tagsPlaceholder": "comma, separated, tags",
+      "cancel": "Cancel",
+      "post": "Publish discussion",
+      "posting": "Publishing…"
     },
-    "admin": { "pin": "Pin", "unpin": "Unpin", "lock": "Lock", "unlock": "Unlock" },
+    "admin": {
+      "pin": "Pin",
+      "unpin": "Unpin",
+      "lock": "Lock",
+      "unlock": "Unlock"
+    },
     "confirmDelete": {
       "title": "Are you sure?",
       "topic": "This discussion and all its replies will be permanently removed.",
       "reply": "This reply will be permanently removed."
     },
     "toasts": {
-      "topicCreated": "Discussion published.", "replyPosted": "Reply posted.",
-      "updated": "Updated.", "deleted": "Deleted."
+      "topicCreated": "Discussion published.",
+      "replyPosted": "Reply posted.",
+      "updated": "Updated.",
+      "deleted": "Deleted."
     },
     "errors": {
       "required": "Title and body are required.",
@@ -260,8 +470,17 @@
     "join": "Join meeting",
     "addCalendar": "Add to calendar",
     "speakers": "Speakers",
-    "location": { "online": "Online", "in_person": "In person", "hybrid": "Hybrid" },
-    "countdown": { "days": "days", "hours": "hours", "minutes": "minutes", "seconds": "seconds" }
+    "location": {
+      "online": "Online",
+      "in_person": "In person",
+      "hybrid": "Hybrid"
+    },
+    "countdown": {
+      "days": "days",
+      "hours": "hours",
+      "minutes": "minutes",
+      "seconds": "seconds"
+    }
   },
   "newsletterPage": {
     "title": "The Verdya Brief",
@@ -270,39 +489,65 @@
     "error": "Could not subscribe — try again in a moment."
   },
   "adminEvents": {
-    "title": "Events", "subtitle": "Create and manage live sessions, workshops and meetups.",
-    "newEvent": "New event", "editEvent": "Edit event",
-    "titleEn": "Title (EN)", "titlePt": "Title (PT)",
-    "descEn": "Description (EN)", "descPt": "Description (PT)",
-    "startsAt": "Starts at", "endsAt": "Ends at", "timezone": "Timezone",
-    "locationType": "Location type", "locationDetail": "Location detail",
-    "meetingUrl": "Meeting URL", "coverImageUrl": "Cover image URL",
-    "category": "Category", "maxAttendees": "Max attendees",
+    "title": "Events",
+    "subtitle": "Create and manage live sessions, workshops and meetups.",
+    "newEvent": "New event",
+    "editEvent": "Edit event",
+    "titleEn": "Title (EN)",
+    "titlePt": "Title (PT)",
+    "descEn": "Description (EN)",
+    "descPt": "Description (PT)",
+    "startsAt": "Starts at",
+    "endsAt": "Ends at",
+    "timezone": "Timezone",
+    "locationType": "Location type",
+    "locationDetail": "Location detail",
+    "meetingUrl": "Meeting URL",
+    "coverImageUrl": "Cover image URL",
+    "category": "Category",
+    "maxAttendees": "Max attendees",
     "speakersJson": "Speakers (JSON array)",
     "invalidSpeakers": "Speakers must be valid JSON.",
-    "published": "Published", "draft": "Draft",
-    "save": "Save event", "saved": "Event saved.", "deleted": "Event deleted.",
+    "published": "Published",
+    "draft": "Draft",
+    "save": "Save event",
+    "saved": "Event saved.",
+    "deleted": "Event deleted.",
     "delete": "Delete event",
     "confirmDelete": "Delete this event?",
     "confirmDeleteDesc": "All registrations will also be lost. This cannot be undone.",
-    "col": { "title": "Title", "when": "When", "location": "Location", "status": "Status" }
+    "col": {
+      "title": "Title",
+      "when": "When",
+      "location": "Location",
+      "status": "Status"
+    }
   },
   "adminNewsletter": {
-    "title": "Newsletter", "subtitle": "Manage subscribers and send campaigns.",
-    "total": "Total subscribers", "active": "Active", "unsub": "Unsubscribed",
-    "status": "Status", "subscribedAt": "Subscribed",
+    "title": "Newsletter",
+    "subtitle": "Manage subscribers and send campaigns.",
+    "total": "Total subscribers",
+    "active": "Active",
+    "unsub": "Unsubscribed",
+    "status": "Status",
+    "subscribedAt": "Subscribed",
     "exportCsv": "Export CSV",
     "resendTitle": "Compose campaign",
     "resendNote": "Send a test to your own email first, then dispatch to all active subscribers.",
-    "subjectEn": "Subject (EN)", "subjectPt": "Subject (PT)",
-    "bodyEn": "Body (EN, markdown)", "bodyPt": "Body (PT, markdown)",
-    "sendTest": "Send test to me", "sendAll": "Send to all",
+    "subjectEn": "Subject (EN)",
+    "subjectPt": "Subject (PT)",
+    "bodyEn": "Body (EN, markdown)",
+    "bodyPt": "Body (PT, markdown)",
+    "sendTest": "Send test to me",
+    "sendAll": "Send to all",
     "confirmAll": "Send this campaign to every active subscriber?",
     "testSent": "Test message sent.",
     "sentAll": "Campaign dispatched to {{count}} subscribers.",
     "errorSave": "Could not send the campaign.",
     "noHistory": "No campaigns sent yet.",
-    "draft": "Draft", "recipients": "Recipients", "opens": "Opens"
+    "draft": "Draft",
+    "recipients": "Recipients",
+    "opens": "Opens"
   },
   "dashboard": {
     "eyebrow": "Your dashboard",
@@ -326,4 +571,3 @@
     }
   }
 }
-
