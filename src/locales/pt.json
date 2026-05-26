@@ -221,6 +221,9 @@
       "dashboard": "Painel",
       "content": "Conteúdo",
       "categories": "Categorias",
+      "events": "Eventos",
+      "newsletter": "Newsletter",
+      "forum": "Moderação do fórum",
       "users": "Usuários",
       "settings": "Configurações"
     },

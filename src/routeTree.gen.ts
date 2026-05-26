@@ -28,6 +28,7 @@ import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
 import { Route as AdminNewsletterRouteImport } from './routes/admin.newsletter'
+import { Route as AdminForumRouteImport } from './routes/admin.forum'
 import { Route as AdminEventsRouteImport } from './routes/admin.events'
 import { Route as AdminCategoriesRouteImport } from './routes/admin.categories'
 import { Route as AdminContentIndexRouteImport } from './routes/admin.content.index'
@@ -131,6 +132,11 @@ const AdminNewsletterRoute = AdminNewsletterRouteImport.update({
   path: '/newsletter',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminForumRoute = AdminForumRouteImport.update({
+  id: '/forum',
+  path: '/forum',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminEventsRoute = AdminEventsRouteImport.update({
   id: '/events',
   path: '/events',
@@ -178,6 +184,7 @@ export interface FileRoutesByFullPath {
   '/signup': typeof SignupRoute
   '/admin/categories': typeof AdminCategoriesRoute
   '/admin/events': typeof AdminEventsRoute
+  '/admin/forum': typeof AdminForumRoute
   '/admin/newsletter': typeof AdminNewsletterRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
@@ -205,6 +212,7 @@ export interface FileRoutesByTo {
   '/signup': typeof SignupRoute
   '/admin/categories': typeof AdminCategoriesRoute
   '/admin/events': typeof AdminEventsRoute
+  '/admin/forum': typeof AdminForumRoute
   '/admin/newsletter': typeof AdminNewsletterRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
@@ -234,6 +242,7 @@ export interface FileRoutesById {
   '/signup': typeof SignupRoute
   '/admin/categories': typeof AdminCategoriesRoute
   '/admin/events': typeof AdminEventsRoute
+  '/admin/forum': typeof AdminForumRoute
   '/admin/newsletter': typeof AdminNewsletterRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
@@ -264,6 +273,7 @@ export interface FileRouteTypes {
     | '/signup'
     | '/admin/categories'
     | '/admin/events'
+    | '/admin/forum'
     | '/admin/newsletter'
     | '/admin/settings'
     | '/admin/users'
@@ -291,6 +301,7 @@ export interface FileRouteTypes {
     | '/signup'
     | '/admin/categories'
     | '/admin/events'
+    | '/admin/forum'
     | '/admin/newsletter'
     | '/admin/settings'
     | '/admin/users'
@@ -319,6 +330,7 @@ export interface FileRouteTypes {
     | '/signup'
     | '/admin/categories'
     | '/admin/events'
+    | '/admin/forum'
     | '/admin/newsletter'
     | '/admin/settings'
     | '/admin/users'
@@ -492,6 +504,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminNewsletterRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/forum': {
+      id: '/admin/forum'
+      path: '/forum'
+      fullPath: '/admin/forum'
+      preLoaderRoute: typeof AdminForumRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/events': {
       id: '/admin/events'
       path: '/events'
@@ -547,6 +566,7 @@ declare module '@tanstack/react-router' {
 interface AdminRouteChildren {
   AdminCategoriesRoute: typeof AdminCategoriesRoute
   AdminEventsRoute: typeof AdminEventsRoute
+  AdminForumRoute: typeof AdminForumRoute
   AdminNewsletterRoute: typeof AdminNewsletterRoute
   AdminSettingsRoute: typeof AdminSettingsRoute
   AdminUsersRoute: typeof AdminUsersRoute
@@ -559,6 +579,7 @@ interface AdminRouteChildren {
 const AdminRouteChildren: AdminRouteChildren = {
   AdminCategoriesRoute: AdminCategoriesRoute,
   AdminEventsRoute: AdminEventsRoute,
+  AdminForumRoute: AdminForumRoute,
   AdminNewsletterRoute: AdminNewsletterRoute,
   AdminSettingsRoute: AdminSettingsRoute,
   AdminUsersRoute: AdminUsersRoute,

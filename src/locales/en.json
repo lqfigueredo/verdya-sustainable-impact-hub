@@ -221,6 +221,9 @@
       "dashboard": "Dashboard",
       "content": "Content",
       "categories": "Categories",
+      "events": "Events",
+      "newsletter": "Newsletter",
+      "forum": "Forum moderation",
       "users": "Users",
       "settings": "Settings"
     },
