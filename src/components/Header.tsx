@@ -19,7 +19,7 @@ export function Header() {
   const navigate = useNavigate();
 
   const navItems = [
-    { key: "content", href: "/#content" },
+    { key: "library", href: "/library" },
     { key: "community", href: "/#community" },
     { key: "resources", href: "/#resources" },
     { key: "about", href: "/#about" },
