@@ -1,8 +1,28 @@
 {
   "nav": {
-    "home": "Home", "about": "About", "content": "Content", "community": "Community",
+    "home": "Home", "about": "About", "library": "Library", "content": "Content", "community": "Community",
     "resources": "Resources", "login": "Login", "signup": "Sign up",
     "profile": "Profile", "dashboard": "Dashboard", "admin": "Admin panel", "logout": "Logout"
+  },
+  "library": {
+    "eyebrow": "Education hub",
+    "title": "Field-tested knowledge for ESG practitioners.",
+    "subtitle": "Articles, guides, frameworks and curated reading — sorted by topic, format and depth.",
+    "searchPlaceholder": "Search topics, frameworks, authors…",
+    "searchButton": "Search",
+    "empty": "No content matches these filters yet.",
+    "results": "results",
+    "minRead": "min read",
+    "backToLibrary": "Back to library",
+    "openExternal": "Open external",
+    "download": "Download PDF",
+    "author": "Author",
+    "tags": "Tags",
+    "related": "Related",
+    "filters": { "category": "Category", "type": "Format", "difficulty": "Difficulty", "tag": "Tag", "all": "All" },
+    "types": { "article": "Article", "guide": "Guide", "pdf": "PDF", "link": "Link", "video": "Video" },
+    "difficulty": { "beginner": "Beginner", "intermediate": "Intermediate", "advanced": "Advanced" },
+    "favorites": { "save": "Save", "saved": "Saved", "added": "Added to favorites", "removed": "Removed from favorites" }
   },
   "language": { "label": "Language", "en": "English", "pt": "Português" },
   "auth": {
