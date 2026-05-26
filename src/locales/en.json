@@ -75,8 +75,12 @@
     "eyebrow": "Global ESG network",
     "title": "Where ESG leaders learn, connect and shape the next economy.",
     "subtitle": "Verdya is an international hub for corporate sustainability professionals — education, networking and field-tested resources, in one calm, focused place.",
-    "ctaPrimary": "Explore content", "ctaSecondary": "Join the community",
-    "stat1": "+12k members", "stat2": "48 countries", "stat3": "300+ resources"
+    "ctaPrimary": "Explore the library", "ctaSecondary": "Join the community",
+    "stats": { "members": "Members", "content": "Resources", "events": "Upcoming events" },
+    "nextEvent": "Next event",
+    "exploreEvents": "Browse upcoming events",
+    "exploreEventsHint": "Live sessions & workshops",
+    "communityBadge": "Live community · join the discussion"
   },
   "what": {
     "eyebrow": "What is Verdya", "title": "A serious home for sustainability practice.",
@@ -89,11 +93,7 @@
   },
   "featured": {
     "eyebrow": "Featured content", "title": "Recent from the network", "viewAll": "View all content",
-    "cards": [
-      { "tag": "Reporting", "title": "CSRD in practice: lessons from the first wave", "meta": "Guide · 14 min read" },
-      { "tag": "Climate", "title": "Scope 3 without the spreadsheets of doom", "meta": "Playbook · 9 min read" },
-      { "tag": "Governance", "title": "Building an ESG committee that actually decides", "meta": "Case study · 11 min read" }
-    ]
+    "empty": "No content published yet — check back soon."
   },
   "how": {
     "eyebrow": "How it works", "title": "Three steps to plug in.",
