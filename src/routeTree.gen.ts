@@ -26,6 +26,7 @@ import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
 import { Route as AdminCategoriesRouteImport } from './routes/admin.categories'
 import { Route as AdminContentIndexRouteImport } from './routes/admin.content.index'
 import { Route as LibraryCategorySlugRouteImport } from './routes/library.category.$slug'
+import { Route as CommunityTopicIdRouteImport } from './routes/community.topic.$id'
 import { Route as AdminContentNewRouteImport } from './routes/admin.content.new'
 import { Route as AdminContentIdEditRouteImport } from './routes/admin.content.$id.edit'
 
@@ -114,6 +115,11 @@ const LibraryCategorySlugRoute = LibraryCategorySlugRouteImport.update({
   path: '/library/category/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CommunityTopicIdRoute = CommunityTopicIdRouteImport.update({
+  id: '/community/topic/$id',
+  path: '/community/topic/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminContentNewRoute = AdminContentNewRouteImport.update({
   id: '/content/new',
   path: '/content/new',
@@ -142,6 +148,7 @@ export interface FileRoutesByFullPath {
   '/community/': typeof CommunityIndexRoute
   '/library/': typeof LibraryIndexRoute
   '/admin/content/new': typeof AdminContentNewRoute
+  '/community/topic/$id': typeof CommunityTopicIdRoute
   '/library/category/$slug': typeof LibraryCategorySlugRoute
   '/admin/content/': typeof AdminContentIndexRoute
   '/admin/content/$id/edit': typeof AdminContentIdEditRoute
@@ -162,6 +169,7 @@ export interface FileRoutesByTo {
   '/community': typeof CommunityIndexRoute
   '/library': typeof LibraryIndexRoute
   '/admin/content/new': typeof AdminContentNewRoute
+  '/community/topic/$id': typeof CommunityTopicIdRoute
   '/library/category/$slug': typeof LibraryCategorySlugRoute
   '/admin/content': typeof AdminContentIndexRoute
   '/admin/content/$id/edit': typeof AdminContentIdEditRoute
@@ -184,6 +192,7 @@ export interface FileRoutesById {
   '/community/': typeof CommunityIndexRoute
   '/library/': typeof LibraryIndexRoute
   '/admin/content/new': typeof AdminContentNewRoute
+  '/community/topic/$id': typeof CommunityTopicIdRoute
   '/library/category/$slug': typeof LibraryCategorySlugRoute
   '/admin/content/': typeof AdminContentIndexRoute
   '/admin/content/$id/edit': typeof AdminContentIdEditRoute
@@ -207,6 +216,7 @@ export interface FileRouteTypes {
     | '/community/'
     | '/library/'
     | '/admin/content/new'
+    | '/community/topic/$id'
     | '/library/category/$slug'
     | '/admin/content/'
     | '/admin/content/$id/edit'
@@ -227,6 +237,7 @@ export interface FileRouteTypes {
     | '/community'
     | '/library'
     | '/admin/content/new'
+    | '/community/topic/$id'
     | '/library/category/$slug'
     | '/admin/content'
     | '/admin/content/$id/edit'
@@ -248,6 +259,7 @@ export interface FileRouteTypes {
     | '/community/'
     | '/library/'
     | '/admin/content/new'
+    | '/community/topic/$id'
     | '/library/category/$slug'
     | '/admin/content/'
     | '/admin/content/$id/edit'
@@ -265,6 +277,7 @@ export interface RootRouteChildren {
   LibraryContentIdRoute: typeof LibraryContentIdRoute
   CommunityIndexRoute: typeof CommunityIndexRoute
   LibraryIndexRoute: typeof LibraryIndexRoute
+  CommunityTopicIdRoute: typeof CommunityTopicIdRoute
   LibraryCategorySlugRoute: typeof LibraryCategorySlugRoute
 }
 
@@ -389,6 +402,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LibraryCategorySlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/community/topic/$id': {
+      id: '/community/topic/$id'
+      path: '/community/topic/$id'
+      fullPath: '/community/topic/$id'
+      preLoaderRoute: typeof CommunityTopicIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/content/new': {
       id: '/admin/content/new'
       path: '/content/new'
@@ -440,6 +460,7 @@ const rootRouteChildren: RootRouteChildren = {
   LibraryContentIdRoute: LibraryContentIdRoute,
   CommunityIndexRoute: CommunityIndexRoute,
   LibraryIndexRoute: LibraryIndexRoute,
+  CommunityTopicIdRoute: CommunityTopicIdRoute,
   LibraryCategorySlugRoute: LibraryCategorySlugRoute,
 }
 export const routeTree = rootRouteImport

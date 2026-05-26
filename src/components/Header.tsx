@@ -12,6 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
+import { NotificationsBell } from "./NotificationsBell";
 
 export function Header() {
   const { t } = useTranslation();
@@ -20,7 +21,7 @@ export function Header() {
 
   const navItems = [
     { key: "library", href: "/library" },
-    { key: "community", href: "/#community" },
+    { key: "community", href: "/community" },
     { key: "resources", href: "/#resources" },
     { key: "about", href: "/#about" },
   ] as const;
