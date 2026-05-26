@@ -107,7 +107,7 @@ function AdminEventsPage() {
   };
 
   const save = async () => {
-    let speakers: unknown = [];
+    let speakers: unknown;
     try {
       speakers = JSON.parse(form.speakers_json || "[]");
     } catch {
@@ -128,14 +128,13 @@ function AdminEventsPage() {
       cover_image_url: form.cover_image_url || null,
       category: form.category,
       max_attendees: form.max_attendees ? Number(form.max_attendees) : null,
-      speakers,
+      speakers: speakers as never,
       published: form.published,
-      created_by: user?.id,
+      created_by: user?.id ?? null,
     };
-    const q = form.id
-      ? supabase.from("events").update(payload).eq("id", form.id)
-      : supabase.from("events").insert(payload);
-    const { error } = await q;
+    const { error } = form.id
+      ? await supabase.from("events").update(payload).eq("id", form.id)
+      : await supabase.from("events").insert(payload);
     if (error) toast.error(error.message);
     else {
       toast.success(t("adminEvents.saved"));

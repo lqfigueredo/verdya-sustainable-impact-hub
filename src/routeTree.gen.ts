@@ -11,18 +11,23 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SignupRouteImport } from './routes/signup'
 import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as NewsletterRouteImport } from './routes/newsletter'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LibraryIndexRouteImport } from './routes/library.index'
+import { Route as EventsIndexRouteImport } from './routes/events.index'
 import { Route as CommunityIndexRouteImport } from './routes/community.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as LibraryContentIdRouteImport } from './routes/library.$contentId'
+import { Route as EventsIdRouteImport } from './routes/events.$id'
 import { Route as CommunityNewRouteImport } from './routes/community.new'
 import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
+import { Route as AdminNewsletterRouteImport } from './routes/admin.newsletter'
+import { Route as AdminEventsRouteImport } from './routes/admin.events'
 import { Route as AdminCategoriesRouteImport } from './routes/admin.categories'
 import { Route as AdminContentIndexRouteImport } from './routes/admin.content.index'
 import { Route as LibraryCategorySlugRouteImport } from './routes/library.category.$slug'
@@ -38,6 +43,11 @@ const SignupRoute = SignupRouteImport.update({
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsletterRoute = NewsletterRouteImport.update({
+  id: '/newsletter',
+  path: '/newsletter',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -65,6 +75,11 @@ const LibraryIndexRoute = LibraryIndexRouteImport.update({
   path: '/library/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EventsIndexRoute = EventsIndexRouteImport.update({
+  id: '/events/',
+  path: '/events/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CommunityIndexRoute = CommunityIndexRouteImport.update({
   id: '/community/',
   path: '/community/',
@@ -78,6 +93,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
 const LibraryContentIdRoute = LibraryContentIdRouteImport.update({
   id: '/library/$contentId',
   path: '/library/$contentId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsIdRoute = EventsIdRouteImport.update({
+  id: '/events/$id',
+  path: '/events/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CommunityNewRoute = CommunityNewRouteImport.update({
@@ -98,6 +118,16 @@ const AdminUsersRoute = AdminUsersRouteImport.update({
 const AdminSettingsRoute = AdminSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminNewsletterRoute = AdminNewsletterRouteImport.update({
+  id: '/newsletter',
+  path: '/newsletter',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminEventsRoute = AdminEventsRouteImport.update({
+  id: '/events',
+  path: '/events',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminCategoriesRoute = AdminCategoriesRouteImport.update({
@@ -136,16 +166,21 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRouteWithChildren
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
+  '/newsletter': typeof NewsletterRoute
   '/profile': typeof ProfileRoute
   '/signup': typeof SignupRoute
   '/admin/categories': typeof AdminCategoriesRoute
+  '/admin/events': typeof AdminEventsRoute
+  '/admin/newsletter': typeof AdminNewsletterRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/community/new': typeof CommunityNewRoute
+  '/events/$id': typeof EventsIdRoute
   '/library/$contentId': typeof LibraryContentIdRoute
   '/admin/': typeof AdminIndexRoute
   '/community/': typeof CommunityIndexRoute
+  '/events/': typeof EventsIndexRoute
   '/library/': typeof LibraryIndexRoute
   '/admin/content/new': typeof AdminContentNewRoute
   '/community/topic/$id': typeof CommunityTopicIdRoute
@@ -157,16 +192,21 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
+  '/newsletter': typeof NewsletterRoute
   '/profile': typeof ProfileRoute
   '/signup': typeof SignupRoute
   '/admin/categories': typeof AdminCategoriesRoute
+  '/admin/events': typeof AdminEventsRoute
+  '/admin/newsletter': typeof AdminNewsletterRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/community/new': typeof CommunityNewRoute
+  '/events/$id': typeof EventsIdRoute
   '/library/$contentId': typeof LibraryContentIdRoute
   '/admin': typeof AdminIndexRoute
   '/community': typeof CommunityIndexRoute
+  '/events': typeof EventsIndexRoute
   '/library': typeof LibraryIndexRoute
   '/admin/content/new': typeof AdminContentNewRoute
   '/community/topic/$id': typeof CommunityTopicIdRoute
@@ -180,16 +220,21 @@ export interface FileRoutesById {
   '/admin': typeof AdminRouteWithChildren
   '/forgot-password': typeof ForgotPasswordRoute
   '/login': typeof LoginRoute
+  '/newsletter': typeof NewsletterRoute
   '/profile': typeof ProfileRoute
   '/signup': typeof SignupRoute
   '/admin/categories': typeof AdminCategoriesRoute
+  '/admin/events': typeof AdminEventsRoute
+  '/admin/newsletter': typeof AdminNewsletterRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/community/new': typeof CommunityNewRoute
+  '/events/$id': typeof EventsIdRoute
   '/library/$contentId': typeof LibraryContentIdRoute
   '/admin/': typeof AdminIndexRoute
   '/community/': typeof CommunityIndexRoute
+  '/events/': typeof EventsIndexRoute
   '/library/': typeof LibraryIndexRoute
   '/admin/content/new': typeof AdminContentNewRoute
   '/community/topic/$id': typeof CommunityTopicIdRoute
@@ -204,16 +249,21 @@ export interface FileRouteTypes {
     | '/admin'
     | '/forgot-password'
     | '/login'
+    | '/newsletter'
     | '/profile'
     | '/signup'
     | '/admin/categories'
+    | '/admin/events'
+    | '/admin/newsletter'
     | '/admin/settings'
     | '/admin/users'
     | '/auth/callback'
     | '/community/new'
+    | '/events/$id'
     | '/library/$contentId'
     | '/admin/'
     | '/community/'
+    | '/events/'
     | '/library/'
     | '/admin/content/new'
     | '/community/topic/$id'
@@ -225,16 +275,21 @@ export interface FileRouteTypes {
     | '/'
     | '/forgot-password'
     | '/login'
+    | '/newsletter'
     | '/profile'
     | '/signup'
     | '/admin/categories'
+    | '/admin/events'
+    | '/admin/newsletter'
     | '/admin/settings'
     | '/admin/users'
     | '/auth/callback'
     | '/community/new'
+    | '/events/$id'
     | '/library/$contentId'
     | '/admin'
     | '/community'
+    | '/events'
     | '/library'
     | '/admin/content/new'
     | '/community/topic/$id'
@@ -247,16 +302,21 @@ export interface FileRouteTypes {
     | '/admin'
     | '/forgot-password'
     | '/login'
+    | '/newsletter'
     | '/profile'
     | '/signup'
     | '/admin/categories'
+    | '/admin/events'
+    | '/admin/newsletter'
     | '/admin/settings'
     | '/admin/users'
     | '/auth/callback'
     | '/community/new'
+    | '/events/$id'
     | '/library/$contentId'
     | '/admin/'
     | '/community/'
+    | '/events/'
     | '/library/'
     | '/admin/content/new'
     | '/community/topic/$id'
@@ -270,12 +330,15 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRouteWithChildren
   ForgotPasswordRoute: typeof ForgotPasswordRoute
   LoginRoute: typeof LoginRoute
+  NewsletterRoute: typeof NewsletterRoute
   ProfileRoute: typeof ProfileRoute
   SignupRoute: typeof SignupRoute
   AuthCallbackRoute: typeof AuthCallbackRoute
   CommunityNewRoute: typeof CommunityNewRoute
+  EventsIdRoute: typeof EventsIdRoute
   LibraryContentIdRoute: typeof LibraryContentIdRoute
   CommunityIndexRoute: typeof CommunityIndexRoute
+  EventsIndexRoute: typeof EventsIndexRoute
   LibraryIndexRoute: typeof LibraryIndexRoute
   CommunityTopicIdRoute: typeof CommunityTopicIdRoute
   LibraryCategorySlugRoute: typeof LibraryCategorySlugRoute
@@ -295,6 +358,13 @@ declare module '@tanstack/react-router' {
       path: '/profile'
       fullPath: '/profile'
       preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/newsletter': {
+      id: '/newsletter'
+      path: '/newsletter'
+      fullPath: '/newsletter'
+      preLoaderRoute: typeof NewsletterRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -332,6 +402,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LibraryIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/events/': {
+      id: '/events/'
+      path: '/events'
+      fullPath: '/events/'
+      preLoaderRoute: typeof EventsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/community/': {
       id: '/community/'
       path: '/community'
@@ -351,6 +428,13 @@ declare module '@tanstack/react-router' {
       path: '/library/$contentId'
       fullPath: '/library/$contentId'
       preLoaderRoute: typeof LibraryContentIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events/$id': {
+      id: '/events/$id'
+      path: '/events/$id'
+      fullPath: '/events/$id'
+      preLoaderRoute: typeof EventsIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/community/new': {
@@ -379,6 +463,20 @@ declare module '@tanstack/react-router' {
       path: '/settings'
       fullPath: '/admin/settings'
       preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/newsletter': {
+      id: '/admin/newsletter'
+      path: '/newsletter'
+      fullPath: '/admin/newsletter'
+      preLoaderRoute: typeof AdminNewsletterRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/events': {
+      id: '/admin/events'
+      path: '/events'
+      fullPath: '/admin/events'
+      preLoaderRoute: typeof AdminEventsRouteImport
       parentRoute: typeof AdminRoute
     }
     '/admin/categories': {
@@ -428,6 +526,8 @@ declare module '@tanstack/react-router' {
 
 interface AdminRouteChildren {
   AdminCategoriesRoute: typeof AdminCategoriesRoute
+  AdminEventsRoute: typeof AdminEventsRoute
+  AdminNewsletterRoute: typeof AdminNewsletterRoute
   AdminSettingsRoute: typeof AdminSettingsRoute
   AdminUsersRoute: typeof AdminUsersRoute
   AdminIndexRoute: typeof AdminIndexRoute
@@ -438,6 +538,8 @@ interface AdminRouteChildren {
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminCategoriesRoute: AdminCategoriesRoute,
+  AdminEventsRoute: AdminEventsRoute,
+  AdminNewsletterRoute: AdminNewsletterRoute,
   AdminSettingsRoute: AdminSettingsRoute,
   AdminUsersRoute: AdminUsersRoute,
   AdminIndexRoute: AdminIndexRoute,
@@ -453,12 +555,15 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRouteWithChildren,
   ForgotPasswordRoute: ForgotPasswordRoute,
   LoginRoute: LoginRoute,
+  NewsletterRoute: NewsletterRoute,
   ProfileRoute: ProfileRoute,
   SignupRoute: SignupRoute,
   AuthCallbackRoute: AuthCallbackRoute,
   CommunityNewRoute: CommunityNewRoute,
+  EventsIdRoute: EventsIdRoute,
   LibraryContentIdRoute: LibraryContentIdRoute,
   CommunityIndexRoute: CommunityIndexRoute,
+  EventsIndexRoute: EventsIndexRoute,
   LibraryIndexRoute: LibraryIndexRoute,
   CommunityTopicIdRoute: CommunityTopicIdRoute,
   LibraryCategorySlugRoute: LibraryCategorySlugRoute,

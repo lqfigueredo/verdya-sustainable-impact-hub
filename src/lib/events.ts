@@ -77,13 +77,17 @@ export const myEventsQuery = (userId: string | null) =>
     queryKey: ["my-events", userId],
     queryFn: async (): Promise<(EventRegistration & { event: EventRow | null })[]> => {
       if (!userId) return [];
-      const { data, error } = await supabase
+      const { data: regs, error } = await supabase
         .from("event_registrations")
-        .select("*, event:events(*)")
+        .select("*")
         .eq("user_id", userId)
         .order("registered_at", { ascending: false });
       if (error) throw error;
-      return (data ?? []) as (EventRegistration & { event: EventRow | null })[];
+      const ids = (regs ?? []).map((r) => r.event_id);
+      if (ids.length === 0) return [];
+      const { data: evs } = await supabase.from("events").select("*").in("id", ids);
+      const map = new Map((evs ?? []).map((e) => [e.id, e]));
+      return (regs ?? []).map((r) => ({ ...r, event: map.get(r.event_id) ?? null }));
     },
   });
 
