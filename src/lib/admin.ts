@@ -226,3 +226,48 @@ export const siteSettingsQuery = queryOptions({
     return out;
   },
 });
+
+// ---- Forum moderation ----
+export type FlaggedTopicRow = {
+  id: string;
+  title: string;
+  body: string;
+  category: string;
+  created_at: string;
+  author: { id: string; full_name: string | null; email: string | null } | null;
+};
+
+export type FlaggedReplyRow = {
+  id: string;
+  topic_id: string;
+  body: string;
+  created_at: string;
+  author: { id: string; full_name: string | null; email: string | null } | null;
+  topic: { id: string; title: string } | null;
+};
+
+export const flaggedForumQuery = queryOptions({
+  queryKey: ["admin", "forum", "flagged"],
+  queryFn: async () => {
+    const [topicsRes, repliesRes] = await Promise.all([
+      supabase
+        .from("forum_topics")
+        .select("id,title,body,category,created_at,author:profiles(id,full_name,email)")
+        .eq("flagged", true)
+        .order("created_at", { ascending: false })
+        .limit(100),
+      supabase
+        .from("forum_replies")
+        .select("id,topic_id,body,created_at,author:profiles(id,full_name,email),topic:forum_topics(id,title)")
+        .eq("flagged", true)
+        .order("created_at", { ascending: false })
+        .limit(100),
+    ]);
+    if (topicsRes.error) throw topicsRes.error;
+    if (repliesRes.error) throw repliesRes.error;
+    return {
+      topics: (topicsRes.data ?? []) as unknown as FlaggedTopicRow[],
+      replies: (repliesRes.data ?? []) as unknown as FlaggedReplyRow[],
+    };
+  },
+});
