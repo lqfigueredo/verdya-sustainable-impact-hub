@@ -16,8 +16,10 @@ import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LibraryIndexRouteImport } from './routes/library.index'
+import { Route as CommunityIndexRouteImport } from './routes/community.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as LibraryContentIdRouteImport } from './routes/library.$contentId'
+import { Route as CommunityNewRouteImport } from './routes/community.new'
 import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
@@ -62,6 +64,11 @@ const LibraryIndexRoute = LibraryIndexRouteImport.update({
   path: '/library/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CommunityIndexRoute = CommunityIndexRouteImport.update({
+  id: '/community/',
+  path: '/community/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -70,6 +77,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
 const LibraryContentIdRoute = LibraryContentIdRouteImport.update({
   id: '/library/$contentId',
   path: '/library/$contentId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunityNewRoute = CommunityNewRouteImport.update({
+  id: '/community/new',
+  path: '/community/new',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthCallbackRoute = AuthCallbackRouteImport.update({
@@ -124,8 +136,10 @@ export interface FileRoutesByFullPath {
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
   '/auth/callback': typeof AuthCallbackRoute
+  '/community/new': typeof CommunityNewRoute
   '/library/$contentId': typeof LibraryContentIdRoute
   '/admin/': typeof AdminIndexRoute
+  '/community/': typeof CommunityIndexRoute
   '/library/': typeof LibraryIndexRoute
   '/admin/content/new': typeof AdminContentNewRoute
   '/library/category/$slug': typeof LibraryCategorySlugRoute
@@ -142,8 +156,10 @@ export interface FileRoutesByTo {
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
   '/auth/callback': typeof AuthCallbackRoute
+  '/community/new': typeof CommunityNewRoute
   '/library/$contentId': typeof LibraryContentIdRoute
   '/admin': typeof AdminIndexRoute
+  '/community': typeof CommunityIndexRoute
   '/library': typeof LibraryIndexRoute
   '/admin/content/new': typeof AdminContentNewRoute
   '/library/category/$slug': typeof LibraryCategorySlugRoute
@@ -162,8 +178,10 @@ export interface FileRoutesById {
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
   '/auth/callback': typeof AuthCallbackRoute
+  '/community/new': typeof CommunityNewRoute
   '/library/$contentId': typeof LibraryContentIdRoute
   '/admin/': typeof AdminIndexRoute
+  '/community/': typeof CommunityIndexRoute
   '/library/': typeof LibraryIndexRoute
   '/admin/content/new': typeof AdminContentNewRoute
   '/library/category/$slug': typeof LibraryCategorySlugRoute
@@ -183,8 +201,10 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/admin/users'
     | '/auth/callback'
+    | '/community/new'
     | '/library/$contentId'
     | '/admin/'
+    | '/community/'
     | '/library/'
     | '/admin/content/new'
     | '/library/category/$slug'
@@ -201,8 +221,10 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/admin/users'
     | '/auth/callback'
+    | '/community/new'
     | '/library/$contentId'
     | '/admin'
+    | '/community'
     | '/library'
     | '/admin/content/new'
     | '/library/category/$slug'
@@ -220,8 +242,10 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/admin/users'
     | '/auth/callback'
+    | '/community/new'
     | '/library/$contentId'
     | '/admin/'
+    | '/community/'
     | '/library/'
     | '/admin/content/new'
     | '/library/category/$slug'
@@ -237,7 +261,9 @@ export interface RootRouteChildren {
   ProfileRoute: typeof ProfileRoute
   SignupRoute: typeof SignupRoute
   AuthCallbackRoute: typeof AuthCallbackRoute
+  CommunityNewRoute: typeof CommunityNewRoute
   LibraryContentIdRoute: typeof LibraryContentIdRoute
+  CommunityIndexRoute: typeof CommunityIndexRoute
   LibraryIndexRoute: typeof LibraryIndexRoute
   LibraryCategorySlugRoute: typeof LibraryCategorySlugRoute
 }
@@ -293,6 +319,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LibraryIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/community/': {
+      id: '/community/'
+      path: '/community'
+      fullPath: '/community/'
+      preLoaderRoute: typeof CommunityIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/': {
       id: '/admin/'
       path: '/'
@@ -305,6 +338,13 @@ declare module '@tanstack/react-router' {
       path: '/library/$contentId'
       fullPath: '/library/$contentId'
       preLoaderRoute: typeof LibraryContentIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/community/new': {
+      id: '/community/new'
+      path: '/community/new'
+      fullPath: '/community/new'
+      preLoaderRoute: typeof CommunityNewRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth/callback': {
@@ -396,7 +436,9 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileRoute: ProfileRoute,
   SignupRoute: SignupRoute,
   AuthCallbackRoute: AuthCallbackRoute,
+  CommunityNewRoute: CommunityNewRoute,
   LibraryContentIdRoute: LibraryContentIdRoute,
+  CommunityIndexRoute: CommunityIndexRoute,
   LibraryIndexRoute: LibraryIndexRoute,
   LibraryCategorySlugRoute: LibraryCategorySlugRoute,
 }
