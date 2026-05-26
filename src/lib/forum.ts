@@ -119,7 +119,7 @@ export const forumTopicQuery = (id: string) =>
     queryFn: async (): Promise<(ForumTopic & { author: AuthorMini | null }) | null> => {
       const { data, error } = await supabase
         .from("forum_topics")
-        .select(`*, author:profiles(${AUTHOR_SELECT})`)
+        .select(`*, author:profiles(${AUTHOR_SELECT_FULL})`)
         .eq("id", id)
         .maybeSingle();
       if (error) throw error;
@@ -133,7 +133,7 @@ export const forumRepliesQuery = (topicId: string) =>
     queryFn: async (): Promise<ReplyWithAuthor[]> => {
       const { data, error } = await supabase
         .from("forum_replies")
-        .select(`*, author:profiles(${AUTHOR_SELECT})`)
+        .select(`*, author:profiles(${AUTHOR_SELECT_FULL})`)
         .eq("topic_id", topicId)
         .order("created_at", { ascending: true });
       if (error) throw error;
