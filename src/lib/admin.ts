@@ -110,6 +110,102 @@ export const adminRecentActivityQuery = queryOptions({
   },
 });
 
+export type RecentActivityFeedItem =
+  | { kind: "content"; id: string; createdAt: string; title: string; href: string; meta: string }
+  | { kind: "topic"; id: string; createdAt: string; title: string; href: string; meta: string }
+  | { kind: "registration"; id: string; createdAt: string; title: string; href: string; meta: string }
+  | { kind: "subscriber"; id: string; createdAt: string; title: string; href: string; meta: string };
+
+export const adminActivityFeedQuery = queryOptions({
+  queryKey: ["admin", "activity-feed"],
+  queryFn: async (): Promise<RecentActivityFeedItem[]> => {
+    const [contentRes, topicsRes, regsRes, subsRes] = await Promise.all([
+      supabase
+        .from("content_items")
+        .select("id,title_en,title_pt,type,created_at,published")
+        .order("created_at", { ascending: false })
+        .limit(5),
+      supabase
+        .from("forum_topics")
+        .select("id,title,category,created_at,author:profiles(full_name,email)")
+        .order("created_at", { ascending: false })
+        .limit(5),
+      supabase
+        .from("event_registrations")
+        .select(
+          "id,registered_at,event:events(id,title_en,title_pt),profile:profiles(full_name,email)",
+        )
+        .order("registered_at", { ascending: false })
+        .limit(5),
+      supabase
+        .from("newsletter_subscribers")
+        .select("id,email,language_pref,subscribed_at")
+        .is("unsubscribed_at", null)
+        .order("subscribed_at", { ascending: false })
+        .limit(5),
+    ]);
+
+    const items: RecentActivityFeedItem[] = [];
+
+    for (const c of contentRes.data ?? []) {
+      items.push({
+        kind: "content",
+        id: c.id,
+        createdAt: c.created_at,
+        title: c.title_en,
+        href: `/admin/content/${c.id}/edit`,
+        meta: `${c.type} · ${c.published ? "published" : "draft"}`,
+      });
+    }
+    for (const t of (topicsRes.data ?? []) as Array<{
+      id: string;
+      title: string;
+      category: string;
+      created_at: string;
+      author: { full_name: string | null; email: string | null } | null;
+    }>) {
+      items.push({
+        kind: "topic",
+        id: t.id,
+        createdAt: t.created_at,
+        title: t.title,
+        href: `/community/topic/${t.id}`,
+        meta: `${t.category} · ${t.author?.full_name ?? t.author?.email ?? "—"}`,
+      });
+    }
+    for (const r of (regsRes.data ?? []) as Array<{
+      id: string;
+      registered_at: string;
+      event: { id: string; title_en: string; title_pt: string } | null;
+      profile: { full_name: string | null; email: string | null } | null;
+    }>) {
+      if (!r.event) continue;
+      items.push({
+        kind: "registration",
+        id: r.id,
+        createdAt: r.registered_at,
+        title: r.event.title_en,
+        href: `/events/${r.event.id}`,
+        meta: r.profile?.full_name ?? r.profile?.email ?? "—",
+      });
+    }
+    for (const s of subsRes.data ?? []) {
+      items.push({
+        kind: "subscriber",
+        id: s.id,
+        createdAt: s.subscribed_at,
+        title: s.email,
+        href: "/admin/newsletter",
+        meta: `lang: ${s.language_pref}`,
+      });
+    }
+
+    return items
+      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+      .slice(0, 12);
+  },
+});
+
 export const siteSettingsQuery = queryOptions({
   queryKey: ["admin", "settings"],
   queryFn: async (): Promise<Record<string, unknown>> => {
