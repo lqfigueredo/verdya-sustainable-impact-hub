@@ -12,7 +12,8 @@
     "dashboard": "Dashboard",
     "admin": "Admin panel",
     "logout": "Logout",
-    "newsletter": "Newsletter"
+    "newsletter": "Newsletter",
+    "events": "Events"
   },
   "library": {
     "eyebrow": "Education hub",
