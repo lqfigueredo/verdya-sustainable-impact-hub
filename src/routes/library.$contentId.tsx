@@ -30,12 +30,17 @@ function ContentPage() {
   useEffect(() => {
     if (!item?.author_id) return;
     supabase
-      .from("profiles")
-      .select("full_name, avatar_url, company")
-      .eq("id", item.author_id)
-      .maybeSingle()
-      .then(({ data }) => setAuthor(data));
+      .rpc("get_public_profiles", { _ids: [item.author_id] })
+      .then(({ data }) => {
+        const row = (data ?? [])[0];
+        setAuthor(
+          row
+            ? { full_name: row.full_name, avatar_url: row.avatar_url, company: row.company }
+            : null,
+        );
+      });
   }, [item?.author_id]);
+
 
   if (isLoading) {
     return (
