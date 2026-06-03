@@ -38,11 +38,33 @@ export const FORUM_CATEGORIES = [
 
 export type ForumSort = "latest" | "replies" | "trending";
 
-// Lean projection for lists (no bio/country to avoid leaking personal data in large queries).
-const AUTHOR_SELECT_LIST = "id, full_name, avatar_url, company";
-// Full projection for single-topic / single-reply views.
-const AUTHOR_SELECT_FULL = "id, full_name, avatar_url, company, country, bio";
-const AUTHOR_SELECT = AUTHOR_SELECT_LIST;
+// Author info is fetched via the SECURITY DEFINER `get_public_profiles` RPC so we
+// never expose email addresses from the profiles table to other members.
+async function fetchAuthors(ids: string[]): Promise<Map<string, AuthorMini>> {
+  const unique = Array.from(new Set(ids.filter(Boolean)));
+  if (unique.length === 0) return new Map();
+  const { data, error } = await supabase.rpc("get_public_profiles", { _ids: unique });
+  if (error) throw error;
+  const map = new Map<string, AuthorMini>();
+  for (const p of (data ?? []) as Array<{
+    id: string;
+    full_name: string | null;
+    avatar_url: string | null;
+    bio: string | null;
+    company: string | null;
+    country: string | null;
+  }>) {
+    map.set(p.id, {
+      id: p.id,
+      full_name: p.full_name,
+      avatar_url: p.avatar_url,
+      company: p.company,
+      country: p.country,
+      bio: p.bio,
+    });
+  }
+  return map;
+}
 
 export const forumTopicsQuery = (params: {
   category?: string | null;
@@ -54,7 +76,7 @@ export const forumTopicsQuery = (params: {
     queryFn: async (): Promise<TopicWithMeta[]> => {
       let q = supabase
         .from("forum_topics")
-        .select(`*, author:profiles(${AUTHOR_SELECT})`)
+        .select("*")
         .order("pinned", { ascending: false })
         .order("last_reply_at", { ascending: false })
         .limit(100);
@@ -67,10 +89,16 @@ export const forumTopicsQuery = (params: {
 
       const { data, error } = await q;
       if (error) throw error;
-      const topics = (data ?? []) as unknown as (ForumTopic & { author: AuthorMini | null })[];
+      const rawTopics = (data ?? []) as ForumTopic[];
 
-      const ids = topics.map((t) => t.id);
+      const ids = rawTopics.map((t) => t.id);
       if (ids.length === 0) return [];
+
+      const authorMap = await fetchAuthors(rawTopics.map((t) => t.author_id));
+      const topics = rawTopics.map((t) => ({
+        ...t,
+        author: authorMap.get(t.author_id) ?? null,
+      }));
 
       const [{ data: replyRows }, { data: reactionRows }] = await Promise.all([
         supabase.from("forum_replies").select("topic_id").in("topic_id", ids),
@@ -119,11 +147,13 @@ export const forumTopicQuery = (id: string) =>
     queryFn: async (): Promise<(ForumTopic & { author: AuthorMini | null }) | null> => {
       const { data, error } = await supabase
         .from("forum_topics")
-        .select(`*, author:profiles(${AUTHOR_SELECT_FULL})`)
+        .select("*")
         .eq("id", id)
         .maybeSingle();
       if (error) throw error;
-      return data as unknown as (ForumTopic & { author: AuthorMini | null }) | null;
+      if (!data) return null;
+      const authorMap = await fetchAuthors([data.author_id]);
+      return { ...(data as ForumTopic), author: authorMap.get(data.author_id) ?? null };
     },
   });
 
@@ -133,13 +163,16 @@ export const forumRepliesQuery = (topicId: string) =>
     queryFn: async (): Promise<ReplyWithAuthor[]> => {
       const { data, error } = await supabase
         .from("forum_replies")
-        .select(`*, author:profiles(${AUTHOR_SELECT_FULL})`)
+        .select("*")
         .eq("topic_id", topicId)
         .order("created_at", { ascending: true });
       if (error) throw error;
-      return (data ?? []) as unknown as ReplyWithAuthor[];
+      const rows = (data ?? []) as ForumReply[];
+      const authorMap = await fetchAuthors(rows.map((r) => r.author_id));
+      return rows.map((r) => ({ ...r, author: authorMap.get(r.author_id) ?? null }));
     },
   });
+
 
 export const forumReactionsQuery = (
   targetType: ReactionTarget,
