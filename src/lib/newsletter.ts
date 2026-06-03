@@ -7,14 +7,13 @@ export type Campaign = Database["public"]["Tables"]["newsletter_campaigns"]["Row
 
 export async function subscribe(email: string, languagePref: "en" | "pt") {
   const clean = email.trim().toLowerCase();
-  const { error } = await supabase
-    .from("newsletter_subscribers")
-    .upsert(
-      { email: clean, language_pref: languagePref, subscribed_at: new Date().toISOString(), unsubscribed_at: null },
-      { onConflict: "email" },
-    );
+  const { error } = await supabase.rpc("subscribe_newsletter", {
+    _email: clean,
+    _language_pref: languagePref,
+  });
   if (error) throw error;
 }
+
 
 export const adminSubscribersQuery = queryOptions({
   queryKey: ["admin", "newsletter", "subscribers"],
